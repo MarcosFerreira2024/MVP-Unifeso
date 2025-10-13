@@ -14,4 +14,19 @@
   <a href="https://www.figma.com/design/WKbKEBoPorf7jbQlPPFozL/Projetos?node-id=0-1&p=f&t=bbLaDisVC6go9FAN-0">Acessar no Figma</a>
 </div>
 
+<div id="stack">
+
+  <h3>TypeScript</h3>
+  <p>TypeScript traz tipagem estática ao JavaScript, reduzindo bugs em tempo de desenvolvimento e melhorando a manutenção do código.</p>
+
+  <h3>React</h3>
+  <p>React será a biblioteca de UI no frontend.</p>
+
+  <h3>Node.js</h3>
+  <p>Node.js serve como ambiente do backend. A combinação Node + TypeScript permite escrever APIs escaláveis. </p>
+
+  <h3>JavaScript</h3>
+  <p>JavaScript é a linguagem de execução. <p>
+</div>
+
 
