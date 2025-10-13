@@ -24,7 +24,7 @@
 
   <h1>Requisitos do Sistema </h1>
 
-  <p>Este documento descreve os requisitos funcionais e não funcionais do sistema <strong>Terê Verde Online</strong>, que visa divulgar informações sobre os parques de Teresópolis, incluindo trilhas, eventos, biodiversidade e avaliações de visitantes.</p>
+  <p>Requisitos funcionais e não funcionais do sistema <strong>Terê Verde Online</strong></p>
 
   <hr />
 
