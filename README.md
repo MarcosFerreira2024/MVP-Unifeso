@@ -21,13 +21,6 @@
 </div>
 
 <div id="requisitos">
-
-  <h1>Requisitos do Sistema </h1>
-
-  <p>Requisitos funcionais e não funcionais do sistema <strong>Terê Verde Online</strong></p>
-
-  <hr />
-
   <div>
     <h2 id="requisitos_funcionais">Requisitos Funcionais</h2>
     <ul>
