@@ -16,7 +16,9 @@
     <li><a href="#stack">Stack/Tecnologias</a></li>
     <li><a href="#arquitetura">Arquitetura</a></li>
     <li><a href="estrutura">Estrutura das Pastas</a></li>
+    <li><a href="#repositorios">Repositórios</a></li>
     <li><a href="#resumo">Resumo </a></li>
+    
   </ul>
 </div>
 
