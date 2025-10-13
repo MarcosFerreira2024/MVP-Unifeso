@@ -29,4 +29,28 @@
   <p>JavaScript é a linguagem de execução. <p>
 </div>
 
+<div id="arquitetura">
+  <h1>Arquitetura: Domain-Driven Design (DDD)</h1>
+  <p>O projeto seguirá os princípios do DDD para manter o domínio centralizado, testável e independente de frameworks/infrastrutura.</p>
+
+  <h3>Princípios principais</h3>
+  <ul>
+    <li><strong>Domínio no centro:</strong> regras de negócio vivas nas entidades e casos de uso.</li>
+    <li><strong>Separação de camadas:</strong> domínio, aplicação, infraestrutura e interface.</li>
+    <li><strong>Bounded Contexts:</strong> dividir o sistema quando o domínio cresce ou há modelos conceituais distintos.</li>
+  </ul>
+
+  <h3>Camadas (visão geral)</h3>
+  <ol>
+    <li><strong>Domain:</strong> entidades, value objects, agregados, regras e interfaces (contratos) de repositórios.</li>
+    <li><strong>Application (Use Cases):</strong> orquestra casos de uso; usa interfaces do domínio e orquestra transações e validações de alto nível.</li>
+    <li><strong>Infrastructure:</strong> implementações concretas (banco, filas, integrações externas) que implementam os contratos do domínio.</li>
+    <li><strong>Interface (API / UI):</strong> camada que expõe os endpoints REST/GraphQL e a UI em React — adapta requisições para os casos de uso.</li>
+  </ol>
+
+
+
+
+
+
 
