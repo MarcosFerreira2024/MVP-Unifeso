@@ -13,9 +13,9 @@ function validateValueOrThrow(
   regex: RegExp,
   onErrorMessage: string
 ): string {
-  const isValid = regex.test(value);
+  const isValid = regex.test(value.trim());
   if (!isValid) throw new Error(onErrorMessage);
-  return value.trim();
+  return value;
 }
 
 export { validateValueOrThrow };
