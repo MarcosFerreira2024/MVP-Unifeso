@@ -6,12 +6,12 @@ class Email {
 
   private constructor(private value: string) {}
 
-  static validateEmail(email: string) {
+  static validate(email: string) {
     return validateValueOrThrow(email, this.regex, this.validationErrorMessage);
   }
 
   static create(email: string) {
-    return new Email(this.validateEmail(email));
+    return new Email(this.validate(email));
   }
 
   public getEmail() {

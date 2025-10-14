@@ -7,12 +7,12 @@ class Name {
 
   private constructor(private value: string) {}
 
-  static validateName(name: string) {
+  static validate(name: string) {
     return validateValueOrThrow(name, this.regex, this.validationErrorMessage);
   }
 
   static create(name: string) {
-    return new Name(this.validateName(name));
+    return new Name(this.validate(name));
   }
 
   public getName() {
