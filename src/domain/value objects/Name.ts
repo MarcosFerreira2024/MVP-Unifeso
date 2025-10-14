@@ -1,0 +1,29 @@
+import { validateValueOrThrow } from "../../helpers/validateValueOrThrow";
+
+class Name {
+  private static readonly regex = /^[A-Za-zÀ-ú]+(?: [A-Za-zÀ-ú]+)*$/;
+  private static readonly validationErrorMessage = "Nome Inválido";
+  private static readonly equalsErrorMessage = "Nome idêntico ao anterior";
+
+  private constructor(private value: string) {}
+
+  static validateName(name: string) {
+    return validateValueOrThrow(name, this.regex, this.validationErrorMessage);
+  }
+
+  static create(name: string) {
+    return new Name(this.validateName(name));
+  }
+
+  public getName() {
+    return this.value;
+  }
+
+  static isEquals(newName: string, name: string) {
+    if (newName === name) throw new Error(this.equalsErrorMessage);
+
+    return false;
+  }
+}
+
+export { Name };
