@@ -173,7 +173,7 @@
     <li><strong>Domain:</strong> entidades, value objects, agregados, regras e interfaces (contratos) de repositórios.</li>
     <li><strong>Application (Use Cases):</strong> orquestra casos de uso; usa interfaces do domínio e orquestra transações e validações de alto nível.</li>
     <li><strong>Infrastructure:</strong> implementações concretas (banco, filas, integrações externas) que implementam os contratos do domínio.</li>
-    <li><strong>Interface (API / UI):</strong> camada que expõe os endpoints REST/GraphQL e a UI em React — adapta requisições para os casos de uso.</li>
+    <li><strong>Presentation :</strong> camada que expõe os endpoints REST.</li>
   </ol>
 
 <div id="banco">
