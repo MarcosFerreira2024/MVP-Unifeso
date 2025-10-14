@@ -16,9 +16,9 @@
     <li><a href="#stack">Stack/Tecnologias</a></li>
     <li><a href="#arquitetura">Arquitetura</a></li>
     <li><a href="#banco">Diagrama do Banco de Dados</a></li>
-    <li><a herf="fora_do_escopo">Fora do Escopo Inicial</a></li>
-    <li><a href="estrutura">Estrutura das Pastas</a></li>
+    <li><a href="#fora_escopo">Fora do Escopo Inicial</a></li>
     <li><a href="#repositorios">Repositórios</a></li>
+    <li><a href="#estrutura">Estrutura das Pastas</a></li>
     <li><a href="#resumo">Resumo </a></li>
     
   </ul>
@@ -181,7 +181,7 @@
   <a href="https://lucid.app/lucidchart/cea852b0-e175-42dc-83cb-0e9e8b16b9b0/edit?viewport_loc=685%2C311%2C3093%2C1437%2C0_0&invitationId=inv_857379fc-94f7-4d77-bb7f-d4a78a0da08e">Lucid Chart</a>
   <p>Precisa estar logado</p>
 </div>
-<div id="fora-escopo">
+<div id="fora_escopo">
   <h1>Fora do Escopo</h1>
   <p>Esta seção descreve os elementos que <strong>não serão implementados</strong> nesta versão inicial do sistema, alinhando expectativas entre equipe de desenvolvimento e stakeholders.</p>
   <ul>
@@ -217,7 +217,15 @@
 </div>
 
 
+<div id="repositorios">
+  <h1>Repositórios</h1>
 
+  <ul>
+    <li><a href="https://github.com/MarcosFerreira2024/MVP-Frontend/">Frontend</a></li>
+    <li><a href="https://github.com/MarcosFerreira2024/MVP-Unifeso/">Backend</a></li>
+  </ul>
+  
+</div>
 
 
 
