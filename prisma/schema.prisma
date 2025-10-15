@@ -47,7 +47,7 @@ model Outings {
   id          String        @id @default(cuid())
   title       String
   content     String
-  price       Float
+  price       Int
   mainPhoto   String
   photos      Json          // array of urls sqlite doesn't recognize array as primitive type só we have to use json :9
   category    CategoryType
