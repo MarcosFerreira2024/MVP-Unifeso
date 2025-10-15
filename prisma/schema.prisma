@@ -6,10 +6,168 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "src/infrastucture/libs/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:src/infrastructure/db"
+}
+
+model Users {
+  id             String    @id @default(nanoid())
+  name           String
+  email          String    @unique
+  hashedPassword String
+  role           Roles     @default(USER)
+  avatarUrl      String?
+  provider       Providers?
+  googleId       String?   @unique
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  verified       Boolean   @default(false)
+  verificationCodes VerificationCodes?
+
+  ratings        Ratings[]
+  bookings       Booking[]
+}
+
+model VerificationCodes {
+  id        String   @id @default(nanoid())
+  code      String   @default(nanoid()) @unique
+  userId    String   @unique
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      Users    @relation(fields: [userId], references: [id])
+}
+
+model Outings {
+  id          String        @id @default(cuid())
+  title       String
+  content     String
+  price       Float
+  mainPhoto   String
+  photos      Json          // array of urls sqlite doesn't recognize array as primitive type só we have to use json :9
+  category    CategoryType
+  local       Json          // { city, state, address, latitude, longitude }
+  public      Audience
+  startDate   DateTime
+  endDate     DateTime
+  startHour   DateTime
+  endHour     DateTime
+  slug        String        @unique
+  categoryId  String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  status      OutingStatus  @default(DRAFT)
+
+  categoryRel Category     @relation(fields: [categoryId], references: [id])
+  events      Event[]
+  ratings     Ratings[]
+  bookings    Booking[]
+}
+
+model Booking {
+  id         String    @id @default(cuid())
+  startDate  DateTime
+  endDate    DateTime
+  startHour DateTime
+  endHour  DateTime
+  userId     String
+  outingId   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  user       Users     @relation(fields: [userId], references: [id])
+  outing     Outings   @relation(fields: [outingId], references: [id])
+}
+
+
+model Event {
+  id               String    @id @default(cuid())
+  maximumCapacity  Int
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  outingId         String
+  outing           Outings   @relation(fields: [outingId], references: [id])
+}
+
+model Trail {
+  id          String    @id @default(cuid())
+  difficulty  String
+  duration    Int       // in minutes or hours
+  distance    Float     // in km
+  roundTrip   Boolean   // ida e volta
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String
+  type        CategoryType
+  outings     Outings[]
+}
+
+model Park {
+  id                 String    @id @default(cuid())
+  infrastructure     String
+  biodiversity       String
+  maximumCapacity    Int
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model Ratings {
+  id        String   @id @default(cuid())
+  comment   String?
+  rating    RatingValues
+  userId    String
+  outingId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      Users    @relation(fields: [userId], references: [id])
+  outing    Outings  @relation(fields: [outingId], references: [id])
+}
+
+
+//enums
+enum RatingValues {
+  ONE
+  TWO
+  THREE
+  FOUR
+  FIVE
+}
+
+enum Providers {
+  GOOGLE
+}
+
+enum Roles {
+  USER
+  ADMIN
+}
+
+enum CategoryType {
+  EVENT
+  PARK
+  TRAIL
+}
+
+enum Audience {
+  ALL
+  PLUS18
+  PLUS16
+  PLUS12
+}
+
+enum OutingStatus {
+  DRAFT
+  PUBLISHED
+  CANCELLED
+  FINISHED
 }
