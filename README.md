@@ -19,6 +19,7 @@
     <li><a href="#fora_escopo">Fora do Escopo Inicial</a></li>
     <li><a href="#repositorios">Repositórios</a></li>
     <li><a href="#estrutura">Estrutura das Pastas</a></li>
+    <li><a href="dependencias">Dependências</a></li>
     <li><a href="#resumo">Resumo </a></li>
     
   </ul>
@@ -318,6 +319,38 @@
   ├── 📄 package.json
   └── 📄 tsconfig.json
   </pre>
+</div >
+  <div id="dependencias">
+    <h2>Dependências de Desenvolvimento</h2>
+  <ul>
+    <li>@types/bcrypt</li>
+    <li>@types/cors</li>
+    <li>@types/dotenv</li>
+    <li>@types/express</li>
+    <li>@types/jest</li>
+    <li>@types/jsonwebtoken</li>
+    <li>@types/nodemailer</li>
+    <li>jest</li>
+    <li>ts-jest</li>
+    <li>ts-node</li>
+    <li>tsx</li>
+    <li>typescript</li>
+  </ul>
+  
+  <h2>Dependências</h2>
+  <ul>
+    <li>@prisma/client</li>
+    <li>bcrypt</li>
+    <li>cors</li>
+    <li>dotenv</li>
+    <li>express</li>
+    <li>jsonwebtoken</li>
+    <li>nodemailer</li>
+    <li>prisma</li>
+    <li>reflect-metadata</li>
+    <li>tsyringe</li>
+    <li>zod</li>
+  </ul>
 </div>
 
 
