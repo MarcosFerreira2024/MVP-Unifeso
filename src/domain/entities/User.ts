@@ -29,7 +29,7 @@ class User {
     return new User(
       Name.create(name),
       Email.create(email),
-      Password.validate(password),
+      password,
       false,
       role ?? Roles.USER,
       provider ?? null,
