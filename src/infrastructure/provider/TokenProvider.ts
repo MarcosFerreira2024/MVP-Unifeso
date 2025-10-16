@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
+import { injectable } from "tsyringe";
 
-export class JwtTokenProvider implements ITokenProvider {
+@injectable()
+export class TokenProvider implements ITokenProvider {
   private secret = process.env.JWT_SECRET!;
 
   async generate(userId: string, email: string, role: string): Promise<string> {
@@ -11,14 +13,24 @@ export class JwtTokenProvider implements ITokenProvider {
 
   async verify(
     token: string
-  ): Promise<{ userId: string; email: string; role: string } | null> {
+  ): Promise<{
+    userId: string;
+    email: string;
+    role: string;
+    token: string;
+  } | null> {
     try {
       const decoded = jwt.verify(token, this.secret) as {
         userId: string;
         email: string;
         role: string;
       };
-      return decoded;
+      return {
+        userId: decoded.userId,
+        email: decoded.email,
+        role: decoded.role,
+        token,
+      };
     } catch {
       throw new Error("Token inválido ou expirado");
     }
