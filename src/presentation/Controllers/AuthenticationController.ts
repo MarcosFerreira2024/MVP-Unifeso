@@ -3,6 +3,7 @@ import { errorHandler } from "../../helpers/errorHandler";
 import { Request, Response } from "express";
 import { SignUpUseCase } from "../../application/useCases/Authentication/SignUpUseCase";
 import { container } from "tsyringe";
+import { LoginUseCase } from "../../application/useCases/Authentication/LoginUseCase";
 
 class AuthenticationController {
   static async login(req: Request, res: Response) {
@@ -35,3 +36,5 @@ class AuthenticationController {
     }
   }
 }
+
+export { AuthenticationController };
