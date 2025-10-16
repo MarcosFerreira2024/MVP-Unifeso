@@ -37,6 +37,7 @@ model VerificationCodes {
   code      String   @default(nanoid()) @unique
   userId    String   @unique
   used      Boolean  @default(false)
+  validUntil DateTime 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
