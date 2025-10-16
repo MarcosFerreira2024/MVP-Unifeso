@@ -19,6 +19,7 @@
     <li><a href="#fora_escopo">Fora do Escopo Inicial</a></li>
     <li><a href="#repositorios">Repositórios</a></li>
     <li><a href="#estrutura">Estrutura das Pastas</a></li>
+    <li><a href="dependencias">Dependências</a></li>
     <li><a href="#resumo">Resumo </a></li>
     
   </ul>
@@ -227,5 +228,129 @@
   
 </div>
 
+<div id="estrutura">
+  <h1>Estrutura Atual do Projeto</h1>
+  <p>Atualizada: 15/10/2025 <span>05:50 am</span></p>
+  <pre>
+  ├── 📁 .git/ 🚫 (hidden)
+  ├── 📁 node_modules/ 🚫 (hidden)
+  ├── 📁 prisma/
+  │   ├── 📁 migrations/
+  │   │   ├── 📁 20251015054349_criando_tabelas/
+  │   │   │   └── 🗄️ migration.sql
+  │   │   └── ⚙️ migration_lock.toml
+  │   └── 📄 schema.prisma
+  ├── 📁 src/
+  │   ├── 📁 application/
+  │   │   └── 📁 useCases/
+  │   │       └── 📁 Authentication/
+  │   │           ├── 📄 LoginUseCase.ts
+  │   │           ├── 📄 SignUpUseCase.ts
+  │   │           └── 📄 VerifyCodeUseCase.ts
+  │   ├── 📁 domain/
+  │   │   ├── 📁 entities/
+  │   │   │   ├── 📄 Outing.ts
+  │   │   │   ├── 📄 User.ts
+  │   │   │   └── 📄 VerificationCode.ts
+  │   │   ├── 📁 interfaces/
+  │   │   │   ├── 📄 IEmailService.ts
+  │   │   │   ├── 📄 IHashProvider.ts
+  │   │   │   ├── 📄 ITokenProvider.ts
+  │   │   │   ├── 📄 IUserRepository.ts
+  │   │   │   └── 📄 IVerificationCodeRepository.ts
+  │   │   └── 📁 value objects/
+  │   │       ├── 📄 Content.ts
+  │   │       ├── 📄 Email.ts
+  │   │       ├── 📄 Name.ts
+  │   │       ├── 📄 Password.ts
+  │   │       └── 📄 Title.ts
+  │   ├── 📁 helpers/
+  │   │   ├── 📄 errorHandler.ts
+  │   │   ├── 📄 mapPrismaRole.ts
+  │   │   ├── 📄 mapPrismaUserToUserFromDb.ts
+  │   │   ├── 📄 normalizeBadWords.ts
+  │   │   └── 📄 validateValueOrThrow.ts
+  │   ├── 📁 infrastructure/
+  │   │   ├── 📁 config/
+  │   │   ├── 📁 db/
+  │   │   │   └── 🗄️ dev.db
+  │   │   ├── 📁 libs/
+  │   │   │   ├── 📁 nodemailer/
+  │   │   │   │   └── 📄 config.ts
+  │   │   │   └── 📁 prisma/
+  │   │   │       ├── 📁 generated/ 🚫 (hidden)
+  │   │   │       └── 📄 prisma.ts
+  │   │   ├── 📁 providers/
+  │   │   │   ├── 📄 HashProvider.ts
+  │   │   │   └── 📄 TokenProvider.ts
+  │   │   ├── 📁 repositories/
+  │   │   │   └── 📄 UserRepository.ts
+  │   │   ├── 📁 services/
+  │   │   │   └── 📁 email/
+  │   │   │       ├── 📁 template/
+  │   │   │       │   └── 🌐 verificationCode.html
+  │   │   │       └── 📄 EmailService.ts
+  │   │   └── 📁 types/
+  │   │       ├── 📄 dataBase.ts
+  │   │       └── 📄 enums.ts
+  │   ├── 📁 presentation/
+  │   │   ├── 📁 controllers/
+  │   │   │   ├── 📄 AuthenticationController.ts
+  │   │   │   ├── 📄 OutingController.ts
+  │   │   │   └── 📄 UserController.ts
+  │   │   └── 📁 routes/
+  │   ├── 📁 tests/
+  │   │   ├── 📁 Vo/
+  │   │   │   ├── 📄 Content.test.ts
+  │   │   │   ├── 📄 Email.test.ts
+  │   │   │   ├── 📄 Name.test.ts
+  │   │   │   ├── 📄 Password.test.ts
+  │   │   │   └── 📄 Title.test.ts
+  │   │   └── 📁 functions/
+  │   │       └── 📄 normalizeBadWords.test.ts
+  │   └── 📄 index.ts
+  ├── 🔒 .env 🚫 (hidden)
+  ├── 📄 .env.example 
+  ├── 🚫 .gitignore
+  ├── 📖 README.md
+  ├── 📄 jest.config.ts
+  ├── 📄 jest.setup.ts
+  ├── 📄 package-lock.json
+  ├── 📄 package.json
+  └── 📄 tsconfig.json
+  </pre>
+</div >
+  <div id="dependencias">
+    <h2>Dependências de Desenvolvimento</h2>
+  <ul>
+    <li>@types/bcrypt</li>
+    <li>@types/cors</li>
+    <li>@types/dotenv</li>
+    <li>@types/express</li>
+    <li>@types/jest</li>
+    <li>@types/jsonwebtoken</li>
+    <li>@types/nodemailer</li>
+    <li>jest</li>
+    <li>ts-jest</li>
+    <li>ts-node</li>
+    <li>tsx</li>
+    <li>typescript</li>
+  </ul>
+  
+  <h2>Dependências</h2>
+  <ul>
+    <li>@prisma/client</li>
+    <li>bcrypt</li>
+    <li>cors</li>
+    <li>dotenv</li>
+    <li>express</li>
+    <li>jsonwebtoken</li>
+    <li>nodemailer</li>
+    <li>prisma</li>
+    <li>reflect-metadata</li>
+    <li>tsyringe</li>
+    <li>zod</li>
+  </ul>
+</div>
 
 
