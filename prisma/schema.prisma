@@ -29,7 +29,6 @@ model Users {
   verificationCodes VerificationCodes?
 
   ratings        Ratings[]
-  bookings       Booking[]
 }
 
 model VerificationCodes {
@@ -68,24 +67,10 @@ model Outings {
   categoryRel Category     @relation(fields: [categoryId], references: [id])
   events      Event[]
   ratings     Ratings[]
-  bookings    Booking[]
 }
 
 
-model Booking {
-  id         String    @id @default(cuid())
-  startDate  DateTime
-  endDate    DateTime
-  startHour DateTime
-  endHour  DateTime
-  userId     String
-  outingId   String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime  @updatedAt
 
-  user       Users     @relation(fields: [userId], references: [id])
-  outing     Outings   @relation(fields: [outingId], references: [id])
-}
 
 
 model Event {
