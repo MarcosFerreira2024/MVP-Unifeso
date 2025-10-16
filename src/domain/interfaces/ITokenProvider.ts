@@ -1,10 +1,12 @@
 interface ITokenProvider {
-  generate(userId: string, email: string, role: string): Promise<string>;
-  verify(
-    token: string
-  ): Promise<{
+  generate(
+    userId: string,
+    email: string,
+    role: "Admin" | "User"
+  ): Promise<string>;
+  verify(token: string): Promise<{
     userId: string;
-    role: string;
+    role: "Admin" | "User";
     email: string;
     token: string;
   } | null>;
