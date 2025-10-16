@@ -50,9 +50,10 @@ model Outings {
   content     String
   price       Int
   mainPhoto   String
-  photos      Json          // array of urls sqlite doesn't recognize array as primitive type só we have to use json :9
+  photos      Json
   category    CategoryType
-  local       Json          // { city, state, address, latitude, longitude }
+  locationId  Int
+  location    Location      @relation(fields: [locationId], references: [id])
   public      Audience
   startDate   DateTime
   endDate     DateTime
@@ -69,6 +70,7 @@ model Outings {
   ratings     Ratings[]
   bookings    Booking[]
 }
+
 
 model Booking {
   id         String    @id @default(cuid())
@@ -124,7 +126,7 @@ model Park {
 model Ratings {
   id        String   @id @default(cuid())
   comment   String?
-  rating    RatingValues
+  rating    Int
   userId    String
   outingId  String
   createdAt DateTime @default(now())
@@ -134,15 +136,25 @@ model Ratings {
   outing    Outings  @relation(fields: [outingId], references: [id])
 }
 
+model City {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  locations Location[]
+}
+
+model Location {
+  id        Int       @id @default(autoincrement())
+  latitude  Float
+  longitude Float
+  city      City?     @relation(fields: [cityId], references: [id])
+  cityId    Int?
+  createdAt DateTime  @default(now())
+  outings   Outings[] 
+  
+}
 
 //enums
-enum RatingValues {
-  ONE
-  TWO
-  THREE
-  FOUR
-  FIVE
-}
+
 
 enum Providers {
   GOOGLE
