@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
+import { injectable } from "tsyringe";
 
+@injectable()
 class HashProvider implements IHashProvider {
   private readonly saltRounds = 10;
 
