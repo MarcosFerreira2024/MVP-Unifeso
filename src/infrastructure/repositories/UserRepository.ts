@@ -1,3 +1,4 @@
+import { injectable } from "tsyringe";
 import { User } from "../../domain/entities/User";
 import {
   IUserRepository,
@@ -5,19 +6,22 @@ import {
 } from "../../domain/interfaces/IUserRepository";
 import { mapPrismaUserToUserFromDB } from "../../helpers/mapPrismaUserToUserFromDb";
 import { prisma } from "../libs/prisma/prisma";
-import { UserFromDBWithRelations } from "../types/dataBase";
+import { UserFromDB, UserFromDBWithRelations } from "../types/dataBase";
 
+@injectable()
 class UserRepository implements IUserRepository {
-  async create(user: User): Promise<void> {
+  async create(user: User): Promise<UserFromDB> {
     const { email, name, password } = user.getDTO();
 
-    await prisma.users.create({
+    const created = await prisma.users.create({
       data: {
         email,
         name,
         hashedPassword: password,
       },
     });
+
+    return mapPrismaUserToUserFromDB(created);
   }
 
   async delete(userId: string): Promise<void> {
