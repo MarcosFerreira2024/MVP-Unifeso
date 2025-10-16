@@ -14,6 +14,8 @@ import { EmailService } from "../../infrastructure/services/email/EmailService";
 
 import { IVerificationCodeService } from "../../domain/interfaces/IVerificationCodeService";
 import { VerificationCodeService } from "../../infrastructure/services/verificationCode/VerificationCodeService";
+import { IRatingRepository } from "../../domain/interfaces/IRatingRepository";
+import { RatingRepository } from "../../infrastructure/repositories/RatingRepository";
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
 
@@ -32,3 +34,5 @@ container.registerSingleton<IVerificationCodeService>(
   "VerificationCodeService",
   VerificationCodeService
 );
+
+container.registerSingleton<IRatingRepository>("RatingRepository", RatingRepository);
