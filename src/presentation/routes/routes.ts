@@ -4,10 +4,12 @@ import { authentication } from "./auth";
 
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../../infrastructure/libs/swagger/swagger-output.json";
+import { rating } from "./rating";
 
 const routes = Router();
 routes.use("/user", user);
 routes.use("/authentication", authentication);
+routes.use("/rating", rating);
 routes.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export { routes };
