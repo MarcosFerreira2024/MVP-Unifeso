@@ -1,7 +1,8 @@
 import { validateValueOrThrow } from "../../helpers/validateValueOrThrow";
 
 class Name {
-  private static readonly regex = /^[A-Za-zÀ-ú]+(?: [A-Za-zÀ-ú]+)*$/;
+  private static readonly regex =
+    /^(?=.{2,80}$)[A-Za-zÀ-ú]+(?: [A-Za-zÀ-ú]+)*$/;
   private static readonly validationErrorMessage = "Nome Inválido";
   private static readonly equalsErrorMessage = "Nome idêntico ao anterior";
 
