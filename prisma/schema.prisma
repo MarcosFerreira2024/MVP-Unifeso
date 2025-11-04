@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/infrastructure/libs/prisma/generated"
@@ -14,6 +8,8 @@ datasource db {
   url      = "file:../src/infrastructure/db/dev.db"
 }
 
+// ----------------- MODELS -----------------
+
 model Users {
   id             String    @id @default(nanoid())
   name           String
@@ -23,12 +19,12 @@ model Users {
   avatarUrl      String?
   provider       Providers?
   googleId       String?   @unique
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
   verified       Boolean   @default(false)
   verificationCodes VerificationCodes?
 
   ratings        Ratings[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 }
 
 model VerificationCodes {
@@ -37,75 +33,95 @@ model VerificationCodes {
   userId    String   @unique
   used      Boolean  @default(false)
   validUntil DateTime 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   user      Users    @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id        String     @id @default(cuid())
+  name      String     @unique  // TRAIL, PARK
+  outings   Outings[] 
+  createdAt DateTime   @default(now())
+
+  updatedAt DateTime   @updatedAt
 }
 
 model Outings {
-  id          String        @id @default(cuid())
+  id          String    @id @default(cuid())
   title       String
   content     String
   price       Int
-  mainPhoto   String
-  photos      Json
-  category    CategoryType
-  locationId  Int
-  location    Location      @relation(fields: [locationId], references: [id])
+  slug        String    @unique
   public      Audience
-  startDate   DateTime
-  endDate     DateTime
-  startHour   DateTime
-  endHour     DateTime
-  slug        String        @unique
+  category    Category  @relation(fields: [categoryId], references: [id])
   categoryId  String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  status      OutingStatus  @default(DRAFT)
-
-  categoryRel Category     @relation(fields: [categoryId], references: [id])
-  events      Event[]
+  locationId  Int
+  location    Location  @relation(fields: [locationId], references: [id])
+  photos      Photo[]
+  openHours   OpenHour[]
   ratings     Ratings[]
-}
-
-
-
-
-
-model Event {
-  id               String    @id @default(cuid())
-  maximumCapacity  Int
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  outingId         String
-  outing           Outings   @relation(fields: [outingId], references: [id])
-}
-
-model Trail {
-  id          String    @id @default(cuid())
-  difficulty  String
-  duration    Int       // in minutes or hours
-  distance    Float     // in km
-  roundTrip   Boolean   // ida e volta
+  trail       Trail?    
+  park        Park?     
+  events      Event[]   
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
-model Category {
-  id          String     @id @default(cuid())
-  name        String
-  type        CategoryType
-  outings     Outings[]
+model Trail {
+  id        String   @id @default(cuid())
+  outingId  String   @unique
+  outing    Outings  @relation(fields: [outingId], references: [id])
+  difficulty String
+  duration   Int
+  distance   Float
+  roundTrip  Boolean
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Park {
-  id                 String    @id @default(cuid())
-  infrastructure     String
-  biodiversity       String
-  maximumCapacity    Int
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  id               String   @id @default(cuid())
+  outingId         String   @unique
+  outing           Outings @relation(fields: [outingId], references: [id])
+  biodiversity     String
+  maximumCapacity  Int
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Event {
+  id              String   @id @default(cuid())
+  outingId        String
+  outing           Outings @relation(fields: [outingId], references: [id])
+  maximumCapacity  Int
+  name             String
+  description      String?
+  startDate        DateTime
+  endDate          DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+model Photo {
+  id        String   @id @default(cuid())
+  alt       String
+  url       String 
+  outingId  String
+  outing    Outings   @relation(fields: [outingId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model OpenHour {
+  id        String   @id @default(uuid())
+  dayOfWeek Int      // 1 = segunda, 7 = domingo
+  openTime  String
+  closeTime String
+  outingId  String
+  outing    Outings @relation(fields: [outingId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Ratings {
@@ -114,32 +130,33 @@ model Ratings {
   rating    Int
   userId    String
   outingId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   user      Users    @relation(fields: [userId], references: [id])
   outing    Outings  @relation(fields: [outingId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model City {
-  id       Int       @id @default(autoincrement())
-  name     String    @unique
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
   locations Location[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model Location {
   id        Int       @id @default(autoincrement())
   latitude  Float
   longitude Float
-  city      City?     @relation(fields: [cityId], references: [id])
-  cityId    Int?
-  createdAt DateTime  @default(now())
+  cityId    Int
+  city      City      @relation(fields: [cityId], references: [id])
   outings   Outings[] 
-  
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
-//enums
-
+// ----------------- ENUMS -----------------
 
 enum Providers {
   GOOGLE
@@ -150,22 +167,9 @@ enum Roles {
   ADMIN
 }
 
-enum CategoryType {
-  EVENT
-  PARK
-  TRAIL
-}
-
 enum Audience {
   ALL
   PLUS18
   PLUS16
   PLUS12
-}
-
-enum OutingStatus {
-  DRAFT
-  PUBLISHED
-  CANCELLED
-  FINISHED
 }
