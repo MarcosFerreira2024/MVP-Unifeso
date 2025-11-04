@@ -6,10 +6,10 @@ class Content {
   private static readonly validationErrorMessage =
     "Conteúdo deve conter no máximo 300 caracteres";
 
-  private constructor(private content: string) {}
+  private constructor(private content?: string) {}
 
   static create(content?: string) {
-    if (!content) return;
+    if (!content) return null;
     content = Content.validate(content);
     return new Content(content);
   }

@@ -9,6 +9,7 @@ class Title {
   private constructor(private value: string) {}
 
   static create(title: string) {
+    title = Title.validate(title);
     return new Title(title);
   }
 
