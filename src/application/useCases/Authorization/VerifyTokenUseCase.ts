@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { ITokenProvider } from "../../../domain/interfaces/ITokenProvider";
 
 @injectable()
 class VerifyTokenUseCase {

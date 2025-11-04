@@ -5,6 +5,7 @@ import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerific
 import { IVerificationCodeService } from "../../../domain/interfaces/IVerificationCodeService";
 import { Password } from "../../../domain/value objects/Password";
 import { UseCaseResponse } from "../../../infrastructure/types/global";
+import { ITokenProvider } from "../../../domain/interfaces/ITokenProvider";
 
 @injectable()
 class LoginUseCase {
