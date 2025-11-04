@@ -1,14 +1,14 @@
 import {
   RatingFromDB,
   RatingFromDBWithRelations,
-} from "../../infrastructure/types/dataBase";
+} from "../../infrastructure/types/database";
 
 interface IRatingRepository {
   create(
     rating: number,
     userId: string,
     outingId: string,
-    content: string | null
+    content?: string | null
   ): Promise<RatingFromDB>;
 
   delete(userId: string, id: string, ratingId: string): Promise<void>;

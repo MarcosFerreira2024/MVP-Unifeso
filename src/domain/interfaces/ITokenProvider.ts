@@ -1,13 +1,13 @@
+import { Role } from "./IUserRepository";
+
 interface ITokenProvider {
-  generate(
-    userId: string,
-    email: string,
-    role: "Admin" | "User"
-  ): Promise<string>;
+  generate(userId: string, email: string, role: Role): Promise<string>;
   verify(token: string): Promise<{
     userId: string;
-    role: "Admin" | "User";
+    role: Role;
     email: string;
     token: string;
   } | null>;
 }
+
+export { ITokenProvider };

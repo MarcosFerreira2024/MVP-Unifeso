@@ -1,7 +1,7 @@
 import {
   UserFromDB,
   UserFromDBWithRelations,
-} from "../../infrastructure/types/dataBase";
+} from "../../infrastructure/types/database";
 import { User } from "../entities/User";
 
 export type Role = "USER" | "ADMIN";
