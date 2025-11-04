@@ -1,7 +1,7 @@
 import { IRatingRepository } from "../../domain/interfaces/IRatingRepository";
 import { mapPrismaRole } from "../../helpers/mapPrismaRole";
 import { prisma } from "../libs/prisma/prisma";
-import { RatingFromDB, RatingFromDBWithRelations } from "../types/dataBase";
+import { RatingFromDB, RatingFromDBWithRelations } from "../types/database";
 
 class RatingRepository implements IRatingRepository {
   async create(

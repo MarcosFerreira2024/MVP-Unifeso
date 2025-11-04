@@ -6,7 +6,7 @@ import {
 } from "../../domain/interfaces/IUserRepository";
 import { mapPrismaUserToUserFromDB } from "../../helpers/mapPrismaUserToUserFromDb";
 import { prisma } from "../libs/prisma/prisma";
-import { UserFromDB, UserFromDBWithRelations } from "../types/dataBase";
+import { UserFromDB, UserFromDBWithRelations } from "../types/database";
 
 @injectable()
 class UserRepository implements IUserRepository {
@@ -34,7 +34,6 @@ class UserRepository implements IUserRepository {
     const user = await prisma.users.findUnique({
       where: { email },
       include: {
-        bookings: true,
         ratings: true,
       },
     });
@@ -48,7 +47,6 @@ class UserRepository implements IUserRepository {
     const user = await prisma.users.findUnique({
       where: { id },
       include: {
-        bookings: true,
         ratings: true,
       },
     });
@@ -65,7 +63,7 @@ class UserRepository implements IUserRepository {
     const user = await prisma.users.update({
       where: { id: userId },
       data,
-      include: { bookings: true, ratings: true },
+      include: { ratings: true },
     });
 
     return mapPrismaUserToUserFromDB(user);
