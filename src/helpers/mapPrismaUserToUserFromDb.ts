@@ -1,4 +1,4 @@
-import { UserFromDBWithRelations } from "../infrastructure/types/dataBase";
+import { UserFromDBWithRelations } from "../infrastructure/types/database";
 import { mapPrismaRole } from "./mapPrismaRole";
 
 function mapPrismaUserToUserFromDB(user: any): UserFromDBWithRelations {
