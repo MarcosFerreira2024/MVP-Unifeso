@@ -32,6 +32,7 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "test": "jest",
-    "swagger": "tsx ./src/infrastructure/libs/swagger/swaggerAutoGen.ts"
+    "swagger": "tsx ./src/infrastructure/libs/swagger/swaggerAutoGen.ts",
+    "seed": "tsx ./src/infrastructure/db/seeds/index.ts"
   }
 }
