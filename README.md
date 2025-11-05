@@ -1,5 +1,7 @@
 <div>
   <h1>Menu</h1>
+  <li><a href="#alunos">Alunos</a></li>
+  <li><a href="#projeto_escolhido">Projeto Escolhido</a></li>
   <ul>
     <li>
       <a href="#requisitos">Requisitos</a>
@@ -21,8 +23,21 @@
     <li><a href="#estrutura">Estrutura das Pastas</a></li>
     <li><a href="dependencias">Dependências</a></li>
     <li><a href="#resumo">Resumo </a></li>
-    
   </ul>
+</div>
+<div id="alunos">
+  <h1>Alunos</h1>
+  <ul>
+    <li>Marcos Vinicius Ferreira Pinto.</li>
+    <li>Miguel Arcuri Carapeto Faria.</li>
+    <li>Luiz Felipe Oliveira Da Silva.</li>
+  </ul>
+
+</div>
+<div id="projeto_escolhido">
+  <h1>Projeto Escolhido</h1>
+  <p>Terê Verde Online</p>
+
 </div>
 
 <div id="requisitos">
