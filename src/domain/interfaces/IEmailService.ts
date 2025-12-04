@@ -1,4 +1,4 @@
-interface IEmailService {
+export interface IEmailService {
   sendVerificationCode(
     userName: string,
     email: string,

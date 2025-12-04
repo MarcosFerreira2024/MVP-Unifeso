@@ -1,10 +1,17 @@
-import { Park } from "../entities/Park";
-import { ParkFromDB } from "../../infrastructure/types/database"; // Import the new type
+import { ParkFromDB } from "../../infrastructure/types/database";
 
 export interface IParkRepository {
-  create(park: Park): Promise<ParkFromDB>;
+  create(data: {
+    outingId: string;
+    biodiversity: string;
+    maximumCapacity: number;
+  }): Promise<ParkFromDB>;
   findById(id: string): Promise<ParkFromDB | null>;
   findByOutingId(outingId: string): Promise<ParkFromDB | null>;
-  update(park: Park): Promise<ParkFromDB>;
+  update(
+    id: string,
+    data: { biodiversity?: string; maximumCapacity?: number }
+  ): Promise<ParkFromDB>;
   delete(id: string): Promise<void>;
+  deleteByOutingId(outingId: string): Promise<void>;
 }

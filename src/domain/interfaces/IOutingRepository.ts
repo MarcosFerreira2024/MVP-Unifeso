@@ -1,51 +1,67 @@
-import { OutingFromDbWithRelations } from "../../infrastructure/types/database";
+import { Audience } from "../../shared/enums";
+import { OutingFromDBWithRelations } from "../../infrastructure/types/database";
 
 export type CreateOutingInput = {
   title: string;
   content: string;
   price: number;
   slug: string;
-  publicAudience: "ALL" | "PLUS12" | "PLUS16" | "PLUS18";
-  categoryId: string;
-  location: {
-    latitude: number;
-    longitude: number;
-    cityId: number;
+  publicAudience: Audience;
+  categoryId: number;
+  locationId: number; // locationId já validado pelos UseCases
+  photos?: { alt: string; url: string }[];
+  openHours?: { dayOfWeek: number; openTime: string; closeTime: string }[];
+};
+
+export type UpdateOutingInput = Partial<
+  Omit<CreateOutingInput, "locationId">
+> & {
+  locationId?: number;
+  location?: { latitude: number; longitude: number; cityId: number };
+  trail?: {
+    difficulty: string;
+    duration: number;
+    distance: number;
+    roundTrip: boolean;
   };
-};
-
-export type UpdateOutingInput = Partial<CreateOutingInput>;
-
-export type AddTrailInput = {
-  difficulty: string;
-  duration: number;
-  distance: number;
-  roundTrip: boolean;
-};
-
-export type AddParkInput = {
-  infrastructure: string;
-  biodiversity: string;
-  maximumCapacity: number;
+  park?: {
+    biodiversity: string;
+    maximumCapacity: number;
+  };
+  events?: {
+    name: string;
+    description?: string;
+    maximumCapacity: number;
+    startDate?: Date;
+    endDate?: Date;
+  }[];
 };
 
 interface IOutingRepository {
-  findById(id: string): Promise<OutingFromDbWithRelations | null>;
-  findBySlug(slug: string): Promise<OutingFromDbWithRelations | null>;
-  create(data: CreateOutingInput): Promise<OutingFromDbWithRelations>;
+  findById(id: string): Promise<OutingFromDBWithRelations | null>;
+  findBySlug(slug: string): Promise<OutingFromDBWithRelations | null>;
+  findAll(
+    take?: number,
+    skip?: number,
+    name?: string,
+    category?: string,
+    sortBy?: "title" | "city",
+    orderBy?: "asc" | "desc"
+  ): Promise<OutingFromDBWithRelations[]>;
+  findAllWithCount(
+    take?: number,
+    skip?: number,
+    name?: string,
+    category?: string,
+    sortBy?: "title" | "city",
+    orderBy?: "asc" | "desc"
+  ): Promise<{ items: OutingFromDBWithRelations[]; totalItems: number }>;
+  create(data: CreateOutingInput): Promise<OutingFromDBWithRelations>;
   update(
     id: string,
     data: UpdateOutingInput
-  ): Promise<OutingFromDbWithRelations>;
+  ): Promise<OutingFromDBWithRelations>;
   delete(id: string): Promise<void>;
-  addTrail(
-    outingId: string,
-    data: AddTrailInput
-  ): Promise<OutingFromDbWithRelations>;
-  addPark(
-    outingId: string,
-    data: AddParkInput
-  ): Promise<OutingFromDbWithRelations>;
 }
 
 export { IOutingRepository };

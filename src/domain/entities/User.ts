@@ -1,7 +1,6 @@
-import { Providers, Roles } from "../../infrastructure/types/enums";
+import { Providers, Roles } from "../../infrastructure/libs/prisma/generated";
 import { Email } from "../value objects/Email";
 import { Name } from "../value objects/Name";
-import { Password } from "../value objects/Password";
 
 class User {
   private constructor(

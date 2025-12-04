@@ -17,7 +17,8 @@ export type UpdateUserDTO = {
 interface IUserRepository {
   create(user: User): Promise<UserFromDB>;
   findByEmail(email: string): Promise<UserFromDBWithRelations | null>;
-  findById(id: string): Promise<UserFromDBWithRelations | null>;
+  findById(id: string): Promise<UserWithoutPasswordFromDB | null>;
+  findAll(): Promise<UserFromDB[]>;
   update(userId: string, data: UpdateUserDTO): Promise<UserFromDB>;
   delete(userId: string): Promise<void>;
 }

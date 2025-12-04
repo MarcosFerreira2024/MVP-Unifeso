@@ -1,10 +1,24 @@
-import { Trail } from "../entities/Trail";
-import { TrailFromDB } from "../../infrastructure/types/database"; // Import the new type
+import { TrailFromDB } from "../../infrastructure/types/database";
 
 export interface ITrailRepository {
-  create(trail: Trail): Promise<TrailFromDB>; // Changed return type
-  findById(id: string): Promise<TrailFromDB | null>; // Changed return type
-  findByOutingId(outingId: string): Promise<TrailFromDB | null>; // Changed return type
-  update(trail: Trail): Promise<TrailFromDB>; // Changed return type
+  create(data: {
+    outingId: string;
+    difficulty: string;
+    duration: number;
+    distance: number;
+    roundTrip: boolean;
+  }): Promise<TrailFromDB>;
+  findById(id: string): Promise<TrailFromDB | null>;
+  findByOutingId(outingId: string): Promise<TrailFromDB | null>;
+  update(
+    id: string,
+    data: {
+      difficulty?: string;
+      duration?: number;
+      distance?: number;
+      roundTrip?: boolean;
+    }
+  ): Promise<TrailFromDB>;
   delete(id: string): Promise<void>;
+  deleteByOutingId(outingId: string): Promise<void>;
 }
