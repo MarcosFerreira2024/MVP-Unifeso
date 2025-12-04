@@ -38,10 +38,10 @@ class RatingController {
       if (!success) throw new Error(error.message);
       const { id: userId, role } = req.user;
 
-      await container
+      const response = await container
         .resolve(DeleteRatingUseCase)
         .execute(userId, data.outingId, data.ratingId, role);
-      return res.status(204).send();
+      return res.status(200).json(response);
     } catch (e) {
       return errorHandler(e, res);
     }
