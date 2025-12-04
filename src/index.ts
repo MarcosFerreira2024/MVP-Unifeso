@@ -1,11 +1,11 @@
+import dotenv from "dotenv";
+dotenv.config();
 import "reflect-metadata";
 import "./shared/container";
-import dotenv from "dotenv";
 import cors from "cors";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { routes } from "./presentation/routes/routes";
-dotenv.config();
-
+import { errorHandler } from "./helpers/errorHandler";
 const app = express();
 
 const appPort = process.env.PORT || 3333;
@@ -18,6 +18,12 @@ app.use(
 app.use(express.json());
 
 app.use(routes);
+
+app.use(
+  (err: Error, request: Request, response: Response, next: NextFunction) => {
+    errorHandler(err, response);
+  }
+);
 
 app.listen(appPort, () =>
   console.log(`Servidor rodando na porta http://localhost:${appPort}`)
