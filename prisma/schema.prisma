@@ -8,120 +8,114 @@ datasource db {
   url      = "file:../src/infrastructure/db/dev.db"
 }
 
-// ----------------- MODELS -----------------
-
 model Users {
-  id             String    @id @default(nanoid())
-  name           String
-  email          String    @unique
-  hashedPassword String
-  role           Roles     @default(USER)
-  avatarUrl      String?
-  provider       Providers?
-  googleId       String?   @unique
-  verified       Boolean   @default(false)
+  id                String             @id @default(nanoid())
+  name              String
+  email             String             @unique
+  hashedPassword    String
+  role              Roles              @default(USER)
+  avatarUrl         String?
+  provider          Providers?
+  googleId          String?            @unique
+  verified          Boolean            @default(false)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  ratings           Ratings[]
   verificationCodes VerificationCodes?
-
-  ratings        Ratings[]
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
 }
 
 model VerificationCodes {
-  id        String   @id @default(nanoid())
-  code      String   @default(nanoid()) @unique
-  userId    String   @unique
-  used      Boolean  @default(false)
-  validUntil DateTime 
-
-  user      Users    @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String   @id @default(nanoid())
+  code       String   @unique @default(nanoid())
+  userId     String   @unique
+  used       Boolean  @default(false)
+  validUntil DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       Users    @relation(fields: [userId], references: [id])
 }
 
 model Category {
-  id        String     @id @default(cuid())
-  name      String     @unique  // TRAIL, PARK
-  outings   Outings[] 
-  createdAt DateTime   @default(now())
-
-  updatedAt DateTime   @updatedAt
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  outings   Outings[]
 }
 
 model Outings {
-  id          String    @id @default(cuid())
-  title       String
-  content     String
-  price       Int
-  slug        String    @unique
-  public      Audience
-  category    Category  @relation(fields: [categoryId], references: [id])
-  categoryId  String
-  locationId  Int
-  location    Location  @relation(fields: [locationId], references: [id])
-  photos      Photo[]
-  openHours   OpenHour[]
-  ratings     Ratings[]
-  trail       Trail?    
-  park        Park?     
-  events      Event[]   
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id         String     @id @default(cuid())
+  title      String
+  content    String
+  price      Int
+  slug       String     @unique
+  public     Audience
+  categoryId Int
+  locationId Int
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  event     Event?
+  openHours  OpenHour[]
+  location   Location   @relation(fields: [locationId], references: [id])
+  category   Category   @relation(fields: [categoryId], references: [id])
+  park       Park?
+  photos     Photo[]
+  ratings    Ratings[]
+  trail      Trail?
 }
 
 model Trail {
-  id        String   @id @default(cuid())
-  outingId  String   @unique
-  outing    Outings  @relation(fields: [outingId], references: [id])
+  id         String   @id @default(cuid())
+  outingId   String   @unique
   difficulty String
   duration   Int
   distance   Float
   roundTrip  Boolean
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  outing     Outings  @relation(fields: [outingId], references: [id])
 }
 
 model Park {
-  id               String   @id @default(cuid())
-  outingId         String   @unique
-  outing           Outings @relation(fields: [outingId], references: [id])
-  biodiversity     String
-  maximumCapacity  Int
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id              String   @id @default(cuid())
+  outingId        String   @unique
+  biodiversity    String
+  maximumCapacity Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  outing          Outings  @relation(fields: [outingId], references: [id])
 }
 
 model Event {
-  id              String   @id @default(cuid())
-  outingId        String
-  outing           Outings @relation(fields: [outingId], references: [id])
-  maximumCapacity  Int
-  name             String
-  description      String?
-  startDate        DateTime
-  endDate          DateTime?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id              String    @id @default(cuid())
+  outingId        String    @unique
+  maximumCapacity Int
+  startDate       DateTime?
+  endDate         DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  outing          Outings   @relation(fields: [outingId], references: [id])
 }
+
 model Photo {
   id        String   @id @default(cuid())
   alt       String
-  url       String 
+  url       String
   outingId  String
-  outing    Outings   @relation(fields: [outingId], references: [id])
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  outing    Outings  @relation(fields: [outingId], references: [id])
 }
 
 model OpenHour {
   id        String   @id @default(uuid())
-  dayOfWeek Int      // 1 = segunda, 7 = domingo
+  dayOfWeek Int
   openTime  String
   closeTime String
   outingId  String
-  outing    Outings @relation(fields: [outingId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  outing    Outings  @relation(fields: [outingId], references: [id])
 }
 
 model Ratings {
@@ -130,19 +124,18 @@ model Ratings {
   rating    Int
   userId    String
   outingId  String
-
-  user      Users    @relation(fields: [userId], references: [id])
-  outing    Outings  @relation(fields: [outingId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  outing    Outings  @relation(fields: [outingId], references: [id])
+  user      Users    @relation(fields: [userId], references: [id])
 }
 
 model City {
-  id        Int       @id @default(autoincrement())
-  name      String    @unique
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   locations Location[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
 }
 
 model Location {
@@ -150,13 +143,11 @@ model Location {
   latitude  Float
   longitude Float
   cityId    Int
-  city      City      @relation(fields: [cityId], references: [id])
-  outings   Outings[] 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  city      City      @relation(fields: [cityId], references: [id])
+  outings   Outings[]
 }
-
-// ----------------- ENUMS -----------------
 
 enum Providers {
   GOOGLE
