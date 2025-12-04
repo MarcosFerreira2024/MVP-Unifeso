@@ -1,17 +1,9 @@
-import {
-  Providers,
-  Roles,
-  CategoryType,
-  Audience,
-  OutingStatus,
-} from "./enums";
+import { Providers, Roles, Audience } from "../../shared/enums";
 
 export type RatingFromDB = {
   id: string;
   comment: string | null;
   rating: number;
-  userId: string;
-  outingId: string;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -20,6 +12,7 @@ export type RatingFromDBWithRelations = RatingFromDB & {
   user: {
     avatarUrl: string | null;
     email: string;
+    name: string;
   };
 };
 
@@ -49,9 +42,55 @@ export type UserFromDB = {
   updatedAt: Date;
 };
 
+export type UserWithoutPasswordFromDB = Omit<UserFromDB, "hashedPassword">;
+
 export type UserFromDBWithRelations = UserFromDB & {
   ratings: RatingFromDB[];
   bookings: BookingFromDB[];
+};
+
+export type PhotoFromDB = {
+  id: string;
+  alt: string;
+  url: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type OpenHourFromDB = {
+  id: string;
+  dayOfWeek: number;
+  openTime: string;
+  closeTime: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type TrailFromDB = {
+  id: string;
+  difficulty: string;
+  duration: number;
+  distance: number;
+  roundTrip: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type ParkFromDB = {
+  id: string;
+  biodiversity: string;
+  maximumCapacity: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type EventFromDB = {
+  id: string;
+  maximumCapacity: number;
+  startDate: Date | null;
+  endDate: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export type OutingFromDB = {
@@ -59,28 +98,58 @@ export type OutingFromDB = {
   title: string;
   content: string;
   price: number;
-  mainPhoto: string;
-  photos: any;
-  category: CategoryType;
-  local: ,
-  public: Audience;
-  startDate: Date;
-  endDate: Date;
-  startHour: Date;
-  endHour: Date;
   slug: string;
-  categoryId: string;
+  public: Audience;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
   createdAt: Date;
   updatedAt: Date;
-  status: OutingStatus;
 };
 
 export type OutingFromDBWithRelations = OutingFromDB & {
-  categoryRel: {
-    name: string;
-    type: CategoryType;
+  location: {
+    latitude: number;
+    longitude: number;
+    city: {
+      id: number;
+      name: string;
+      createdAt: Date;
+      updatedAt: Date;
+    };
   };
-  events: any[];
+  photos: PhotoFromDB[];
+  openHours: OpenHourFromDB[];
+  trail: TrailFromDB | null;
+  park: ParkFromDB | null;
+  event: EventFromDB | null;
   ratings: RatingFromDB[];
-  bookings: BookingFromDB[];
+};
+
+type PhotoInput = {
+  alt: string;
+  url: string;
+};
+
+type OpenHourInput = {
+  dayOfWeek: number; // 1 = Seg, 7 = Dom
+  openTime: string; // Ex: "08:00"
+  closeTime: string; // Ex: "18:00"
+};
+
+export type OutingBase = {
+  title: string;
+  content: string;
+  price: number;
+  slug: string;
+  public: Audience;
+  categoryId: number; // 1 = Evento, 2 = Parque, 3 = Trilha
+  location: {
+    latitude: number;
+    longitude: number;
+    cityId: number;
+  };
+  photos: PhotoInput[];
+  openHours: OpenHourInput[];
 };

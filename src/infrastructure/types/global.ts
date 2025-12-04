@@ -15,7 +15,7 @@ declare global {
       user: {
         id: string;
         email: string;
-        role: "Admin" | "User";
+        role: "ADMIN" | "USER";
         token: string;
       };
     }
