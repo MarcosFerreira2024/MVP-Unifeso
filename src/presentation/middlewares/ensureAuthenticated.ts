@@ -24,6 +24,7 @@ export async function ensureAuthenticated(
     const verifiedToken = await container
       .resolve(VerifyTokenUseCase)
       .execute(token);
+
     if (!verifiedToken) throw new Error("Token inválido");
 
     request.user = {
