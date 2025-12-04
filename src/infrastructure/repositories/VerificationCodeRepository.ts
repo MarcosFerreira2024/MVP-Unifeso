@@ -8,7 +8,7 @@ import { prisma } from "../libs/prisma/prisma";
 @injectable()
 class VerificationCodeRepository implements IVerificationCodeRepository {
   private readonly VERIFICATION_CODE_VALIDITY =
-    parseInt(process.env.VERIFICATION_CODE_VALIDITY as string) ??
+    parseInt(process.env.VERIFICATION_CODE_VALIDITY as string) ||
     60 * 60 * 1000;
 
   async create(userId: string): Promise<string> {

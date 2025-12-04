@@ -1,88 +1,795 @@
 import {
-  AddParkInput,
-  AddTrailInput,
   CreateOutingInput,
   IOutingRepository,
   UpdateOutingInput,
 } from "../../domain/interfaces/IOutingRepository";
 import { prisma } from "../libs/prisma/prisma";
-import { Prisma } from "@prisma/client";
-import { OutingFromDbWithRelations } from "../types/database";
+import { OutingFromDBWithRelations } from "../types/database";
 
 class OutingRepository implements IOutingRepository {
-  async findById(id: string): Promise<OutingFromDbWithRelations | null> {
+  async findById(id: string): Promise<OutingFromDBWithRelations | null> {
     const outing = await prisma.outings.findUnique({
       where: {
-        id,
+        id: id,
+      },
+      omit: {
+        categoryId: true,
+        locationId: true,
       },
       include: {
-        trail: true,
-        park: true,
-        events: true,
-        photos: true,
-        openHours: true,
-        location: {
-          include: {
-            city: true,
+        trail: {
+          select: {
+            id: true,
+            difficulty: true,
+            duration: true,
+            distance: true,
+            roundTrip: true,
+            createdAt: true,
+            updatedAt: true,
           },
         },
-
-        category: true,
+        park: {
+          select: {
+            id: true,
+            biodiversity: true,
+            maximumCapacity: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            maximumCapacity: true,
+            startDate: true,
+            endDate: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        photos: {
+          select: {
+            id: true,
+            alt: true,
+            url: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        openHours: {
+          select: {
+            id: true,
+            dayOfWeek: true,
+            openTime: true,
+            closeTime: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        ratings: {
+          select: {
+            id: true,
+            comment: true,
+            rating: true,
+            userId: true,
+            createdAt: true,
+            updatedAt: true,
+            user: {
+              select: {
+                avatarUrl: true,
+                email: true,
+                name: true,
+              },
+            },
+          },
+        },
+        location: {
+          select: {
+            latitude: true,
+            longitude: true,
+            city: {
+              select: {
+                id: true,
+                name: true,
+                createdAt: true,
+                updatedAt: true,
+              },
+            },
+          },
+        },
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
 
     return outing;
   }
 
-  async findBySlug(slug: string): Promise<OutingFromDbWithRelations | null> {
+  async findBySlug(slug: string): Promise<OutingFromDBWithRelations | null> {
     const outing = await prisma.outings.findUnique({
       where: {
-        slug,
+        slug: slug,
       },
+      omit: {
+        categoryId: true,
+        locationId: true,
+      },
+
       include: {
-        trail: true,
-        park: true,
-        events: true,
-        photos: true,
-        openHours: true,
-        location: {
-          include: {
-            city: true,
+        category: {
+          select: {
+            id: true,
+            name: true,
           },
         },
-        category: true,
+        trail: {
+          select: {
+            id: true,
+            difficulty: true,
+            duration: true,
+            distance: true,
+            roundTrip: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        park: {
+          select: {
+            id: true,
+            biodiversity: true,
+            maximumCapacity: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            maximumCapacity: true,
+            startDate: true,
+            endDate: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        photos: {
+          select: {
+            id: true,
+            alt: true,
+            url: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        openHours: {
+          select: {
+            id: true,
+            dayOfWeek: true,
+            openTime: true,
+            closeTime: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        ratings: {
+          select: {
+            id: true,
+            comment: true,
+            rating: true,
+            user: {
+              select: {
+                avatarUrl: true,
+                email: true,
+                name: true,
+              },
+            },
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        location: {
+          select: {
+            latitude: true,
+            longitude: true,
+            city: {
+              select: {
+                id: true,
+                name: true,
+                createdAt: true,
+                updatedAt: true,
+              },
+            },
+          },
+        },
       },
     });
     return outing;
+  }
+
+  async findAll(
+    take?: number,
+    skip?: number,
+    title?: string,
+    category?: string | string[],
+    sortBy?: "title" | "city",
+    orderBy?: "asc" | "desc"
+  ): Promise<OutingFromDBWithRelations[]> {
+    const defaultTake = 10;
+    const defaultSkip = 0;
+
+    const queryTake = take !== undefined ? Number(take) : defaultTake;
+    const querySkip = skip !== undefined ? Number(skip) : defaultSkip;
+
+    const where: any = {};
+    if (title) {
+      where.OR = [
+        { title: { contains: title } },
+        { content: { contains: title } },
+      ];
+    }
+
+    if (category) {
+      const categoriesToFilter = Array.isArray(category)
+        ? category.filter((cat) => cat !== "all")
+        : category !== "all"
+        ? [category]
+        : [];
+
+      if (categoriesToFilter.length > 0) {
+        where.category = {
+          name: { in: categoriesToFilter },
+        };
+      }
+    }
+
+    const orderByClause: any = {};
+    if (sortBy) {
+      if (sortBy === "city") {
+        orderByClause.location = {
+          city: {
+            name: orderBy || "asc",
+          },
+        };
+      } else if (sortBy === "title") {
+        orderByClause.title = orderBy || "asc";
+      }
+    }
+
+    const outings = await prisma.outings.findMany({
+      take: queryTake,
+      skip: querySkip,
+      where,
+      orderBy: orderByClause,
+      omit: {
+        categoryId: true,
+        locationId: true,
+      },
+      include: {
+        trail: {
+          select: {
+            id: true,
+            difficulty: true,
+            duration: true,
+            distance: true,
+            roundTrip: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        park: {
+          select: {
+            id: true,
+            biodiversity: true,
+            maximumCapacity: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            maximumCapacity: true,
+            startDate: true,
+            endDate: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        photos: {
+          select: {
+            id: true,
+            alt: true,
+            url: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        openHours: {
+          select: {
+            id: true,
+            dayOfWeek: true,
+            openTime: true,
+            closeTime: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        ratings: {
+          select: {
+            id: true,
+            comment: true,
+            rating: true,
+            userId: true,
+            createdAt: true,
+            updatedAt: true,
+            user: {
+              select: {
+                avatarUrl: true,
+                email: true,
+                name: true,
+              },
+            },
+          },
+        },
+        location: {
+          select: {
+            latitude: true,
+            longitude: true,
+            city: {
+              select: {
+                id: true,
+                name: true,
+                createdAt: true,
+                updatedAt: true,
+              },
+            },
+          },
+        },
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+    return outings;
+  }
+
+  async findAllWithCount(
+    take?: number,
+    skip?: number,
+    title?: string,
+    category?: string | string[],
+    sortBy?: "title" | "city",
+    orderBy?: "asc" | "desc"
+  ): Promise<{ items: OutingFromDBWithRelations[]; totalItems: number }> {
+    const defaultTake = 10;
+    const defaultSkip = 0;
+
+    const queryTake = take !== undefined ? Number(take) : defaultTake;
+    const querySkip = skip !== undefined ? Number(skip) : defaultSkip;
+
+    const where: any = {};
+    if (title) {
+      where.OR = [
+        { title: { contains: title } },
+        { content: { contains: title } },
+      ];
+    }
+
+    if (category) {
+      const categoriesToFilter = Array.isArray(category)
+        ? category.filter((cat) => cat !== "all")
+        : category !== "all"
+        ? [category]
+        : [];
+
+      if (categoriesToFilter.length > 0) {
+        where.category = {
+          name: { in: categoriesToFilter },
+        };
+      }
+    }
+
+    const orderByClause: any = {};
+    if (sortBy) {
+      if (sortBy === "city") {
+        orderByClause.location = {
+          city: {
+            name: orderBy || "asc",
+          },
+        };
+      } else if (sortBy === "title") {
+        orderByClause.title = orderBy || "asc";
+      }
+    }
+
+    const [totalItems, items] = await prisma.$transaction([
+      prisma.outings.count({ where }),
+      prisma.outings.findMany({
+        take: queryTake,
+        skip: querySkip,
+        where,
+        orderBy: orderByClause,
+        omit: {
+          categoryId: true,
+          locationId: true,
+        },
+        include: {
+          trail: {
+            select: {
+              id: true,
+              difficulty: true,
+              duration: true,
+              distance: true,
+              roundTrip: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          },
+          park: {
+            select: {
+              id: true,
+              biodiversity: true,
+              maximumCapacity: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          },
+          event: {
+            select: {
+              id: true,
+              maximumCapacity: true,
+              startDate: true,
+              endDate: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          },
+          photos: {
+            select: {
+              id: true,
+              alt: true,
+              url: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          },
+          openHours: {
+            select: {
+              id: true,
+              dayOfWeek: true,
+              openTime: true,
+              closeTime: true,
+              createdAt: true,
+              updatedAt: true,
+            },
+          },
+          ratings: {
+            select: {
+              id: true,
+              comment: true,
+              rating: true,
+              userId: true,
+              createdAt: true,
+              updatedAt: true,
+              user: {
+                select: {
+                  avatarUrl: true,
+                  email: true,
+                  name: true,
+                },
+              },
+            },
+          },
+          location: {
+            select: {
+              latitude: true,
+              longitude: true,
+              city: {
+                select: {
+                  id: true,
+                  name: true,
+                  createdAt: true,
+                  updatedAt: true,
+                },
+              },
+            },
+          },
+          category: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+      }),
+    ]);
+
+    return { items, totalItems };
+  }
+
+  async create(data: CreateOutingInput): Promise<OutingFromDBWithRelations> {
+    const {
+      photos = [],
+      openHours = [],
+      publicAudience,
+      locationId,
+      ...rest
+    } = data;
+
+    return prisma.outings.create({
+      data: {
+        ...rest,
+        public: publicAudience,
+        locationId,
+        photos: photos.length > 0 ? { create: photos } : undefined,
+        openHours: openHours.length > 0 ? { create: openHours } : undefined,
+      },
+      omit: {
+        categoryId: true,
+        locationId: true,
+      },
+      include: {
+        trail: {
+          select: {
+            id: true,
+            difficulty: true,
+            duration: true,
+            distance: true,
+            roundTrip: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        park: {
+          select: {
+            id: true,
+            biodiversity: true,
+            maximumCapacity: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            maximumCapacity: true,
+            startDate: true,
+            endDate: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        photos: {
+          select: {
+            id: true,
+            alt: true,
+            url: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        openHours: {
+          select: {
+            id: true,
+            dayOfWeek: true,
+            openTime: true,
+            closeTime: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        ratings: {
+          select: {
+            id: true,
+            comment: true,
+            rating: true,
+            userId: true,
+            createdAt: true,
+            updatedAt: true,
+            user: {
+              select: {
+                avatarUrl: true,
+                email: true,
+                name: true,
+              },
+            },
+          },
+        },
+        location: {
+          select: {
+            latitude: true,
+            longitude: true,
+            city: {
+              select: {
+                id: true,
+                name: true,
+                createdAt: true,
+                updatedAt: true,
+              },
+            },
+          },
+        },
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+  }
+
+  async update(
+    id: string,
+    data: UpdateOutingInput
+  ): Promise<OutingFromDBWithRelations> {
+    const {
+      photos,
+      openHours,
+      trail,
+      park,
+      events,
+      publicAudience,
+      locationId,
+      ...outingData
+    } = data;
+
+    const updateData: any = {
+      ...outingData,
+    };
+
+    if (publicAudience) {
+      updateData.public = publicAudience;
+    }
+
+    if (locationId !== undefined) {
+      updateData.locationId = locationId;
+    }
+
+    if (photos) {
+      updateData.photos = { create: photos };
+    }
+
+    if (openHours) {
+      updateData.openHours = { create: openHours };
+    }
+
+    if (trail) {
+      const existingTrail = await prisma.trail.findUnique({
+        where: { outingId: id },
+      });
+
+      if (existingTrail) {
+        updateData.trail = { update: trail };
+      } else {
+        updateData.trail = { create: trail };
+      }
+    }
+
+    if (park) {
+      const existingPark = await prisma.park.findUnique({
+        where: { outingId: id },
+      });
+
+      if (existingPark) {
+        updateData.park = { update: park };
+      } else {
+        updateData.park = { create: park };
+      }
+    }
+
+    if (events) {
+      updateData.events = { create: events };
+    }
+
+    return prisma.outings.update({
+      where: { id },
+      data: updateData,
+      omit: {
+        categoryId: true,
+        locationId: true,
+      },
+      include: {
+        trail: {
+          select: {
+            id: true,
+            difficulty: true,
+            duration: true,
+            distance: true,
+            roundTrip: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        park: {
+          select: {
+            id: true,
+            biodiversity: true,
+            maximumCapacity: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        event: {
+          select: {
+            id: true,
+            maximumCapacity: true,
+            startDate: true,
+            endDate: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        photos: {
+          select: {
+            id: true,
+            alt: true,
+            url: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        openHours: {
+          select: {
+            id: true,
+            dayOfWeek: true,
+            openTime: true,
+            closeTime: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        ratings: {
+          select: {
+            id: true,
+            comment: true,
+            rating: true,
+            userId: true,
+            createdAt: true,
+            updatedAt: true,
+            user: {
+              select: {
+                avatarUrl: true,
+                email: true,
+                name: true,
+              },
+            },
+          },
+        },
+        location: {
+          select: {
+            latitude: true,
+            longitude: true,
+            city: {
+              select: {
+                id: true,
+                name: true,
+                createdAt: true,
+                updatedAt: true,
+              },
+            },
+          },
+        },
+        category: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
   }
 
   async delete(id: string): Promise<void> {
     await prisma.outings.delete({
       where: { id },
-    });
-  }
-  async create(data: CreateOutingInput): Promise<OutingFromDbWithRelations> {
-    return await prisma.outings.create({
-      data: {
-        content: data.content,
-        title: data.title,
-        slug: data.slug,
-        price: data.price,
-        public: data.publicAudience,
-      },
-      include: {
-        trail: true,
-        park: true,
-        events: true,
-        photos: true,
-        openHours: true,
-        location: {
-          include: {
-            city: true,
-          },
-        },
-        category: true,
-      },
     });
   }
 }

@@ -6,7 +6,11 @@ import {
 } from "../../domain/interfaces/IUserRepository";
 import { mapPrismaUserToUserFromDB } from "../../helpers/mapPrismaUserToUserFromDb";
 import { prisma } from "../libs/prisma/prisma";
-import { UserFromDB, UserFromDBWithRelations } from "../types/database";
+import {
+  UserFromDB,
+  UserFromDBWithRelations,
+  UserWithoutPasswordFromDB,
+} from "../types/database";
 
 @injectable()
 class UserRepository implements IUserRepository {
@@ -43,7 +47,7 @@ class UserRepository implements IUserRepository {
     return mapPrismaUserToUserFromDB(user);
   }
 
-  async findById(id: string): Promise<UserFromDBWithRelations | null> {
+  async findById(id: string): Promise<UserWithoutPasswordFromDB | null> {
     const user = await prisma.users.findUnique({
       where: { id },
       include: {
@@ -53,7 +57,17 @@ class UserRepository implements IUserRepository {
 
     if (!user) return null;
 
-    return mapPrismaUserToUserFromDB(user);
+    const { hashedPassword, ...userWithoutPassword } = user;
+    return userWithoutPassword;
+  }
+
+  async findAll(): Promise<UserFromDB[]> {
+    const users = await prisma.users.findMany({
+      include: {
+        ratings: true,
+      },
+    });
+    return users.map(mapPrismaUserToUserFromDB);
   }
 
   async update(

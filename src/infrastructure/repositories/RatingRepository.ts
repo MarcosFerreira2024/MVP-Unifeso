@@ -1,5 +1,4 @@
 import { IRatingRepository } from "../../domain/interfaces/IRatingRepository";
-import { mapPrismaRole } from "../../helpers/mapPrismaRole";
 import { prisma } from "../libs/prisma/prisma";
 import { RatingFromDB, RatingFromDBWithRelations } from "../types/database";
 
@@ -19,15 +18,19 @@ class RatingRepository implements IRatingRepository {
       },
     });
   }
-  async delete(
-    userId: string,
-    outingId: string,
-    ratingId: string
-  ): Promise<void> {
-    await prisma.ratings.deleteMany({
-      where: { userId, outingId, id: ratingId },
+
+  async findById(id: string): Promise<RatingFromDB | null> {
+    return await prisma.ratings.findUnique({
+      where: { id },
     });
   }
+
+  async delete(id: string): Promise<void> {
+    await prisma.ratings.delete({
+      where: { id },
+    });
+  }
+
   async findAllByOutingId(
     outingId: string
   ): Promise<RatingFromDBWithRelations[] | null> {
@@ -40,6 +43,7 @@ class RatingRepository implements IRatingRepository {
           select: {
             avatarUrl: true,
             email: true,
+            name: true,
           },
         },
       },
@@ -47,6 +51,7 @@ class RatingRepository implements IRatingRepository {
 
     return ratings;
   }
+
   async findAllByUserId(
     userId: string
   ): Promise<RatingFromDBWithRelations[] | null> {
@@ -59,6 +64,7 @@ class RatingRepository implements IRatingRepository {
           select: {
             avatarUrl: true,
             email: true,
+            name: true,
           },
         },
       },
