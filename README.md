@@ -49,77 +49,77 @@
         <p><strong>O que o sistema deve fazer:</strong> Permitir que usuários acessem o sistema por meio de autenticação com login e senha.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Essencial para diferenciar usuários e garantir segurança.</p>
-        <p><strong>Conclusão:</strong> Atendido quando o sistema permitir login seguro com redirecionamento.</p>
+        <p><strong>Conclusão:🟩</strong> Atendido quando o sistema permitir login seguro com redirecionamento.</p>
       </li>
       <li>
         <h3>2. Diferenciação de Perfis</h3>
         <p><strong>O que o sistema deve fazer:</strong> Distinguir entre usuários padrão e administradores, oferecendo permissões diferentes.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Garante controle de acesso e separação de responsabilidades.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando o sistema aplicar permissões conforme o perfil.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando o sistema aplicar permissões conforme o perfil.</p>
       </li>
       <li>
         <h3>3. Edição de Conteúdo por Administradores</h3>
         <p><strong>O que o sistema deve fazer:</strong> Permitir que administradores alterem informações sobre parques, trilhas, eventos e avaliações.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Mantém os dados atualizados e confiáveis.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando o painel permitir CRUD completo desses itens.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando o painel permitir CRUD completo desses itens.</p>
       </li>
       <li>
         <h3>4. Cadastro de Parques, Trilhas e Eventos</h3>
         <p><strong>O que o sistema deve fazer:</strong> Permitir cadastro completo de parques, trilhas e eventos, incluindo horário, preço e localização.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Estrutura o núcleo de informações do sistema.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando novos registros puderem ser criados e vinculados corretamente.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando novos registros puderem ser criados e vinculados corretamente.</p>
       </li>
       <li>
         <h3>5. Avaliação de Parques, Trilhas e Eventos</h3>
         <p><strong>O que o sistema deve fazer:</strong> Permitir que usuários registrem avaliações (1 a 5 estrelas).</p>
         <p><strong>Prioridade:</strong> Média</p>
         <p><strong>Justificativa:</strong> Melhora a experiência e ajuda outros visitantes.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando avaliações forem associadas ao autor e ao item.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando avaliações forem associadas ao autor e ao item.</p>
       </li>
       <li>
         <h3>6. Sistema de Filtros</h3>
         <p><strong>O que o sistema deve fazer:</strong> Permitir filtragem de parques, trilhas e eventos por critérios como local, titulo, descrição e preço.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Melhora a navegação e a busca de informações.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando o sistema exibir resultados filtrados em tempo real.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando o sistema exibir resultados filtrados em tempo real.</p>
       </li>
       <li>
         <h3>7. Sistema de Ordenação</h3>
         <p><strong>O que o sistema deve fazer:</strong> Permitir ordenação por popularidade, preço, distância, duração ou data.</p>
         <p><strong>Prioridade:</strong> Média</p>
         <p><strong>Justificativa:</strong> Complementa os filtros, tornando a experiência mais intuitiva.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando a ordenação for dinâmica e funcional.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando a ordenação for dinâmica e funcional.</p>
       </li>
       <li>
         <h3>8. Exibição Detalhada</h3>
         <p><strong>O que o sistema deve fazer:</strong> Mostrar páginas detalhadas para parques, trilhas e eventos com informações completas.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Fornece clareza e profundidade nas informações.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando cada item tiver uma página individual completa.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando cada item tiver uma página individual completa.</p>
       </li>
       <li>
         <h3>9. Sistema de Avaliação</h3>
         <p><strong>O que o sistema deve fazer:</strong> Permitir avaliações de usuários e moderação por administradores.</p>
         <p><strong>Prioridade:</strong> Média</p>
         <p><strong>Justificativa:</strong> Estimula interação e feedback.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando as avaliações forem exibidas e moderáveis.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando as avaliações forem exibidas e moderáveis.</p>
       </li>
       <li>
         <h3>10. Mapa Interativo</h3>
         <p><strong>O que o sistema deve fazer:</strong> Exibir mapas interativos com a localização dos parques e trilhas.</p>
         <p><strong>Prioridade:</strong> Média</p>
         <p><strong>Justificativa:</strong> Facilita o planejamento e a visualização geográfica.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando os mapas renderizarem corretamente no sistema.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando os mapas renderizarem corretamente no sistema.</p>
       </li>
       <li>
         <h3>11. Painel Administrativo</h3>
         <p><strong>O que o sistema deve fazer:</strong> Oferecer uma interface administrativa para gerenciar conteúdo e moderação.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Necessário para manter o sistema organizado e seguro.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando o painel estiver acessível apenas a administradores autenticados.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando o painel estiver acessível apenas a administradores autenticados.</p>
       </li>
     </ul>
   </div>
@@ -131,28 +131,28 @@
         <p><strong>O que o sistema deve fazer:</strong> Responder requisições em até 3 segundos.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Um site rápido melhora UX e SEO.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando for aprovado em testes de desempenho.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando for aprovado em testes de desempenho.</p>
       </li>
       <li>
         <h3>14. Segurança</h3>
         <p><strong>O que o sistema deve fazer:</strong> Proteger dados sensíveis e usar HTTPS.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Evita vazamento e garante conformidade.</p>
-        <p><strong>Conclusão:</strong> Cumprido com autenticação segura e comunicação criptografada.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido com autenticação segura e comunicação criptografada.</p>
       </li>
       <li>
         <h3>15. Usabilidade</h3>
         <p><strong>O que o sistema deve fazer:</strong> Garantir interface intuitiva e responsiva.</p>
         <p><strong>Prioridade:</strong> Alta</p>
         <p><strong>Justificativa:</strong> Melhora experiência e acessibilidade.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando o site for funcional em todos os dispositivos.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando o site for funcional em todos os dispositivos.</p>
       </li>
       <li>
         <h3>16. Escalabilidade</h3>
         <p><strong>O que o sistema deve fazer:</strong> Suportar adição de novos parques, trilhas e eventos sem reestruturação do código.</p>
         <p><strong>Prioridade:</strong> Média</p>
         <p><strong>Justificativa:</strong> Facilita manutenção e crescimento futuro.</p>
-        <p><strong>Conclusão:</strong> Cumprido quando novos módulos puderem ser adicionados dinamicamente.</p>
+        <p><strong>Conclusão:🟩</strong> Cumprido quando novos módulos puderem ser adicionados dinamicamente.</p>
       </li>
     </ul>
   </div>
@@ -245,94 +245,179 @@
 
 <div id="estrutura">
   <h1>Estrutura Atual do Projeto</h1>
-  <p>Atualizada: 15/10/2025 <span>05:50 am</span></p>
-  <pre>
-  ├── 📁 .git/ 🚫 (hidden)
-  ├── 📁 node_modules/ 🚫 (hidden)
-  ├── 📁 prisma/
-  │   ├── 📁 migrations/
-  │   │   ├── 📁 20251015054349_criando_tabelas/
-  │   │   │   └── 🗄️ migration.sql
-  │   │   └── ⚙️ migration_lock.toml
-  │   └── 📄 schema.prisma
-  ├── 📁 src/
-  │   ├── 📁 application/
-  │   │   └── 📁 useCases/
-  │   │       └── 📁 Authentication/
-  │   │           ├── 📄 LoginUseCase.ts
-  │   │           ├── 📄 SignUpUseCase.ts
-  │   │           └── 📄 VerifyCodeUseCase.ts
-  │   ├── 📁 domain/
-  │   │   ├── 📁 entities/
-  │   │   │   ├── 📄 Outing.ts
-  │   │   │   ├── 📄 User.ts
-  │   │   │   └── 📄 VerificationCode.ts
-  │   │   ├── 📁 interfaces/
-  │   │   │   ├── 📄 IEmailService.ts
-  │   │   │   ├── 📄 IHashProvider.ts
-  │   │   │   ├── 📄 ITokenProvider.ts
-  │   │   │   ├── 📄 IUserRepository.ts
-  │   │   │   └── 📄 IVerificationCodeRepository.ts
-  │   │   └── 📁 value objects/
-  │   │       ├── 📄 Content.ts
-  │   │       ├── 📄 Email.ts
-  │   │       ├── 📄 Name.ts
-  │   │       ├── 📄 Password.ts
-  │   │       └── 📄 Title.ts
-  │   ├── 📁 helpers/
-  │   │   ├── 📄 errorHandler.ts
-  │   │   ├── 📄 mapPrismaRole.ts
-  │   │   ├── 📄 mapPrismaUserToUserFromDb.ts
-  │   │   ├── 📄 normalizeBadWords.ts
-  │   │   └── 📄 validateValueOrThrow.ts
-  │   ├── 📁 infrastructure/
-  │   │   ├── 📁 config/
-  │   │   ├── 📁 db/
-  │   │   │   └── 🗄️ dev.db
-  │   │   ├── 📁 libs/
-  │   │   │   ├── 📁 nodemailer/
-  │   │   │   │   └── 📄 config.ts
-  │   │   │   └── 📁 prisma/
-  │   │   │       ├── 📁 generated/ 🚫 (hidden)
-  │   │   │       └── 📄 prisma.ts
-  │   │   ├── 📁 providers/
-  │   │   │   ├── 📄 HashProvider.ts
-  │   │   │   └── 📄 TokenProvider.ts
-  │   │   ├── 📁 repositories/
-  │   │   │   └── 📄 UserRepository.ts
-  │   │   ├── 📁 services/
-  │   │   │   └── 📁 email/
-  │   │   │       ├── 📁 template/
-  │   │   │       │   └── 🌐 verificationCode.html
-  │   │   │       └── 📄 EmailService.ts
-  │   │   └── 📁 types/
-  │   │       ├── 📄 dataBase.ts
-  │   │       └── 📄 enums.ts
-  │   ├── 📁 presentation/
-  │   │   ├── 📁 controllers/
-  │   │   │   ├── 📄 AuthenticationController.ts
-  │   │   │   ├── 📄 OutingController.ts
-  │   │   │   └── 📄 UserController.ts
-  │   │   └── 📁 routes/
-  │   ├── 📁 tests/
-  │   │   ├── 📁 Vo/
-  │   │   │   ├── 📄 Content.test.ts
-  │   │   │   ├── 📄 Email.test.ts
-  │   │   │   ├── 📄 Name.test.ts
-  │   │   │   ├── 📄 Password.test.ts
-  │   │   │   └── 📄 Title.test.ts
-  │   │   └── 📁 functions/
-  │   │       └── 📄 normalizeBadWords.test.ts
-  │   └── 📄 index.ts
-  ├── 🔒 .env 🚫 (hidden)
-  ├── 📄 .env.example 
-  ├── 🚫 .gitignore
-  ├── 📖 README.md
-  ├── 📄 jest.config.ts
-  ├── 📄 jest.setup.ts
-  ├── 📄 package-lock.json
-  ├── 📄 package.json
-  └── 📄 tsconfig.json
+
+
+<pre>
+├── 📁 prisma
+│   ├── 📁 migrations
+│   │   ├── 📁 20251203025407_creating_tables_on_6_17_version
+│   │   │   └── 📄 migration.sql
+│   │   ├── 📁 20251203075718_resolving_unique_constraint_on_event_table
+│   │   │   └── 📄 migration.sql
+│   │   └── ⚙️ migration_lock.toml
+│   └── 📄 schema.prisma
+├── 📁 src
+│   ├── 📁 application
+│   │   └── 📁 useCases
+│   │       ├── 📁 Authentication
+│   │       │   ├── 📄 ConsumeVerificationCodeUseCase.ts
+│   │       │   ├── 📄 LoginUseCase.ts
+│   │       │   └── 📄 SignUpUseCase.ts
+│   │       ├── 📁 Authorization
+│   │       │   └── 📄 VerifyTokenUseCase.ts
+│   │       ├── 📁 Event
+│   │       │   ├── 📄 DeleteEventUseCase.ts
+│   │       │   ├── 📄 FindEventByIdUseCase.ts
+│   │       │   └── 📄 UpdateEventUseCase.ts
+│   │       ├── 📁 Outing
+│   │       │   ├── 📁 helpers
+│   │       │   │   └── 📄 locationHelper.ts
+│   │       │   ├── 📄 AddEventUseCase.ts
+│   │       │   ├── 📄 AddParkUseCase.ts
+│   │       │   ├── 📄 AddTrailUseCase.ts
+│   │       │   ├── 📄 CreateEventUseCase.ts
+│   │       │   ├── 📄 CreateParkUseCase.ts
+│   │       │   ├── 📄 CreateTrailUseCase.ts
+│   │       │   ├── 📄 DeleteOutingUseCase.ts
+│   │       │   ├── 📄 FindOutingBySlugUseCase.ts
+│   │       │   ├── 📄 ListOutingsUseCase.ts
+│   │       │   └── 📄 UpdateOutingUseCase.ts
+│   │       ├── 📁 Rating
+│   │       │   ├── 📄 CreateRatingUseCase.ts
+│   │       │   ├── 📄 DeleteRatingUseCase.ts
+│   │       │   ├── 📄 FindAllRatingsByOutingSlugUseCase.ts
+│   │       │   └── 📄 FindAllRatingsByUserIdUseCase.ts
+│   │       └── 📁 User
+│   │           ├── 📄 DeleteUserUseCase.ts
+│   │           ├── 📄 FindUserByIdUseCase.ts
+│   │           ├── 📄 ListUsersUseCase.ts
+│   │           └── 📄 UpdateUserUseCase.ts
+│   ├── 📁 domain
+│   │   ├── 📁 entities
+│   │   │   ├── 📄 Event.ts
+│   │   │   ├── 📄 Park.ts
+│   │   │   ├── 📄 Rating.ts
+│   │   │   ├── 📄 User.ts
+│   │   │   └── 📄 VerificationCode.ts
+│   │   ├── 📁 interfaces
+│   │   │   ├── 📄 IEmailService.ts
+│   │   │   ├── 📄 IEventRepository.ts
+│   │   │   ├── 📄 IHashProvider.ts
+│   │   │   ├── 📄 IOutingRepository.ts
+│   │   │   ├── 📄 IParkRepository.ts
+│   │   │   ├── 📄 IRatingRepository.ts
+│   │   │   ├── 📄 ITokenProvider.ts
+│   │   │   ├── 📄 ITrailRepository.ts
+│   │   │   ├── 📄 IUserRepository.ts
+│   │   │   ├── 📄 IVerificationCodeRepository.ts
+│   │   │   └── 📄 IVerificationCodeService.ts
+│   │   └── 📁 value objects
+│   │       ├── 📄 Biodiversity.ts
+│   │       ├── 📄 Capacity.ts
+│   │       ├── 📄 Content.ts
+│   │       ├── 📄 Difficulty.ts
+│   │       ├── 📄 Email.ts
+│   │       ├── 📄 Name.ts
+│   │       ├── 📄 Password.ts
+│   │       ├── 📄 RatingValue.ts
+│   │       └── 📄 Title.ts
+│   ├── 📁 helpers
+│   │   ├── 📄 errorHandler.ts
+│   │   ├── 📄 mapEventToEventFromDb.ts
+│   │   ├── 📄 mapParkToParkFromDb.ts
+│   │   ├── 📄 mapPrismaRole.ts
+│   │   ├── 📄 mapPrismaUserToUserFromDb.ts
+│   │   ├── 📄 mapTrailToTrailFromDb.ts
+│   │   ├── 📄 normalizeBadWords.ts
+│   │   └── 📄 validateValueOrThrow.ts
+│   ├── 📁 infrastructure
+│   │   ├── 📁 db
+│   │   │   ├── 📁 seeds
+│   │   │   │   ├── 📄 admin.ts
+│   │   │   │   ├── 📄 category.ts
+│   │   │   │   ├── 📄 city.ts
+│   │   │   │   ├── 📄 index.ts
+│   │   │   │   ├── 📄 seedEventOuting.ts
+│   │   │   │   ├── 📄 seedParkOuting.ts
+│   │   │   │   └── 📄 seedTrailOuting.ts
+│   │   │   └── 📄 dev.db
+│   │   ├── 📁 libs
+│   │   │   ├── 📁 nodemailer
+│   │   │   │   └── 📄 config.ts
+│   │   │   ├── 📁 prisma
+│   │   │   │   └── 📄 prisma.ts
+│   │   │   └── 📁 swagger
+│   │   │       ├── ⚙️ swagger-output.json
+│   │   │       └── 📄 swaggerAutoGen.ts
+│   │   ├── 📁 provider
+│   │   │   ├── 📄 HashProvider.ts
+│   │   │   └── 📄 TokenProvider.ts
+│   │   ├── 📁 repositories
+│   │   │   ├── 📄 EventRepository.ts
+│   │   │   ├── 📄 OutingRepository.ts
+│   │   │   ├── 📄 ParkRepository.ts
+│   │   │   ├── 📄 RatingRepository.ts
+│   │   │   ├── 📄 TrailRepository.ts
+│   │   │   ├── 📄 UserRepository.ts
+│   │   │   └── 📄 VerificationCodeRepository.ts
+│   │   ├── 📁 services
+│   │   │   ├── 📁 email
+│   │   │   │   ├── 📁 template
+│   │   │   │   │   └── 🌐 verificationCode.html
+│   │   │   │   └── 📄 EmailService.ts
+│   │   │   └── 📁 verificationCode
+│   │   │       └── 📄 VerificationCodeService.ts
+│   │   └── 📁 types
+│   │       ├── 📄 dataBase.ts
+│   │       └── 📄 global.ts
+│   ├── 📁 presentation
+│   │   ├── 📁 Controllers
+│   │   │   ├── 📄 AuthenticationController.ts
+│   │   │   ├── 📄 OutingController.ts
+│   │   │   ├── 📄 RatingController.ts
+│   │   │   ├── 📄 TokenController.ts
+│   │   │   ├── 📄 UserController.ts
+│   │   │   └── 📄 VerificationCodeController.ts
+│   │   ├── 📁 middlewares
+│   │   │   ├── 📄 ensureAuthenticated.ts
+│   │   │   ├── 📄 requireAdmin.ts
+│   │   │   └── 📄 validationMiddleware.ts
+│   │   ├── 📁 routes
+│   │   │   ├── 📄 auth.ts
+│   │   │   ├── 📄 outing.ts
+│   │   │   ├── 📄 rating.ts
+│   │   │   ├── 📄 routes.ts
+│   │   │   └── 📄 user.ts
+│   │   └── 📁 schemas
+│   │       ├── 📄 auth.schema.ts
+│   │       ├── 📄 outing.schema.ts
+│   │       ├── 📄 rating.schema.ts
+│   │       ├── 📄 token.schema.ts
+│   │       └── 📄 user.schema.ts
+│   ├── 📁 shared
+│   │   ├── 📁 container
+│   │   │   └── 📄 index.ts
+│   │   └── 📄 enums.ts
+│   ├── 📁 tests
+│   │   ├── 📁 Vo
+│   │   │   ├── 📄 Content.test.ts
+│   │   │   ├── 📄 Email.test.ts
+│   │   │   ├── 📄 Name.test.ts
+│   │   │   ├── 📄 Password.test.ts
+│   │   │   └── 📄 Title.test.ts
+│   │   ├── 📁 functions
+│   │   │   └── 📄 normalizeBadWords.test.ts
+│   │   └── 📁 services
+│   │       └── 📄 SendVerificationEmail.test.ts
+│   └── 📄 index.ts
+├── ⚙️ .gitignore
+├── 📝 README.md
+├── 📄 jest.config.ts
+├── 📄 jest.setup.ts
+├── ⚙️ package-lock.json
+├── ⚙️ package.json
+└── ⚙️ tsconfig.json
+
   </pre>
 </div >
   <div id="dependencias">
