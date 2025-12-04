@@ -4,6 +4,8 @@ import { IUserRepository } from "../../../domain/interfaces/IUserRepository";
 import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository";
 import { Password } from "../../../domain/value objects/Password";
 import { UseCaseResponse } from "../../../infrastructure/types/global";
+import { IEmailService } from "../../../domain/interfaces/IEmailService";
+import { IHashProvider } from "../../../domain/interfaces/IHashProvider";
 
 @injectable()
 class SignUpUseCase {

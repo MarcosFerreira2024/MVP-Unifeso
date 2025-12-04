@@ -17,7 +17,7 @@ class CreateRatingUseCase {
     rating: number,
     userId: string,
     outingId: string,
-    content?: string
+    comment?: string
   ): Promise<UseCaseResponse> {
     const outing = await this.outingRepository.findById(outingId);
 
@@ -32,7 +32,7 @@ class CreateRatingUseCase {
 
     const { content: newContent, rating: newRating } = Rating.create(
       rating,
-      content
+      comment
     ).getDto();
 
     const createdRating = await this.ratingRepository.create(

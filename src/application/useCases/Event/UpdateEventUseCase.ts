@@ -7,12 +7,14 @@ import { inject, injectable } from "tsyringe";
 
 interface UpdateEventRequest {
   eventId: string;
-  outingId: string;
-  maximumCapacity?: number;
-  name?: string;
-  description?: string | null;
-  startDate?: Date;
-  endDate?: Date;
+  data: {
+    outingId: string;
+    maximumCapacity?: number;
+    name?: string;
+    description?: string | null;
+    startDate?: Date;
+    endDate?: Date;
+  };
 }
 
 @injectable()
@@ -23,25 +25,12 @@ export class UpdateEventUseCase {
 
   async execute({
     eventId,
-    outingId,
-    maximumCapacity,
-    name,
-    description,
-    startDate,
-    endDate,
+    data,
   }: UpdateEventRequest): Promise<UseCaseResponse> {
     const existingEventFromDb = await this.eventRepository.findById(eventId);
     if (!existingEventFromDb) throw new Error("Evento não existe");
 
-    const updatedEventFromDb = await this.eventRepository.update(
-      eventId,
-      outingId,
-      maximumCapacity,
-      name,
-      description,
-      startDate,
-      endDate
-    );
+    const updatedEventFromDb = await this.eventRepository.update(eventId, data);
 
     return {
       status: "success",

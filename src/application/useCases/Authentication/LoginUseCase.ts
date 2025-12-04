@@ -6,6 +6,7 @@ import { IVerificationCodeService } from "../../../domain/interfaces/IVerificati
 import { Password } from "../../../domain/value objects/Password";
 import { UseCaseResponse } from "../../../infrastructure/types/global";
 import { ITokenProvider } from "../../../domain/interfaces/ITokenProvider";
+import { IHashProvider } from "../../../domain/interfaces/IHashProvider";
 
 @injectable()
 class LoginUseCase {
@@ -30,7 +31,7 @@ class LoginUseCase {
       user.hashedPassword
     );
     if (!compare) {
-      return { status: "error", message: "Dados Inválidos" };
+      throw new Error("Dados inválidos");
     }
 
     if (!user.verified) {
@@ -39,7 +40,8 @@ class LoginUseCase {
       if (!code) {
         await this.verificationCodeService.createAndSendEmail(
           user.id,
-          user.email
+          user.email,
+          user.name
         );
 
         throw new Error("Usuário nao verificado, verifique seu email");
@@ -48,6 +50,7 @@ class LoginUseCase {
       new VerificationCode(code.code, code.validUntil, code.used).validate(
         code.code
       );
+      throw new Error("Usuário nao verificado, verifique seu email");
     }
 
     const token = await this.tokenProvider.generate(

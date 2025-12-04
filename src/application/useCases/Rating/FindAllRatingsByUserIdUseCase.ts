@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { RatingFromDBWithRelations } from "../../../infrastructure/types/dataBase";
+import { RatingFromDBWithRelations } from "../../../infrastructure/types/database";
 import { IRatingRepository } from "../../../domain/interfaces/IRatingRepository";
 
 @injectable()

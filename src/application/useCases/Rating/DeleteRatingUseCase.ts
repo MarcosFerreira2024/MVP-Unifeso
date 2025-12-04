@@ -2,6 +2,8 @@ import { inject, injectable } from "tsyringe";
 import { IRatingRepository } from "../../../domain/interfaces/IRatingRepository";
 import { UseCaseResponse } from "../../../infrastructure/types/global";
 import { IOutingRepository } from "../../../domain/interfaces/IOutingRepository";
+import { Role } from "../../../domain/interfaces/IUserRepository";
+import { AppError } from "../../../helpers/errorHandler";
 
 @injectable()
 class DeleteRatingUseCase {
@@ -16,31 +18,30 @@ class DeleteRatingUseCase {
     userId: string,
     outingId: string,
     ratingId: string,
-    role: string
+    role: Role
   ): Promise<UseCaseResponse> {
     const outing = await this.outingRepository.findById(outingId);
-
     if (!outing) {
-      throw new Error("Passeio nao encontrado");
+      throw new AppError("Passeio nao encontrado", 404);
     }
 
-    if (role === "Admin") {
-      await this.ratingRepository.delete(userId, outingId, ratingId);
-
-      return {
-        message: "Avaliação Deletada com sucesso",
-        status: "success",
-        data: null,
-      };
+    const rating = await this.ratingRepository.findById(ratingId);
+    if (!rating) {
+      throw new AppError("Avaliação não encontrada", 404);
     }
 
-    const ratings = await this.ratingRepository.findAllByOutingId(outingId);
-
-    if (!ratings?.some((rating) => rating.userId === userId)) {
-      throw new Error("Você não avaliou esse passeio");
+    if (rating.outingId !== outingId) {
+        throw new AppError("Avaliação não pertence a este passeio", 400);
     }
 
-    await this.ratingRepository.delete(userId, outingId, ratingId);
+    const isOwner = rating.userId === userId;
+    const isAdmin = role === "ADMIN";
+
+    if (!isOwner && !isAdmin) {
+      throw new AppError("Você não tem permissão para deletar esta avaliação", 403);
+    }
+
+    await this.ratingRepository.delete(ratingId);
 
     return {
       message: "Avaliação Deletada com sucesso",

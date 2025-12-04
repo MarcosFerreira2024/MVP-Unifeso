@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IRatingRepository } from "../../../domain/interfaces/IRatingRepository";
-import { RatingFromDBWithRelations } from "../../../infrastructure/types/dataBase";
+import { RatingFromDBWithRelations } from "../../../infrastructure/types/database";
 
 @injectable()
 class FindAllRatingsByOutingIdUseCase {
