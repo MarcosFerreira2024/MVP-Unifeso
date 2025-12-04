@@ -42,7 +42,7 @@ export type UserFromDB = {
   updatedAt: Date;
 };
 
-export type UserWithoutPasswordFromDB = Omit<UserFromDB, "hashedPassword">;
+export type UserFromDBWithoutPassword = Omit<UserFromDB, "hashedPassword">;
 
 export type UserFromDBWithRelations = UserFromDB & {
   ratings: RatingFromDB[];

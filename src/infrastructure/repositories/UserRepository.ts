@@ -7,14 +7,13 @@ import {
 import { mapPrismaUserToUserFromDB } from "../../helpers/mapPrismaUserToUserFromDb";
 import { prisma } from "../libs/prisma/prisma";
 import {
-  UserFromDB,
-  UserFromDBWithRelations,
   UserWithoutPasswordFromDB,
+  UserFromDBWithRelations, // This type now reflects UserWithoutPasswordFromDB with relations
 } from "../types/database";
 
 @injectable()
 class UserRepository implements IUserRepository {
-  async create(user: User): Promise<UserFromDB> {
+  async create(user: User): Promise<UserWithoutPasswordFromDB> {
     const { email, name, password } = user.getDTO();
 
     const created = await prisma.users.create({
@@ -61,7 +60,7 @@ class UserRepository implements IUserRepository {
     return userWithoutPassword;
   }
 
-  async findAll(): Promise<UserFromDB[]> {
+  async findAll(): Promise<UserWithoutPasswordFromDB[]> {
     const users = await prisma.users.findMany({
       include: {
         ratings: true,

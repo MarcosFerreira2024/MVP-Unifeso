@@ -48,6 +48,73 @@ outingRoutes.get(
   "/",
   validationMiddleware(queryOutingSchema),
   async (req, res) => {
+    /* #swagger.path = '/outing'
+       #swagger.tags = ['Outing']
+       #swagger.description = 'Endpoint para listar todos os passeios com filtros e paginação.'
+       #swagger.parameters['take'] = {
+         in: 'query',
+         description: 'Número de itens por página.',
+         required: false,
+         type: 'integer',
+         default: 10
+       }
+       #swagger.parameters['page'] = {
+         in: 'query',
+         description: 'Número da página.',
+         required: false,
+         type: 'integer',
+         default: 1
+       }
+       #swagger.parameters['name'] = {
+         in: 'query',
+         description: 'Filtrar passeios pelo nome.',
+         required: false,
+         type: 'string'
+       }
+       #swagger.parameters['category'] = {
+         in: 'query',
+         description: 'Filtrar passeios por categoria (Trail, Park, Event). Pode ser uma lista separada por vírgulas.',
+         required: false,
+         type: 'string'
+       }
+       #swagger.parameters['sortBy'] = {
+         in: 'query',
+         description: 'Ordenar resultados por (title, city).',
+         required: false,
+         type: 'string'
+       }
+       #swagger.parameters['orderBy'] = {
+         in: 'query',
+         description: 'Ordem de classificação (asc, desc).',
+         required: false,
+         type: 'string'
+       }
+       #swagger.responses[200] = {
+         description: 'Lista de passeios retornada com sucesso.',
+         schema: {
+           type: 'object',
+           properties: {
+             outings: {
+               type: 'array',
+               items: { $ref: '#/definitions/OutingResponse' }
+             },
+             total: {
+               type: 'integer',
+               example: 100
+             },
+             page: {
+               type: 'integer',
+               example: 1
+             },
+             pages: {
+               type: 'integer',
+               example: 10
+             }
+           }
+         }
+       }
+       #swagger.responses[500] = { description: 'Erro interno do servidor.' }
+    */
     return outingController.findAllOutings(req, res);
   }
 );
