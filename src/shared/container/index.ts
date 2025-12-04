@@ -3,51 +3,51 @@ import { container } from "tsyringe";
 import { IUserRepository } from "../../domain/interfaces/IUserRepository";
 import { UserRepository } from "../../infrastructure/repositories/UserRepository";
 
+import { IHashProvider } from "../../domain/interfaces/IHashProvider";
 import { HashProvider } from "../../infrastructure/provider/HashProvider";
 
+import { ITokenProvider } from "../../domain/interfaces/ITokenProvider";
 import { TokenProvider } from "../../infrastructure/provider/TokenProvider";
 
 import { IVerificationCodeRepository } from "../../domain/interfaces/IVerificationCodeRepository";
 import { VerificationCodeRepository } from "../../infrastructure/repositories/VerificationCodeRepository";
 
+import { IEmailService } from "../../domain/interfaces/IEmailService";
 import { EmailService } from "../../infrastructure/services/email/EmailService";
 
 import { IVerificationCodeService } from "../../domain/interfaces/IVerificationCodeService";
 import { VerificationCodeService } from "../../infrastructure/services/verificationCode/VerificationCodeService";
+
 import { IRatingRepository } from "../../domain/interfaces/IRatingRepository";
 import { RatingRepository } from "../../infrastructure/repositories/RatingRepository";
+
 import { IOutingRepository } from "../../domain/interfaces/IOutingRepository";
 import { OutingRepository } from "../../infrastructure/repositories/OutingRepository";
-
-import { IParkRepository } from "../../domain/interfaces/IParkRepository";
-import { ParkRepository } from "../../infrastructure/repositories/ParkRepository";
-import { CreateParkUseCase } from "../../application/useCases/Park/CreateParkUseCase";
-import { FindParkByIdUseCase } from "../../application/useCases/Park/FindParkByIdUseCase";
-import { UpdateParkUseCase } from "../../application/useCases/Park/UpdateParkUseCase";
-import { DeleteParkUseCase } from "../../application/useCases/Park/DeleteParkUseCase";
-
 import { ITrailRepository } from "../../domain/interfaces/ITrailRepository";
 import { TrailRepository } from "../../infrastructure/repositories/TrailRepository";
-import { CreateTrailUseCase } from "../../application/useCases/Trail/CreateTrailUseCase";
-import { FindTrailByIdUseCase } from "../../application/useCases/Trail/FindTrailByIdUseCase";
-import { UpdateTrailUseCase } from "../../application/useCases/Trail/UpdateTrailUseCase";
-import { DeleteTrailUseCase } from "../../application/useCases/Trail/DeleteTrailUseCase";
-
+import { IParkRepository } from "../../domain/interfaces/IParkRepository";
+import { ParkRepository } from "../../infrastructure/repositories/ParkRepository";
 import { IEventRepository } from "../../domain/interfaces/IEventRepository";
 import { EventRepository } from "../../infrastructure/repositories/EventRepository";
-import { CreateEventUseCase } from "../../application/useCases/Event/CreateEventUseCase";
+
 import { FindEventByIdUseCase } from "../../application/useCases/Event/FindEventByIdUseCase";
 import { UpdateEventUseCase } from "../../application/useCases/Event/UpdateEventUseCase";
 import { DeleteEventUseCase } from "../../application/useCases/Event/DeleteEventUseCase";
-import { ITokenProvider } from "../../domain/interfaces/ITokenProvider";
-import { FindUserByEmailUseCase } from "../../application/useCases/User/FindUserByEmailUseCase";
+
 import { DeleteUserUseCase } from "../../application/useCases/User/DeleteUserUseCase";
 import { FindUserByIdUseCase } from "../../application/useCases/User/FindUserByIdUseCase";
 import { UpdateUserUseCase } from "../../application/useCases/User/UpdateUserUseCase";
 
-container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
+import { UpdateOutingUseCase } from "../../application/useCases/Outing/UpdateOutingUseCase";
+import { DeleteOutingUseCase } from "../../application/useCases/Outing/DeleteOutingUseCase";
+import { AddTrailUseCase } from "../../application/useCases/Outing/AddTrailUseCase";
+import { AddParkUseCase } from "../../application/useCases/Outing/AddParkUseCase";
+import { AddEventUseCase } from "../../application/useCases/Outing/AddEventUseCase";
+import { CreateTrailUseCase } from "../../application/useCases/Outing/CreateTrailUseCase";
+import { CreateParkUseCase } from "../../application/useCases/Outing/CreateParkUseCase";
+import { CreateEventUseCase } from "../../application/useCases/Outing/CreateEventUseCase";
 
-container.registerSingleton("FindUserByEmailUseCase", FindUserByEmailUseCase);
+container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
 
 container.registerSingleton("FindUserByIdUseCase", FindUserByIdUseCase);
 
@@ -81,38 +81,36 @@ container.registerSingleton<IOutingRepository>(
   OutingRepository
 );
 
-container.registerSingleton<IParkRepository>("ParkRepository", ParkRepository);
-
-container.registerSingleton("CreateParkUseCase", CreateParkUseCase);
-
-container.registerSingleton("FindParkByIdUseCase", FindParkByIdUseCase);
-
-container.registerSingleton("UpdateParkUseCase", UpdateParkUseCase);
-
-container.registerSingleton("DeleteParkUseCase", DeleteParkUseCase);
-
 container.registerSingleton<ITrailRepository>(
   "TrailRepository",
   TrailRepository
 );
 
-container.registerSingleton("CreateTrailUseCase", CreateTrailUseCase);
-
-container.registerSingleton("FindTrailByIdUseCase", FindTrailByIdUseCase);
-
-container.registerSingleton("UpdateTrailUseCase", UpdateTrailUseCase);
-
-container.registerSingleton("DeleteTrailUseCase", DeleteTrailUseCase);
+container.registerSingleton<IParkRepository>("ParkRepository", ParkRepository);
 
 container.registerSingleton<IEventRepository>(
   "EventRepository",
   EventRepository
 );
 
-container.registerSingleton("CreateEventUseCase", CreateEventUseCase);
-
 container.registerSingleton("FindEventByIdUseCase", FindEventByIdUseCase);
 
 container.registerSingleton("UpdateEventUseCase", UpdateEventUseCase);
 
 container.registerSingleton("DeleteEventUseCase", DeleteEventUseCase);
+
+container.registerSingleton("UpdateOutingUseCase", UpdateOutingUseCase);
+
+container.registerSingleton("DeleteOutingUseCase", DeleteOutingUseCase);
+
+container.registerSingleton("AddTrailUseCase", AddTrailUseCase);
+
+container.registerSingleton("AddParkUseCase", AddParkUseCase);
+
+container.registerSingleton("AddEventUseCase", AddEventUseCase);
+
+container.registerSingleton("CreateTrailUseCase", CreateTrailUseCase);
+
+container.registerSingleton("CreateParkUseCase", CreateParkUseCase);
+
+container.registerSingleton("CreateEventUseCase", CreateEventUseCase);
