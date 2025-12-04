@@ -3,6 +3,7 @@ import { transporter } from "../../libs/nodemailer/config";
 
 import fs from "fs/promises";
 import path from "path";
+import { IEmailService } from "../../../domain/interfaces/IEmailService";
 
 @injectable()
 class EmailService implements IEmailService {
