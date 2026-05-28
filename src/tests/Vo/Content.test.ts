@@ -10,7 +10,7 @@ describe("Content Vo tests", () => {
   it("should throw an error if content is invalid", () => {
     const invalidContent = "a".repeat(301);
     expect(() => Content.validate(invalidContent)).toThrow(
-      "Conteúdo deve conter no máximo 300 caracteres"
+      "Conteúdo deve conter no máximo 300 caracteres",
     );
   });
 
@@ -22,7 +22,7 @@ describe("Content Vo tests", () => {
 
   it("should be able to create a content", () => {
     const content = "This is a valid content";
-    const createdContent = Content.create(content);
+    const createdContent = Content.create(content) as Content;
     expect(createdContent.getContent()).toBe(content);
   });
 });
