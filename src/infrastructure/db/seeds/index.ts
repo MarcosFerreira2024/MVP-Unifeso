@@ -1,22 +1,27 @@
-import { PrismaClient } from "@prisma/client";
 import { seedAdmin } from "./admin";
 import { seedCategory } from "./category";
 import { seedCity } from "./city";
-import { seedTrailOuting } from "./seedTrailOuting";
-import { seedParkOuting } from "./seedParkOuting";
-import { seedEventOuting } from "./seedEventOuting";
+import { seedEventOutings } from "./eventOutings";
+import { seedParkOutings } from "./parkOutings";
+import { seedTrailOutings } from "./trailOutings";
+import { seedUser } from "./user";
 import { prisma } from "../../libs/prisma/prisma";
 
 async function main() {
   console.log("Start seeding...");
 
-  await seedCity(prisma);
-  await seedCategory(prisma);
-  await seedAdmin(prisma);
+  await Promise.all([
+    seedCity(prisma),
+    seedCategory(prisma),
+    seedAdmin(prisma),
+    seedUser(prisma),
+  ]);
 
-  await seedTrailOuting(prisma);
-  await seedParkOuting(prisma);
-  await seedEventOuting(prisma);
+  await Promise.all([
+    seedTrailOutings(prisma),
+    seedParkOutings(prisma),
+    seedEventOutings(prisma),
+  ]);
 
   console.log("Seeding finished.");
 }
