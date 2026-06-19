@@ -4,7 +4,6 @@ import { authentication } from "./auth";
 import { rating } from "./rating";
 import { outingRoutes } from "./outing";
 
-import { apiReference } from "@scalar/express-api-reference";
 import { openapi } from "../../docs/index";
 
 const routes = Router();
@@ -15,14 +14,14 @@ routes.get("/status", (req, res) => {
   res.status(200).json({ message: "API is running" });
 });
 
-routes.use(
-  "/api/docs",
-  apiReference({
+routes.use("/api/docs", async (req, res, next) => {
+  const { apiReference } = await import("@scalar/express-api-reference");
+  (apiReference({
     spec: {
       content: openapi,
     },
-  })
-);
+  }) as any)(req, res, next);
+});
 
 routes.use("/", userRoutes);
 
