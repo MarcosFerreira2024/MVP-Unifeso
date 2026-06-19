@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { errorHandler } from "../../helpers/errorHandler";
 import { container } from "tsyringe";
 import { CreateRatingUseCase } from "../../application/useCases/Rating/CreateRatingUseCase";
+import { UpdateRatingUseCase } from "../../application/useCases/Rating/UpdateRatingUseCase";
 import { DeleteRatingUseCase } from "../../application/useCases/Rating/DeleteRatingUseCase";
 import { FindAllRatingsByUserIdUseCase } from "../../application/useCases/Rating/FindAllRatingsByUserIdUseCase";
 import z from "zod";
@@ -34,7 +35,7 @@ class RatingController {
         ratingId: z.string(),
         outingId: z.string(),
       });
-      const { success, data, error } = schema.safeParse(req.body);
+      const { success, data, error } = schema.safeParse(req.params);
       if (!success) throw new Error(error.message);
       const { id: userId, role } = req.user;
 
@@ -54,6 +55,21 @@ class RatingController {
         .resolve(FindAllRatingsByUserIdUseCase)
         .execute(userId);
       return res.status(200).json(ratings);
+    } catch (e) {
+      return errorHandler(e, res);
+    }
+  }
+
+  static async update(req: Request, res: Response) {
+    try {
+      const { ratingId } = req.params;
+      const { rating, content } = req.body;
+      const { id: userId, role } = req.user;
+
+      const response = await container
+        .resolve(UpdateRatingUseCase)
+        .execute(ratingId, userId, role, rating, content);
+      return res.status(200).json(response);
     } catch (e) {
       return errorHandler(e, res);
     }

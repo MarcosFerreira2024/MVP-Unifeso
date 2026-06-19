@@ -1,10 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import { AnyZodObject, ZodError } from "zod";
-import { AppError } from "../../helpers/errorHandler";
+import type { ZodObject } from "zod";
 
-export function validationMiddleware(schema: AnyZodObject) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function validationMiddleware(schema: ZodObject<any>) {
   return (req: Request, res: Response, next: NextFunction) => {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const toParse: any = {};
       if (schema.shape.body) toParse.body = req.body;
       if (schema.shape.params) toParse.params = req.params;
@@ -13,7 +14,7 @@ export function validationMiddleware(schema: AnyZodObject) {
       const parsed = schema.parse(toParse);
 
       if (parsed.body) req.body = parsed.body;
-      if (parsed.params) req.params = parsed.params;
+      if (parsed.params) req.params = parsed.params as typeof req.params;
       if (parsed.query) {
         Object.assign(req.query, parsed.query);
       }
