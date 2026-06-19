@@ -28,13 +28,11 @@ export type UpdateOutingInput = Partial<
     biodiversity: string;
     maximumCapacity: number;
   };
-  events?: {
-    name: string;
-    description?: string;
+  event?: {
     maximumCapacity: number;
     startDate?: Date;
     endDate?: Date;
-  }[];
+  };
 };
 
 interface IOutingRepository {

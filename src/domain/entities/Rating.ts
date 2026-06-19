@@ -5,7 +5,7 @@ class Rating {
   private constructor(private rating: RatingValue, private content?: Content) {}
 
   static create(rating: number, content?: string) {
-    return new Rating(RatingValue.create(rating), Content.create(content));
+    return new Rating(RatingValue.create(rating), Content.create(content) ?? undefined);
   }
 
   getVo() {

@@ -4,6 +4,8 @@ export type RatingFromDB = {
   id: string;
   comment: string | null;
   rating: number;
+  userId: string;
+  outingId: string;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -11,7 +13,6 @@ export type RatingFromDB = {
 export type RatingFromDBWithRelations = RatingFromDB & {
   user: {
     avatarUrl: string | null;
-    email: string;
     name: string;
   };
 };
@@ -42,7 +43,8 @@ export type UserFromDB = {
   updatedAt: Date;
 };
 
-export type UserFromDBWithoutPassword = Omit<UserFromDB, "hashedPassword">;
+export type UserWithoutPasswordFromDB = Omit<UserFromDB, "hashedPassword">;
+export type UserFromDBWithoutPassword = UserWithoutPasswordFromDB;
 
 export type UserFromDBWithRelations = UserFromDB & {
   ratings: RatingFromDB[];

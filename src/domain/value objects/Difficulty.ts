@@ -1,4 +1,4 @@
-class Difficulty {
+export class Difficulty {
   private constructor(private value: string) {}
 
   static create(difficulty: "Fácil" | "Médio" | "Difícil") {

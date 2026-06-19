@@ -1,6 +1,6 @@
 import {
-  UserFromDB,
   UserFromDBWithRelations,
+  UserWithoutPasswordFromDB,
 } from "../../infrastructure/types/database";
 import { User } from "../entities/User";
 
@@ -10,16 +10,17 @@ export type UpdateUserDTO = {
   name?: string;
   email?: string;
   password?: string;
+  hashedPassword?: string;
   verified?: boolean;
   role?: Role;
 };
 
 interface IUserRepository {
-  create(user: User): Promise<UserFromDB>;
+  create(user: User): Promise<UserWithoutPasswordFromDB>;
   findByEmail(email: string): Promise<UserFromDBWithRelations | null>;
   findById(id: string): Promise<UserWithoutPasswordFromDB | null>;
-  findAll(): Promise<UserFromDB[]>;
-  update(userId: string, data: UpdateUserDTO): Promise<UserFromDB>;
+  findAll(): Promise<UserWithoutPasswordFromDB[]>;
+  update(userId: string, data: UpdateUserDTO): Promise<UserFromDBWithRelations>;
   delete(userId: string): Promise<void>;
 }
 
