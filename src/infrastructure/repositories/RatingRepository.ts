@@ -25,6 +25,13 @@ class RatingRepository implements IRatingRepository {
     });
   }
 
+  async update(id: string, rating: number, content?: string): Promise<RatingFromDB> {
+    return await prisma.ratings.update({
+      where: { id },
+      data: { rating, comment: content },
+    });
+  }
+
   async delete(id: string): Promise<void> {
     await prisma.ratings.delete({
       where: { id },
@@ -40,11 +47,10 @@ class RatingRepository implements IRatingRepository {
       },
       include: {
         user: {
-          select: {
-            avatarUrl: true,
-            email: true,
-            name: true,
-          },
+              select: {
+                avatarUrl: true,
+                name: true,
+              },
         },
       },
     });
@@ -61,11 +67,10 @@ class RatingRepository implements IRatingRepository {
       },
       include: {
         user: {
-          select: {
-            avatarUrl: true,
-            email: true,
-            name: true,
-          },
+              select: {
+                avatarUrl: true,
+                name: true,
+              },
         },
       },
     });

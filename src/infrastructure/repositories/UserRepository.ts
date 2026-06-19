@@ -56,6 +56,7 @@ class UserRepository implements IUserRepository {
 
     if (!user) return null;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { hashedPassword, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }
@@ -73,9 +74,12 @@ class UserRepository implements IUserRepository {
     userId: string,
     data: UpdateUserDTO
   ): Promise<UserFromDBWithRelations> {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...prismaData } = data;
+
     const user = await prisma.users.update({
       where: { id: userId },
-      data,
+      data: prismaData,
       include: { ratings: true },
     });
 

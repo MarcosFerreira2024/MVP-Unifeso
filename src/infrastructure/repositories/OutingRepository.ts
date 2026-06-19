@@ -72,12 +72,12 @@ class OutingRepository implements IOutingRepository {
             comment: true,
             rating: true,
             userId: true,
+            outingId: true,
             createdAt: true,
             updatedAt: true,
             user: {
               select: {
                 avatarUrl: true,
-                email: true,
                 name: true,
               },
             },
@@ -180,10 +180,11 @@ class OutingRepository implements IOutingRepository {
             id: true,
             comment: true,
             rating: true,
+            userId: true,
+            outingId: true,
             user: {
               select: {
                 avatarUrl: true,
-                email: true,
                 name: true,
               },
             },
@@ -224,6 +225,7 @@ class OutingRepository implements IOutingRepository {
     const queryTake = take !== undefined ? Number(take) : defaultTake;
     const querySkip = skip !== undefined ? Number(skip) : defaultSkip;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const where: any = {};
     if (title) {
       where.OR = [
@@ -246,6 +248,7 @@ class OutingRepository implements IOutingRepository {
       }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const orderByClause: any = {};
     if (sortBy) {
       if (sortBy === "city") {
@@ -324,12 +327,12 @@ class OutingRepository implements IOutingRepository {
             comment: true,
             rating: true,
             userId: true,
+            outingId: true,
             createdAt: true,
             updatedAt: true,
             user: {
               select: {
                 avatarUrl: true,
-                email: true,
                 name: true,
               },
             },
@@ -374,6 +377,7 @@ class OutingRepository implements IOutingRepository {
     const queryTake = take !== undefined ? Number(take) : defaultTake;
     const querySkip = skip !== undefined ? Number(skip) : defaultSkip;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const where: any = {};
     if (title) {
       where.OR = [
@@ -396,6 +400,7 @@ class OutingRepository implements IOutingRepository {
       }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const orderByClause: any = {};
     if (sortBy) {
       if (sortBy === "city") {
@@ -476,6 +481,7 @@ class OutingRepository implements IOutingRepository {
               comment: true,
               rating: true,
               userId: true,
+              outingId: true,
               createdAt: true,
               updatedAt: true,
               user: {
@@ -591,12 +597,12 @@ class OutingRepository implements IOutingRepository {
             comment: true,
             rating: true,
             userId: true,
+            outingId: true,
             createdAt: true,
             updatedAt: true,
             user: {
               select: {
                 avatarUrl: true,
-                email: true,
                 name: true,
               },
             },
@@ -635,12 +641,13 @@ class OutingRepository implements IOutingRepository {
       openHours,
       trail,
       park,
-      events,
+      event,
       publicAudience,
       locationId,
       ...outingData
     } = data;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const updateData: any = {
       ...outingData,
     };
@@ -654,11 +661,17 @@ class OutingRepository implements IOutingRepository {
     }
 
     if (photos) {
-      updateData.photos = { create: photos };
+      updateData.photos = {
+        deleteMany: {},
+        create: photos,
+      };
     }
 
     if (openHours) {
-      updateData.openHours = { create: openHours };
+      updateData.openHours = {
+        deleteMany: {},
+        create: openHours,
+      };
     }
 
     if (trail) {
@@ -685,8 +698,16 @@ class OutingRepository implements IOutingRepository {
       }
     }
 
-    if (events) {
-      updateData.events = { create: events };
+    if (event) {
+      const existingEvent = await prisma.event.findUnique({
+        where: { outingId: id },
+      });
+
+      if (existingEvent) {
+        updateData.event = { update: event };
+      } else {
+        updateData.event = { create: event };
+      }
     }
 
     return prisma.outings.update({
@@ -752,12 +773,12 @@ class OutingRepository implements IOutingRepository {
             comment: true,
             rating: true,
             userId: true,
+            outingId: true,
             createdAt: true,
             updatedAt: true,
             user: {
               select: {
                 avatarUrl: true,
-                email: true,
                 name: true,
               },
             },
