@@ -10,14 +10,14 @@ class CreateRatingUseCase {
     @inject("RatingRepository")
     private ratingRepository: IRatingRepository,
     @inject("OutingRepository")
-    private outingRepository: IOutingRepository
+    private outingRepository: IOutingRepository,
   ) {}
 
   async execute(
     rating: number,
     userId: string,
     outingId: string,
-    comment?: string
+    comment?: string,
   ): Promise<UseCaseResponse> {
     const outing = await this.outingRepository.findById(outingId);
 
@@ -30,16 +30,19 @@ class CreateRatingUseCase {
       throw new Error("Você já avaliou essa atividade");
     }
 
+    if (rating < 1 || rating > 5) {
+      throw new Error("Avaliação deve estar entre 1 e 5");
+    }
     const { content: newContent, rating: newRating } = Rating.create(
       rating,
-      comment
+      comment,
     ).getDto();
 
     const createdRating = await this.ratingRepository.create(
       newRating,
       userId,
       outingId,
-      newContent
+      newContent,
     );
 
     return {

@@ -33,6 +33,7 @@ class CreateParkUseCase {
     }
     const locationId = await validateCityAndCreateLocation(outingData.location);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { location, ...outingFields } = outingData;
     const outing = await this.outingRepository.create({
       ...outingFields,

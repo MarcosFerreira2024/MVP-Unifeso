@@ -2,7 +2,6 @@ import { inject, injectable } from "tsyringe";
 import { VerificationCode } from "../../../domain/entities/VerificationCode";
 import { IUserRepository } from "../../../domain/interfaces/IUserRepository";
 import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository";
-import { IVerificationCodeService } from "../../../domain/interfaces/IVerificationCodeService";
 import { UseCaseResponse } from "../../../infrastructure/types/global";
 
 @injectable()

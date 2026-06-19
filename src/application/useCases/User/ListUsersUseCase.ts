@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../../domain/interfaces/IUserRepository";
-import { UserFromDB } from "../../../infrastructure/types/database";
+import { UserWithoutPasswordFromDB } from "../../../infrastructure/types/database";
 
 @injectable()
 class ListUsersUseCase {
@@ -9,7 +9,7 @@ class ListUsersUseCase {
     private userRepository: IUserRepository
   ) {}
 
-  async execute(): Promise<UserFromDB[]> {
+  async execute(): Promise<UserWithoutPasswordFromDB[]> {
     const users = await this.userRepository.findAll();
     return users;
   }

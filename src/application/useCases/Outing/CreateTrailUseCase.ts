@@ -7,7 +7,7 @@ import { ITrailRepository } from "../../../domain/interfaces/ITrailRepository";
 import { OutingFromDBWithRelations } from "../../../infrastructure/types/database";
 import { AppError } from "../../../helpers/errorHandler";
 import { validateCityAndCreateLocation } from "./helpers/locationHelper";
-import { prisma } from "../../../infrastructure/libs/prisma/prisma"; // Added prisma import
+
 
 @injectable()
 class CreateTrailUseCase {
@@ -36,6 +36,7 @@ class CreateTrailUseCase {
     }
     const locationId = await validateCityAndCreateLocation(outingData.location);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { location, ...outingFields } = outingData;
     const outingDataWithLocationId = {
       ...outingFields,

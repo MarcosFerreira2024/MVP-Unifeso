@@ -27,6 +27,7 @@ class UpdateOutingUseCase {
     let updateData = { ...data };
     if (data.location) {
       const locationId = await validateCityAndCreateLocation(data.location);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { location, ...rest } = updateData;
       updateData = {
         ...rest,

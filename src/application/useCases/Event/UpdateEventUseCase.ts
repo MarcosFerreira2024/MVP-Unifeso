@@ -1,7 +1,4 @@
-import { de } from "zod/v4/locales";
-import { Event } from "../../../domain/entities/Event";
 import { IEventRepository } from "../../../domain/interfaces/IEventRepository";
-import { EventFromDB } from "../../../infrastructure/types/database"; // Import the new type
 import { UseCaseResponse } from "../../../infrastructure/types/global";
 import { inject, injectable } from "tsyringe";
 

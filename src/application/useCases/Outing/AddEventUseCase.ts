@@ -16,8 +16,6 @@ class AddEventUseCase {
   async execute(
     outingId: string,
     data: {
-      name: string;
-      description?: string;
       maximumCapacity: number;
       startDate?: Date;
       endDate?: Date;
