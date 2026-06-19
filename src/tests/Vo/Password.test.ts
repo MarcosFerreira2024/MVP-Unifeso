@@ -1,3 +1,4 @@
+import { describe, it, expect } from "@jest/globals";
 import { Password } from "../../domain/value objects/Password.js";
 
 describe("Password Vo tests", () => {

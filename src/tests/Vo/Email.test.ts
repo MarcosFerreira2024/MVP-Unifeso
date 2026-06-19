@@ -1,3 +1,4 @@
+import { describe, it, expect } from "@jest/globals";
 import { Email } from "../../domain/value objects/Email.js";
 
 describe("Email Vo tests", () => {

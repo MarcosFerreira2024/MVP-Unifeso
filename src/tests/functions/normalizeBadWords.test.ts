@@ -1,3 +1,4 @@
+import { describe, it, expect } from "@jest/globals";
 import { normalizeBadWords } from "../../helpers/normalizeBadWords.js";
 
 describe("normalize bad words", () => {

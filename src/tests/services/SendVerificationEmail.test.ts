@@ -1,3 +1,4 @@
+import { describe, it, expect } from "@jest/globals";
 import { EmailService } from "../../infrastructure/services/email/EmailService.js";
 
 describe("SendVerificationEmail", () => {

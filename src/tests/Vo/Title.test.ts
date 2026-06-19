@@ -1,3 +1,4 @@
+import { describe, it, expect } from "@jest/globals";
 import { Title } from "../../domain/value objects/Title.js";
 
 describe("Title Vo tests", () => {
