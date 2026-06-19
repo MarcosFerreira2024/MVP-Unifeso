@@ -1,3 +1,3 @@
-import { Providers, Roles, Audience, OutingStatus, CategoryType } from "@prisma/client";
+import { Providers, Roles, Audience } from "../infrastructure/libs/prisma/generated";
 
-export { Providers, Roles, Audience, OutingStatus, CategoryType };
+export { Providers, Roles, Audience };

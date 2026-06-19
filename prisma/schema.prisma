@@ -4,8 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:../src/infrastructure/db/dev.db"
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
 }
 
 model Users {
@@ -32,7 +33,7 @@ model VerificationCodes {
   validUntil DateTime
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  user       Users    @relation(fields: [userId], references: [id])
+  user       Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Category {
@@ -73,7 +74,7 @@ model Trail {
   roundTrip  Boolean
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  outing     Outings  @relation(fields: [outingId], references: [id])
+  outing     Outings  @relation(fields: [outingId], references: [id], onDelete: Cascade)
 }
 
 model Park {
@@ -83,7 +84,7 @@ model Park {
   maximumCapacity Int
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  outing          Outings  @relation(fields: [outingId], references: [id])
+  outing          Outings  @relation(fields: [outingId], references: [id], onDelete: Cascade)
 }
 
 model Event {
@@ -94,7 +95,7 @@ model Event {
   endDate         DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
-  outing          Outings   @relation(fields: [outingId], references: [id])
+  outing          Outings   @relation(fields: [outingId], references: [id], onDelete: Cascade)
 }
 
 model Photo {
@@ -104,7 +105,7 @@ model Photo {
   outingId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  outing    Outings  @relation(fields: [outingId], references: [id])
+  outing    Outings  @relation(fields: [outingId], references: [id], onDelete: Cascade)
 }
 
 model OpenHour {
@@ -115,7 +116,7 @@ model OpenHour {
   outingId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  outing    Outings  @relation(fields: [outingId], references: [id])
+  outing    Outings  @relation(fields: [outingId], references: [id], onDelete: Cascade)
 }
 
 model Ratings {
@@ -126,8 +127,8 @@ model Ratings {
   outingId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  outing    Outings  @relation(fields: [outingId], references: [id])
-  user      Users    @relation(fields: [userId], references: [id])
+  outing    Outings  @relation(fields: [outingId], references: [id], onDelete: Cascade)
+  user      Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model City {
