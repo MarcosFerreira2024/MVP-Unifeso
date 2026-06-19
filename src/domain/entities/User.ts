@@ -1,4 +1,4 @@
-import { Providers, Roles } from "../../infrastructure/libs/prisma/generated/index.js";
+import { Providers, Roles } from "../../infrastructure/libs/prisma/generated/client.js";
 import { Email } from "../value objects/Email.js";
 import { Name } from "../value objects/Name.js";
 
