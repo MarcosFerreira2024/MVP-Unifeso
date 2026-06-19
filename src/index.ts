@@ -26,6 +26,10 @@ app.use(
   }
 );
 
-app.listen(appPort, () =>
-  console.log(`Servidor rodando na porta http://localhost:${appPort}`)
-);
+if (process.env.VERCEL !== "1") {
+  app.listen(appPort, () =>
+    console.log(`Servidor rodando na porta http://localhost:${appPort}`)
+  );
+}
+
+export default app;
