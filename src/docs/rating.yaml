@@ -1,0 +1,142 @@
+paths:
+  /rating:
+    post:
+      tags:
+        - Rating
+      summary: Criar nova avaliação
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Rating"
+      responses:
+        "201":
+          description: Avaliação criada com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Rating"
+        "400":
+          description: Dados inválidos.
+        "401":
+          description: Não autorizado.
+
+    delete:
+      tags:
+        - Rating
+      summary: Deletar avaliação
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ratingId:
+                  type: string
+                outingId:
+                  type: string
+      responses:
+        "204":
+          description: Avaliação deletada com sucesso.
+        "400":
+          description: Dados inválidos.
+        "401":
+          description: Não autorizado.
+        "403":
+          description: Acesso negado.
+        "404":
+          description: Avaliação não encontrada.
+
+  /rating/{ratingId}:
+    put:
+      tags:
+        - Rating
+      summary: Atualizar avaliação
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: ratingId
+          in: path
+          description: ID da avaliação.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+                  example: 5
+                content:
+                  type: string
+      responses:
+        "200":
+          description: Avaliação atualizada com sucesso.
+        "400":
+          description: Dados inválidos.
+        "401":
+          description: Não autorizado.
+        "403":
+          description: Acesso negado.
+        "404":
+          description: Avaliação não encontrada.
+
+  /rating/user/{userId}:
+    get:
+      tags:
+        - Rating
+      summary: Buscar avaliações de um usuário
+      parameters:
+        - name: userId
+          in: path
+          description: ID do usuário.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lista de avaliações do usuário.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Rating"
+        "400":
+          description: ID de usuário inválido.
+
+  /rating/outing/{outingId}:
+    get:
+      tags:
+        - Rating
+      summary: Buscar avaliações de um passeio
+      parameters:
+        - name: outingId
+          in: path
+          description: ID do passeio.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lista de avaliações do passeio.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Rating"
+        "400":
+          description: ID de passeio inválido.

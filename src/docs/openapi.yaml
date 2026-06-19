@@ -1,0 +1,427 @@
+openapi: "3.0.3"
+info:
+  title: "Terê Verde Online"
+  description: "Api para o Terê Verde Online, sistema de gerenciamento de trilhas, parques e eventos, com avaliação de usuários e informações sobre cada um desses passeios."
+  version: "1.0.0"
+servers:
+  - url: http://localhost:3333
+    description: Servidor de desenvolvimento
+paths: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+
+    SignUp:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          format: email
+          example: john.doe@example.com
+        password:
+          type: string
+          format: password
+          example: password123
+
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: john.doe@example.com
+        password:
+          type: string
+          format: password
+          example: password123
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum: [USER, ADMIN]
+        provider:
+          type: string
+          nullable: true
+        googleId:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+          nullable: true
+        verified:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    UpdateUser:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Jane Doe
+        email:
+          type: string
+          format: email
+          example: jane.doe@example.com
+        password:
+          type: string
+          format: password
+          example: newpassword123
+
+    Rating:
+      type: object
+      properties:
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          example: 5
+        content:
+          type: string
+          example: Ótimo passeio!
+        outingId:
+          type: string
+
+    Photo:
+      type: object
+      properties:
+        alt:
+          type: string
+          example: Descrição da imagem
+        url:
+          type: string
+          format: uri
+          example: http://example.com/image.jpg
+
+    OpenHour:
+      type: object
+      properties:
+        dayOfWeek:
+          type: integer
+          minimum: 0
+          maximum: 6
+          example: 1
+        openTime:
+          type: string
+          example: "09:00"
+        closeTime:
+          type: string
+          example: "18:00"
+
+    Trail:
+      type: object
+      properties:
+        difficulty:
+          type: string
+          enum: [EASY, MEDIUM, HARD]
+          example: EASY
+        duration:
+          type: integer
+          example: 120
+        distance:
+          type: number
+          format: float
+          example: 5.5
+        roundTrip:
+          type: boolean
+          example: true
+
+    Park:
+      type: object
+      properties:
+        biodiversity:
+          type: string
+          example: High
+        maximumCapacity:
+          type: integer
+          example: 100
+
+    EventDetails:
+      type: object
+      properties:
+        maximumCapacity:
+          type: integer
+          example: 20
+        startDate:
+          type: string
+          format: date-time
+          example: "2025-12-25T10:00:00Z"
+        endDate:
+          type: string
+          format: date-time
+          example: "2025-12-25T12:00:00Z"
+
+    Location:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: float
+          example: -22.4333
+        longitude:
+          type: number
+          format: float
+          example: -42.9667
+        cityId:
+          type: integer
+          example: 1
+
+    CreateOuting:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Bela Trilha na Montanha
+        content:
+          type: string
+          example: Uma trilha cênica com vistas deslumbrantes.
+        price:
+          type: number
+          example: 25
+        slug:
+          type: string
+          example: beautiful-mountain-trail
+        publicAudience:
+          type: string
+          enum: [ALL, PLUS18, PLUS16, PLUS12]
+        categoryId:
+          type: string
+        location:
+          $ref: "#/components/schemas/Location"
+        photos:
+          type: array
+          items:
+            $ref: "#/components/schemas/Photo"
+        openHours:
+          type: array
+          items:
+            $ref: "#/components/schemas/OpenHour"
+
+    UpdateOuting:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Trilha na Montanha Atualizada
+        content:
+          type: string
+          example: Uma trilha cênica atualizada com vistas deslumbrantes.
+
+    AddTrail:
+      type: object
+      properties:
+        difficulty:
+          type: string
+          enum: [EASY, MEDIUM, HARD]
+          example: MEDIUM
+        duration:
+          type: integer
+          example: 180
+        distance:
+          type: number
+          format: float
+          example: 8
+        roundTrip:
+          type: boolean
+          example: false
+
+    AddPark:
+      type: object
+      properties:
+        biodiversity:
+          type: string
+          example: Medium
+        maximumCapacity:
+          type: integer
+          example: 150
+
+    AddEvent:
+      type: object
+      properties:
+        maximumCapacity:
+          type: integer
+          example: 30
+        startDate:
+          type: string
+          format: date-time
+          example: "2025-12-30T19:00:00Z"
+        endDate:
+          type: string
+          format: date-time
+          example: "2025-12-30T22:00:00Z"
+
+    CreateTrailOuting:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Novo Passeio de Trilha
+        content:
+          type: string
+          example: Descubra uma nova aventura de trilha.
+        price:
+          type: number
+          example: 30
+        slug:
+          type: string
+          example: new-trail-outing
+        publicAudience:
+          type: string
+          enum: [ALL, PLUS18, PLUS16, PLUS12]
+        categoryId:
+          type: string
+        location:
+          $ref: "#/components/schemas/Location"
+        photos:
+          type: array
+          items:
+            $ref: "#/components/schemas/Photo"
+        openHours:
+          type: array
+          items:
+            $ref: "#/components/schemas/OpenHour"
+        trail:
+          $ref: "#/components/schemas/Trail"
+
+    CreateParkOuting:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Novo Passeio de Parque
+        content:
+          type: string
+          example: Explore um parque sereno.
+        price:
+          type: number
+          example: 15
+        slug:
+          type: string
+          example: new-park-outing
+        publicAudience:
+          type: string
+          enum: [ALL, PLUS18, PLUS16, PLUS12]
+        categoryId:
+          type: string
+        location:
+          $ref: "#/components/schemas/Location"
+        photos:
+          type: array
+          items:
+            $ref: "#/components/schemas/Photo"
+        openHours:
+          type: array
+          items:
+            $ref: "#/components/schemas/OpenHour"
+        park:
+          $ref: "#/components/schemas/Park"
+
+    CreateEventOuting:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Novo Passeio de Evento
+        content:
+          type: string
+          example: Junte-se a nós para um evento especial.
+        price:
+          type: number
+          example: 50
+        slug:
+          type: string
+          example: new-event-outing
+        publicAudience:
+          type: string
+          enum: [ALL, PLUS18, PLUS16, PLUS12]
+        categoryId:
+          type: string
+        location:
+          $ref: "#/components/schemas/Location"
+        photos:
+          type: array
+          items:
+            $ref: "#/components/schemas/Photo"
+        openHours:
+          type: array
+          items:
+            $ref: "#/components/schemas/OpenHour"
+        event:
+          $ref: "#/components/schemas/EventDetails"
+
+    OutingResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        price:
+          type: number
+        slug:
+          type: string
+        public:
+          type: string
+        categoryId:
+          type: integer
+        location:
+          $ref: "#/components/schemas/Location"
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        category:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        photos:
+          type: array
+          items:
+            $ref: "#/components/schemas/Photo"
+        openHours:
+          type: array
+          items:
+            $ref: "#/components/schemas/OpenHour"
+        trail:
+          $ref: "#/components/schemas/Trail"
+        park:
+          $ref: "#/components/schemas/Park"
+        event:
+          $ref: "#/components/schemas/EventDetails"
+        ratings:
+          type: array
+          items:
+            $ref: "#/components/schemas/Rating"

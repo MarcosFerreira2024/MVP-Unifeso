@@ -1,0 +1,126 @@
+paths:
+  /authentication/signup:
+    post:
+      tags:
+        - Authentication
+      summary: Registrar novo usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignUp"
+      responses:
+        "201":
+          description: Usuário registrado com sucesso. Verifique seu email para ativação.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Usuário criado, verifique seu email
+        "400":
+          description: Dados inválidos.
+        "409":
+          description: Email já cadastrado.
+
+  /authentication/login:
+    post:
+      tags:
+        - Authentication
+      summary: Autenticar usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        "200":
+          description: Autenticação bem-sucedida. Retorna o token de acesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        "400":
+          description: Credenciais inválidas.
+        "401":
+          description: Não autorizado.
+
+  /authentication/verify-code:
+    post:
+      tags:
+        - Authentication
+      summary: Consumir código de verificação
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+      responses:
+        "200":
+          description: Código verificado com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Código verificado com sucesso
+        "400":
+          description: Código inválido ou expirado.
+
+  /authentication/token:
+    post:
+      tags:
+        - Authentication
+      summary: Verificar validade de um token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        "200":
+          description: Token válido.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token é válido
+                  data:
+                    type: string
+                  status:
+                    type: string
+                    example: success
+        "400":
+          description: Token inválido.
+        "401":
+          description: Não autorizado.
+
+  /authentication/forgot-password:
+    post:
+      tags:
+        - Authentication
+      summary: Solicitar redefinição de senha
+      description: Endpoint para solicitar a redefinição de senha (não implementado).
+      responses:
+        "501":
+          description: Não implementado.

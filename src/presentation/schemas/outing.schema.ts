@@ -23,9 +23,7 @@ const parkSchema = z.object({
   maximumCapacity: z.number().int().positive(),
 });
 
-const eventDetailsSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
+const eventSchema = z.object({
   maximumCapacity: z.number().int().positive(),
   startDate: z.preprocess(
     (arg) => (arg ? new Date(arg as string) : undefined),
@@ -37,10 +35,6 @@ const eventDetailsSchema = z.object({
   ),
 });
 
-const eventSchema = z.object({
-  maximumCapacity: z.number().int().positive(),
-});
-
 export const createOutingSchema = z.object({
   title: z.string(),
   content: z.string(),
@@ -48,7 +42,10 @@ export const createOutingSchema = z.object({
   slug: z.string(),
   publicAudience: z.enum(["ALL", "PLUS12", "PLUS16", "PLUS18"]),
   categoryId: z.preprocess(
-    (a) => parseInt(z.string().parse(a), 10),
+    (a) => {
+      if (a === undefined || a === null) return undefined;
+      return parseInt(z.string().parse(a), 10);
+    },
     z.number().positive()
   ),
   location: z.object({
@@ -60,10 +57,15 @@ export const createOutingSchema = z.object({
   openHours: z.array(openHourSchema).optional(),
   trail: trailSchema.optional(),
   park: parkSchema.optional(),
-  events: z.array(eventSchema).optional(),
+  event: eventSchema.optional(),
 });
 
-export const updateOutingSchema = createOutingSchema.partial();
+export const updateOutingSchema = createOutingSchema
+  .partial()
+  .refine(
+    (data) => Object.keys(data).length > 0,
+    { message: "Nenhum campo enviado para atualização" }
+  );
 
 export const addTrailSchema = z.object({
   difficulty: z.string(),
@@ -81,19 +83,7 @@ export const outingParamsSchema = z.object({
   id: z.string(),
 });
 
-export const addEventSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  maximumCapacity: z.number().int().positive(),
-  startDate: z.preprocess(
-    (arg) => (arg ? new Date(arg as string) : undefined),
-    z.date().optional()
-  ),
-  endDate: z.preprocess(
-    (arg) => (arg ? new Date(arg as string) : undefined),
-    z.date().optional()
-  ),
-});
+export const addEventSchema = eventSchema;
 
 const baseOutingSchema = z.object({
   title: z.string(),
@@ -102,7 +92,10 @@ const baseOutingSchema = z.object({
   slug: z.string(),
   publicAudience: z.enum(["ALL", "PLUS12", "PLUS16", "PLUS18"]),
   categoryId: z.preprocess(
-    (a) => parseInt(z.string().parse(a), 10),
+    (a) => {
+      if (a === undefined || a === null) return undefined;
+      return parseInt(z.string().parse(a), 10);
+    },
     z.number().positive()
   ),
   location: z.object({
