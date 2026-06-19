@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { OutingController } from "../controllers/OutingController";
-import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import { requireAdmin } from "../middlewares/requireAdmin";
-import { validationMiddleware } from "../middlewares/validationMiddleware";
-import { adminLimiter } from "../middlewares/rateLimiter";
+import { OutingController } from "../controllers/OutingController.js";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated.js";
+import { requireAdmin } from "../middlewares/requireAdmin.js";
+import { validationMiddleware } from "../middlewares/validationMiddleware.js";
+import { adminLimiter } from "../middlewares/rateLimiter.js";
 import { z } from "zod";
 import {
   updateOutingSchema,
@@ -14,7 +14,7 @@ import {
   createParkSchema,
   createEventSchema,
   outingParamsSchema,
-} from "../schemas/outing.schema";
+} from "../schemas/outing.schema.js";
 
 const outingRoutes = Router();
 const outingController = new OutingController();

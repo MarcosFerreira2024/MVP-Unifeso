@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IUserRepository } from "../../../domain/interfaces/IUserRepository";
+import { IUserRepository } from "../../../domain/interfaces/IUserRepository.js";
 
 @injectable()
 class DeleteUserUseCase {

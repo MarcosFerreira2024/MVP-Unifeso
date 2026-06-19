@@ -1,8 +1,8 @@
 import {
   UserFromDBWithRelations,
   UserWithoutPasswordFromDB,
-} from "../../infrastructure/types/database";
-import { User } from "../entities/User";
+} from "../../infrastructure/types/database.js";
+import { User } from "../entities/User.js";
 
 export type Role = "USER" | "ADMIN";
 

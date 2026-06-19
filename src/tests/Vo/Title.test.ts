@@ -1,4 +1,4 @@
-import { Title } from "../../domain/value objects/Title";
+import { Title } from "../../domain/value objects/Title.js";
 
 describe("Title Vo tests", () => {
   const errorMessage = "Titulo deve conter de 1 a 36 caracteres sem simbolos";

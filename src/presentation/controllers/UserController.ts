@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { FindUserByIdUseCase } from "../../application/useCases/User/FindUserByIdUseCase";
-import { ListUsersUseCase } from "../../application/useCases/User/ListUsersUseCase";
-import { UpdateUserUseCase } from "../../application/useCases/User/UpdateUserUseCase";
-import { DeleteUserUseCase } from "../../application/useCases/User/DeleteUserUseCase";
-import { UpdateUserDTO } from "../../domain/interfaces/IUserRepository";
-import { errorHandler } from "../../helpers/errorHandler";
+import { FindUserByIdUseCase } from "../../application/useCases/User/FindUserByIdUseCase.js";
+import { ListUsersUseCase } from "../../application/useCases/User/ListUsersUseCase.js";
+import { UpdateUserUseCase } from "../../application/useCases/User/UpdateUserUseCase.js";
+import { DeleteUserUseCase } from "../../application/useCases/User/DeleteUserUseCase.js";
+import { UpdateUserDTO } from "../../domain/interfaces/IUserRepository.js";
+import { errorHandler } from "../../helpers/errorHandler.js";
 
 class UserController {
   async getProfile(req: Request, res: Response): Promise<Response> {

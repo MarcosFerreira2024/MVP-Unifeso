@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { container } from "tsyringe";
-import { VerifyTokenUseCase } from "../../application/useCases/Authorization/VerifyTokenUseCase";
-import { errorHandler } from "../../helpers/errorHandler";
+import { VerifyTokenUseCase } from "../../application/useCases/Authorization/VerifyTokenUseCase.js";
+import { errorHandler } from "../../helpers/errorHandler.js";
 
 export async function ensureAuthenticated(
   request: Request,

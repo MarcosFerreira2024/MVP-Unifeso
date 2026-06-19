@@ -1,7 +1,7 @@
 import {
   RatingFromDB,
   RatingFromDBWithRelations,
-} from "../../infrastructure/types/database";
+} from "../../infrastructure/types/database.js";
 
 interface IRatingRepository {
   create(

@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { errorHandler } from "../../helpers/errorHandler";
+import { errorHandler } from "../../helpers/errorHandler.js";
 import { container } from "tsyringe";
-import { CreateRatingUseCase } from "../../application/useCases/Rating/CreateRatingUseCase";
-import { UpdateRatingUseCase } from "../../application/useCases/Rating/UpdateRatingUseCase";
-import { DeleteRatingUseCase } from "../../application/useCases/Rating/DeleteRatingUseCase";
-import { FindAllRatingsByUserIdUseCase } from "../../application/useCases/Rating/FindAllRatingsByUserIdUseCase";
+import { CreateRatingUseCase } from "../../application/useCases/Rating/CreateRatingUseCase.js";
+import { UpdateRatingUseCase } from "../../application/useCases/Rating/UpdateRatingUseCase.js";
+import { DeleteRatingUseCase } from "../../application/useCases/Rating/DeleteRatingUseCase.js";
+import { FindAllRatingsByUserIdUseCase } from "../../application/useCases/Rating/FindAllRatingsByUserIdUseCase.js";
 import z from "zod";
-import { FindAllRatingsByOutingIdUseCase } from "../../application/useCases/Rating/FindAllRatingsByOutingSlugUseCase";
+import { FindAllRatingsByOutingIdUseCase } from "../../application/useCases/Rating/FindAllRatingsByOutingSlugUseCase.js";
 
 class RatingController {
   static async create(req: Request, res: Response) {

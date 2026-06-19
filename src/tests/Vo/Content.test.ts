@@ -1,4 +1,4 @@
-import { Content } from "../../domain/value objects/Content";
+import { Content } from "../../domain/value objects/Content.js";
 
 describe("Content Vo tests", () => {
   it("should be able to validate a content", () => {

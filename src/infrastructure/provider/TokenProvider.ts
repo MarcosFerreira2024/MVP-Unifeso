@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { injectable } from "tsyringe";
-import { ITokenProvider } from "../../domain/interfaces/ITokenProvider";
-import { Role } from "../../domain/interfaces/IUserRepository";
+import { ITokenProvider } from "../../domain/interfaces/ITokenProvider.js";
+import { Role } from "../../domain/interfaces/IUserRepository.js";
 import { randomUUID } from "crypto";
 
 @injectable()

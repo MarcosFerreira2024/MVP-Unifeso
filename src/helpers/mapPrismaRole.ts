@@ -1,4 +1,4 @@
-import { $Enums, Roles } from "../infrastructure/libs/prisma/generated";
+import { $Enums, Roles } from "../infrastructure/libs/prisma/generated/index.js";
 
 function mapPrismaRole(role: $Enums.Roles): Roles {
   switch (role) {

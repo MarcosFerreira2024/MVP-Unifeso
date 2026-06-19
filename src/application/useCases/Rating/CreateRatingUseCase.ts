@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
-import { IRatingRepository } from "../../../domain/interfaces/IRatingRepository";
-import { UseCaseResponse } from "../../../infrastructure/types/global";
-import { IOutingRepository } from "../../../domain/interfaces/IOutingRepository";
-import { Rating } from "../../../domain/entities/Rating";
+import { IRatingRepository } from "../../../domain/interfaces/IRatingRepository.js";
+import { UseCaseResponse } from "../../../infrastructure/types/global.js";
+import { IOutingRepository } from "../../../domain/interfaces/IOutingRepository.js";
+import { Rating } from "../../../domain/entities/Rating.js";
 
 @injectable()
 class CreateRatingUseCase {

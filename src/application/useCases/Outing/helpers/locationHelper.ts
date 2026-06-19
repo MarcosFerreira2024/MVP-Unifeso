@@ -1,5 +1,5 @@
-import { prisma } from "../../../../infrastructure/libs/prisma/prisma";
-import { AppError } from "../../../../helpers/errorHandler";
+import { prisma } from "../../../../infrastructure/libs/prisma/prisma.js";
+import { AppError } from "../../../../helpers/errorHandler.js";
 
 export async function validateCityAndCreateLocation(location: {
   latitude: number;

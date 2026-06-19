@@ -1,4 +1,4 @@
-import { EventFromDB } from "../../infrastructure/types/database";
+import { EventFromDB } from "../../infrastructure/types/database.js";
 
 export interface IEventRepository {
   create(data: {

@@ -1,6 +1,6 @@
-import { IParkRepository } from "../../domain/interfaces/IParkRepository";
-import { ParkFromDB } from "../types/database";
-import { prisma } from "../libs/prisma/prisma";
+import { IParkRepository } from "../../domain/interfaces/IParkRepository.js";
+import { ParkFromDB } from "../types/database.js";
+import { prisma } from "../libs/prisma/prisma.js";
 
 class ParkRepository implements IParkRepository {
   async create(data: {

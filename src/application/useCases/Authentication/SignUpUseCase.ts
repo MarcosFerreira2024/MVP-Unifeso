@@ -1,11 +1,11 @@
 import { inject, injectable } from "tsyringe";
-import { User } from "../../../domain/entities/User";
-import { IUserRepository } from "../../../domain/interfaces/IUserRepository";
-import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository";
-import { Password } from "../../../domain/value objects/Password";
-import { UseCaseResponse } from "../../../infrastructure/types/global";
-import { IEmailService } from "../../../domain/interfaces/IEmailService";
-import { IHashProvider } from "../../../domain/interfaces/IHashProvider";
+import { User } from "../../../domain/entities/User.js";
+import { IUserRepository } from "../../../domain/interfaces/IUserRepository.js";
+import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository.js";
+import { Password } from "../../../domain/value objects/Password.js";
+import { UseCaseResponse } from "../../../infrastructure/types/global.js";
+import { IEmailService } from "../../../domain/interfaces/IEmailService.js";
+import { IHashProvider } from "../../../domain/interfaces/IHashProvider.js";
 
 @injectable()
 class SignUpUseCase {

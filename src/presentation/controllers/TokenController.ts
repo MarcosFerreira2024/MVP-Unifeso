@@ -1,8 +1,8 @@
 import { container } from "tsyringe";
 import z from "zod";
-import { errorHandler } from "../../helpers/errorHandler";
+import { errorHandler } from "../../helpers/errorHandler.js";
 import { Request, Response } from "express";
-import { VerifyTokenUseCase } from "../../application/useCases/Authorization/VerifyTokenUseCase";
+import { VerifyTokenUseCase } from "../../application/useCases/Authorization/VerifyTokenUseCase.js";
 
 class TokenController {
   static async verify(req: Request, res: Response) {

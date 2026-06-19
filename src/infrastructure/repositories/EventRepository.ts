@@ -1,6 +1,6 @@
-import { IEventRepository } from "../../domain/interfaces/IEventRepository";
-import { EventFromDB } from "../types/database";
-import { prisma } from "../libs/prisma/prisma";
+import { IEventRepository } from "../../domain/interfaces/IEventRepository.js";
+import { EventFromDB } from "../types/database.js";
+import { prisma } from "../libs/prisma/prisma.js";
 
 class EventRepository implements IEventRepository {
   async create(data: {

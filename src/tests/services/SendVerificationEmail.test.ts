@@ -1,4 +1,4 @@
-import { EmailService } from "../../infrastructure/services/email/EmailService";
+import { EmailService } from "../../infrastructure/services/email/EmailService.js";
 
 describe("SendVerificationEmail", () => {
   it("should send a verification email without throwing an error", async () => {

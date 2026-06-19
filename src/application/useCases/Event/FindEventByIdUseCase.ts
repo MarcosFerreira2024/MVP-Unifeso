@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IEventRepository } from "../../../domain/interfaces/IEventRepository";
-import { UseCaseResponse } from "../../../infrastructure/types/global";
+import { IEventRepository } from "../../../domain/interfaces/IEventRepository.js";
+import { UseCaseResponse } from "../../../infrastructure/types/global.js";
 
 @injectable()
 class FindEventByIdUseCase {

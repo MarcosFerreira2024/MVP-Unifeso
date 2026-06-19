@@ -1,4 +1,4 @@
-import { Providers, Roles, Audience } from "../../shared/enums";
+import { Providers, Roles, Audience } from "../../shared/enums.js";
 
 export type RatingFromDB = {
   id: string;

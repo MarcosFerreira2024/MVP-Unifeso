@@ -1,9 +1,9 @@
 import z from "zod";
-import { errorHandler } from "../../helpers/errorHandler";
+import { errorHandler } from "../../helpers/errorHandler.js";
 import { Request, Response } from "express";
-import { SignUpUseCase } from "../../application/useCases/Authentication/SignUpUseCase";
+import { SignUpUseCase } from "../../application/useCases/Authentication/SignUpUseCase.js";
 import { container } from "tsyringe";
-import { LoginUseCase } from "../../application/useCases/Authentication/LoginUseCase";
+import { LoginUseCase } from "../../application/useCases/Authentication/LoginUseCase.js";
 
 class AuthenticationController {
   static async login(req: Request, res: Response) {

@@ -1,15 +1,15 @@
 import { injectable } from "tsyringe";
-import { User } from "../../domain/entities/User";
+import { User } from "../../domain/entities/User.js";
 import {
   IUserRepository,
   UpdateUserDTO,
-} from "../../domain/interfaces/IUserRepository";
-import { mapPrismaUserToUserFromDB } from "../../helpers/mapPrismaUserToUserFromDb";
-import { prisma } from "../libs/prisma/prisma";
+} from "../../domain/interfaces/IUserRepository.js";
+import { mapPrismaUserToUserFromDB } from "../../helpers/mapPrismaUserToUserFromDb.js";
+import { prisma } from "../libs/prisma/prisma.js";
 import {
   UserWithoutPasswordFromDB,
   UserFromDBWithRelations, // This type now reflects UserWithoutPasswordFromDB with relations
-} from "../types/database";
+} from "../types/database.js";
 
 @injectable()
 class UserRepository implements IUserRepository {

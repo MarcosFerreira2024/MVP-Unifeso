@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IOutingRepository } from "../../../domain/interfaces/IOutingRepository";
-import { OutingFromDBWithRelations } from "../../../infrastructure/types/database";
+import { IOutingRepository } from "../../../domain/interfaces/IOutingRepository.js";
+import { OutingFromDBWithRelations } from "../../../infrastructure/types/database.js";
 
 @injectable()
 class ListOutingsUseCase {

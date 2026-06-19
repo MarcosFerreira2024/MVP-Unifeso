@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import { RatingController } from "../controllers/RatingController";
-import { ratingLimiter } from "../middlewares/rateLimiter";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated.js";
+import { RatingController } from "../controllers/RatingController.js";
+import { ratingLimiter } from "../middlewares/rateLimiter.js";
 
 const rating = Router();
 

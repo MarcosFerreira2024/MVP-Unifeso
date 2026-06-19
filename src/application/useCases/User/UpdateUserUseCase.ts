@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
-import { IUserRepository, UpdateUserDTO } from "../../../domain/interfaces/IUserRepository";
-import { UserFromDBWithRelations } from "../../../infrastructure/types/database";
-import { AppError } from "../../../helpers/errorHandler";
-import { IHashProvider } from "../../../domain/interfaces/IHashProvider";
-import { Password } from "../../../domain/value objects/Password";
+import { IUserRepository, UpdateUserDTO } from "../../../domain/interfaces/IUserRepository.js";
+import { UserFromDBWithRelations } from "../../../infrastructure/types/database.js";
+import { AppError } from "../../../helpers/errorHandler.js";
+import { IHashProvider } from "../../../domain/interfaces/IHashProvider.js";
+import { Password } from "../../../domain/value objects/Password.js";
 
 @injectable()
 class UpdateUserUseCase {

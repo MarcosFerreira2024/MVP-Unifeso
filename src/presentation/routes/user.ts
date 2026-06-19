@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import { requireAdmin } from "../middlewares/requireAdmin";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated.js";
+import { requireAdmin } from "../middlewares/requireAdmin.js";
 import { z } from "zod";
-import { validationMiddleware } from "../middlewares/validationMiddleware";
-import { updateUserSchema } from "../schemas/user.schema";
-import { UserController } from "../controllers/UserController";
-import { adminLimiter } from "../middlewares/rateLimiter";
+import { validationMiddleware } from "../middlewares/validationMiddleware.js";
+import { updateUserSchema } from "../schemas/user.schema.js";
+import { UserController } from "../controllers/UserController.js";
+import { adminLimiter } from "../middlewares/rateLimiter.js";
 
 const userRoutes = Router();
 const userController = new UserController();

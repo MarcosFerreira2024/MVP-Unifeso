@@ -1,6 +1,6 @@
-import { ITrailRepository } from "../../domain/interfaces/ITrailRepository";
-import { TrailFromDB } from "../types/database";
-import { prisma } from "../libs/prisma/prisma";
+import { ITrailRepository } from "../../domain/interfaces/ITrailRepository.js";
+import { TrailFromDB } from "../types/database.js";
+import { prisma } from "../libs/prisma/prisma.js";
 
 class TrailRepository implements ITrailRepository {
   async create(data: {

@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { pickRandomPhotos } from "./photos";
+import { pickRandomPhotos } from "./photos.js";
 
 interface ParkSeed {
   title: string;

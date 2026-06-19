@@ -1,5 +1,5 @@
-import { normalizeBadWords } from "../../helpers/normalizeBadWords";
-import { validateValueOrThrow } from "../../helpers/validateValueOrThrow";
+import { normalizeBadWords } from "../../helpers/normalizeBadWords.js";
+import { validateValueOrThrow } from "../../helpers/validateValueOrThrow.js";
 
 class Content {
   private static readonly regex = /^.{0,300}$/;

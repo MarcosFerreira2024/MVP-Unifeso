@@ -1,5 +1,5 @@
-import { Biodiversity } from "../value objects/Biodiversity";
-import { Capacity } from "../value objects/Capacity";
+import { Biodiversity } from "../value objects/Biodiversity.js";
+import { Capacity } from "../value objects/Capacity.js";
 
 export class Park {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

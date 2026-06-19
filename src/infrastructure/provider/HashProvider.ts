@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { injectable } from "tsyringe";
-import { IHashProvider } from "../../domain/interfaces/IHashProvider";
+import { IHashProvider } from "../../domain/interfaces/IHashProvider.js";
 
 @injectable()
 class HashProvider implements IHashProvider {

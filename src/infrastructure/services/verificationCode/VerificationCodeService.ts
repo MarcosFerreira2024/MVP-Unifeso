@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository";
-import { IEmailService } from "../../../domain/interfaces/IEmailService";
+import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository.js";
+import { IEmailService } from "../../../domain/interfaces/IEmailService.js";
 
 @injectable()
 class VerificationCodeService {

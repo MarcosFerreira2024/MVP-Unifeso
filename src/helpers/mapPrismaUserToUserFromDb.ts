@@ -1,5 +1,5 @@
-import { UserFromDBWithRelations } from "../infrastructure/types/database";
-import { mapPrismaRole } from "./mapPrismaRole";
+import { UserFromDBWithRelations } from "../infrastructure/types/database.js";
+import { mapPrismaRole } from "./mapPrismaRole.js";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapPrismaUserToUserFromDB(user: any): UserFromDBWithRelations {

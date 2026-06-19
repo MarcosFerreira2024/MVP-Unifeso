@@ -1,6 +1,6 @@
-import { IRatingRepository } from "../../domain/interfaces/IRatingRepository";
-import { prisma } from "../libs/prisma/prisma";
-import { RatingFromDB, RatingFromDBWithRelations } from "../types/database";
+import { IRatingRepository } from "../../domain/interfaces/IRatingRepository.js";
+import { prisma } from "../libs/prisma/prisma.js";
+import { RatingFromDB, RatingFromDBWithRelations } from "../types/database.js";
 
 class RatingRepository implements IRatingRepository {
   async create(

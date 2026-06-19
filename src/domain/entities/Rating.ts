@@ -1,5 +1,5 @@
-import { Content } from "../value objects/Content";
-import { RatingValue } from "../value objects/RatingValue";
+import { Content } from "../value objects/Content.js";
+import { RatingValue } from "../value objects/RatingValue.js";
 
 class Rating {
   private constructor(private rating: RatingValue, private content?: Content) {}

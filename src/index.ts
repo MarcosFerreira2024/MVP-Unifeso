@@ -4,8 +4,8 @@ import "reflect-metadata";
 import "./shared/container";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
-import { routes } from "./presentation/routes/routes";
-import { errorHandler } from "./helpers/errorHandler";
+import { routes } from "./presentation/routes/routes.js";
+import { errorHandler } from "./helpers/errorHandler.js";
 const app = express();
 
 const appPort = process.env.PORT || 3333;

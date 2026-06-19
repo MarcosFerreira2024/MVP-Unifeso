@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IUserRepository } from "../../../domain/interfaces/IUserRepository";
-import { UserFromDBWithoutPassword } from "../../../infrastructure/types/database";
+import { IUserRepository } from "../../../domain/interfaces/IUserRepository.js";
+import { UserFromDBWithoutPassword } from "../../../infrastructure/types/database.js";
 
 @injectable()
 class FindUserByIdUseCase {

@@ -1,5 +1,5 @@
-import { Audience } from "../../shared/enums";
-import { OutingFromDBWithRelations } from "../../infrastructure/types/database";
+import { Audience } from "../../shared/enums.js";
+import { OutingFromDBWithRelations } from "../../infrastructure/types/database.js";
 
 export type CreateOutingInput = {
   title: string;

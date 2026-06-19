@@ -1,4 +1,4 @@
-import { validateValueOrThrow } from "../../helpers/validateValueOrThrow";
+import { validateValueOrThrow } from "../../helpers/validateValueOrThrow.js";
 
 class Name {
   private static readonly regex =

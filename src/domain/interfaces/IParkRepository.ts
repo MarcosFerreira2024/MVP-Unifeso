@@ -1,4 +1,4 @@
-import { ParkFromDB } from "../../infrastructure/types/database";
+import { ParkFromDB } from "../../infrastructure/types/database.js";
 
 export interface IParkRepository {
   create(data: {

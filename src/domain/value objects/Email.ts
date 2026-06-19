@@ -1,4 +1,4 @@
-import { validateValueOrThrow } from "../../helpers/validateValueOrThrow";
+import { validateValueOrThrow } from "../../helpers/validateValueOrThrow.js";
 
 class Email {
   private static readonly regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

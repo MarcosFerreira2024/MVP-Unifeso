@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { RatingFromDBWithRelations } from "../../../infrastructure/types/database";
-import { IRatingRepository } from "../../../domain/interfaces/IRatingRepository";
+import { RatingFromDBWithRelations } from "../../../infrastructure/types/database.js";
+import { IRatingRepository } from "../../../domain/interfaces/IRatingRepository.js";
 
 @injectable()
 class FindAllRatingsByUserIdUseCase {

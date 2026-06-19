@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { AuthenticationController } from "../controllers/AuthenticationController";
-import { VerificationCodeController } from "../controllers/VerificationCodeController";
-import { TokenController } from "../controllers/TokenController";
-import { authLimiter, authVerifyLimiter } from "../middlewares/rateLimiter";
+import { AuthenticationController } from "../controllers/AuthenticationController.js";
+import { VerificationCodeController } from "../controllers/VerificationCodeController.js";
+import { TokenController } from "../controllers/TokenController.js";
+import { authLimiter, authVerifyLimiter } from "../middlewares/rateLimiter.js";
 
 const authentication = Router();
 

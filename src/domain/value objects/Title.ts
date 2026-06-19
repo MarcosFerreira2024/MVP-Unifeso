@@ -1,5 +1,5 @@
-import { normalizeBadWords } from "../../helpers/normalizeBadWords";
-import { validateValueOrThrow } from "../../helpers/validateValueOrThrow";
+import { normalizeBadWords } from "../../helpers/normalizeBadWords.js";
+import { validateValueOrThrow } from "../../helpers/validateValueOrThrow.js";
 
 class Title {
   private static readonly regex = /^[A-Za-z0-9À-ÿ ]{1,36}$/;

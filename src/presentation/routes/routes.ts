@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { userRoutes } from "./user";
-import { authentication } from "./auth";
-import { rating } from "./rating";
-import { outingRoutes } from "./outing";
+import { userRoutes } from "./user.js";
+import { authentication } from "./auth.js";
+import { rating } from "./rating.js";
+import { outingRoutes } from "./outing.js";
 
-import { openapi } from "../../docs/index";
+import { openapi } from "../../docs/index.js";
 
 const routes = Router();
 routes.use("/authentication", authentication);

@@ -1,4 +1,4 @@
-import { normalizeBadWords } from "../../helpers/normalizeBadWords";
+import { normalizeBadWords } from "../../helpers/normalizeBadWords.js";
 
 describe("normalize bad words", () => {
   it("should return a normalized string", () => {

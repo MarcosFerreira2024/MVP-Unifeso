@@ -1,4 +1,4 @@
-import { Name } from "../../domain/value objects/Name";
+import { Name } from "../../domain/value objects/Name.js";
 
 describe("Name Vo tests", () => {
   it("should be able to validate a name", () => {

@@ -1,4 +1,4 @@
-import { Role } from "./IUserRepository";
+import { Role } from "./IUserRepository.js";
 
 interface ITokenProvider {
   generate(userId: string, email: string, role: Role): Promise<string>;

@@ -1,8 +1,8 @@
 import { inject, injectable } from "tsyringe";
-import { VerificationCode } from "../../../domain/entities/VerificationCode";
-import { IUserRepository } from "../../../domain/interfaces/IUserRepository";
-import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository";
-import { UseCaseResponse } from "../../../infrastructure/types/global";
+import { VerificationCode } from "../../../domain/entities/VerificationCode.js";
+import { IUserRepository } from "../../../domain/interfaces/IUserRepository.js";
+import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository.js";
+import { UseCaseResponse } from "../../../infrastructure/types/global.js";
 
 @injectable()
 class ConsumeVerificationCodeUseCase {

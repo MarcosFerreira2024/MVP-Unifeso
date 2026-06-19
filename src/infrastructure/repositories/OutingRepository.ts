@@ -2,9 +2,9 @@ import {
   CreateOutingInput,
   IOutingRepository,
   UpdateOutingInput,
-} from "../../domain/interfaces/IOutingRepository";
-import { prisma } from "../libs/prisma/prisma";
-import { OutingFromDBWithRelations } from "../types/database";
+} from "../../domain/interfaces/IOutingRepository.js";
+import { prisma } from "../libs/prisma/prisma.js";
+import { OutingFromDBWithRelations } from "../types/database.js";
 
 class OutingRepository implements IOutingRepository {
   async findById(id: string): Promise<OutingFromDBWithRelations | null> {

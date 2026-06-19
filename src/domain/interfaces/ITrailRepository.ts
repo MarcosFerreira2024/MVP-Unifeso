@@ -1,4 +1,4 @@
-import { TrailFromDB } from "../../infrastructure/types/database";
+import { TrailFromDB } from "../../infrastructure/types/database.js";
 
 export interface ITrailRepository {
   create(data: {

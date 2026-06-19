@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import { DeleteOutingUseCase } from "../../application/useCases/Outing/DeleteOutingUseCase";
-import { UpdateOutingUseCase } from "../../application/useCases/Outing/UpdateOutingUseCase";
-import { AddTrailUseCase } from "../../application/useCases/Outing/AddTrailUseCase";
-import { AddParkUseCase } from "../../application/useCases/Outing/AddParkUseCase";
-import { AddEventUseCase } from "../../application/useCases/Outing/AddEventUseCase";
-import { CreateTrailUseCase } from "../../application/useCases/Outing/CreateTrailUseCase";
-import { CreateParkUseCase } from "../../application/useCases/Outing/CreateParkUseCase";
-import { CreateEventUseCase } from "../../application/useCases/Outing/CreateEventUseCase";
-import { ListOutingsUseCase } from "../../application/useCases/Outing/ListOutingsUseCase";
-import { FindOutingBySlugUseCase } from "../../application/useCases/Outing/FindOutingBySlugUseCase";
-import { errorHandler } from "../../helpers/errorHandler";
+import { DeleteOutingUseCase } from "../../application/useCases/Outing/DeleteOutingUseCase.js";
+import { UpdateOutingUseCase } from "../../application/useCases/Outing/UpdateOutingUseCase.js";
+import { AddTrailUseCase } from "../../application/useCases/Outing/AddTrailUseCase.js";
+import { AddParkUseCase } from "../../application/useCases/Outing/AddParkUseCase.js";
+import { AddEventUseCase } from "../../application/useCases/Outing/AddEventUseCase.js";
+import { CreateTrailUseCase } from "../../application/useCases/Outing/CreateTrailUseCase.js";
+import { CreateParkUseCase } from "../../application/useCases/Outing/CreateParkUseCase.js";
+import { CreateEventUseCase } from "../../application/useCases/Outing/CreateEventUseCase.js";
+import { ListOutingsUseCase } from "../../application/useCases/Outing/ListOutingsUseCase.js";
+import { FindOutingBySlugUseCase } from "../../application/useCases/Outing/FindOutingBySlugUseCase.js";
+import { errorHandler } from "../../helpers/errorHandler.js";
 
 class OutingController {
   async findAllOutings(req: Request, res: Response): Promise<Response> {

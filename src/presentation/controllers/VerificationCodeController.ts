@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
-import { ConsumeVerificationCodeUseCase } from "../../application/useCases/Authentication/ConsumeVerificationCodeUseCase";
+import { ConsumeVerificationCodeUseCase } from "../../application/useCases/Authentication/ConsumeVerificationCodeUseCase.js";
 import z from "zod";
-import { errorHandler } from "../../helpers/errorHandler";
+import { errorHandler } from "../../helpers/errorHandler.js";
 import { Request, Response } from "express";
 
 class VerificationCodeController {

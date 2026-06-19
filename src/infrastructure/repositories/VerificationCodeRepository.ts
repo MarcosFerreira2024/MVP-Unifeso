@@ -2,8 +2,8 @@ import { injectable } from "tsyringe";
 import {
   IVerificationCodeRepository,
   VerificationCodeFromDB,
-} from "../../domain/interfaces/IVerificationCodeRepository";
-import { prisma } from "../libs/prisma/prisma";
+} from "../../domain/interfaces/IVerificationCodeRepository.js";
+import { prisma } from "../libs/prisma/prisma.js";
 
 @injectable()
 class VerificationCodeRepository implements IVerificationCodeRepository {

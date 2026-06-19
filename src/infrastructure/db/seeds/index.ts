@@ -1,11 +1,11 @@
-import { seedAdmin } from "./admin";
-import { seedCategory } from "./category";
-import { seedCity } from "./city";
-import { seedEventOutings } from "./eventOutings";
-import { seedParkOutings } from "./parkOutings";
-import { seedTrailOutings } from "./trailOutings";
-import { seedUser } from "./user";
-import { prisma } from "../../libs/prisma/prisma";
+import { seedAdmin } from "./admin.js";
+import { seedCategory } from "./category.js";
+import { seedCity } from "./city.js";
+import { seedEventOutings } from "./eventOutings.js";
+import { seedParkOutings } from "./parkOutings.js";
+import { seedTrailOutings } from "./trailOutings.js";
+import { seedUser } from "./user.js";
+import { prisma } from "../../libs/prisma/prisma.js";
 
 async function main() {
   console.log("Start seeding...");

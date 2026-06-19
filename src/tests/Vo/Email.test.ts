@@ -1,4 +1,4 @@
-import { Email } from "../../domain/value objects/Email";
+import { Email } from "../../domain/value objects/Email.js";
 
 describe("Email Vo tests", () => {
   const errorMessage = "Email Inválido";

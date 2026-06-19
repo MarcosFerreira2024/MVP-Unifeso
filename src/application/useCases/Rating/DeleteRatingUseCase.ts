@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
-import { IRatingRepository } from "../../../domain/interfaces/IRatingRepository";
-import { UseCaseResponse } from "../../../infrastructure/types/global";
-import { IOutingRepository } from "../../../domain/interfaces/IOutingRepository";
-import { Role } from "../../../domain/interfaces/IUserRepository";
-import { AppError } from "../../../helpers/errorHandler";
+import { IRatingRepository } from "../../../domain/interfaces/IRatingRepository.js";
+import { UseCaseResponse } from "../../../infrastructure/types/global.js";
+import { IOutingRepository } from "../../../domain/interfaces/IOutingRepository.js";
+import { Role } from "../../../domain/interfaces/IUserRepository.js";
+import { AppError } from "../../../helpers/errorHandler.js";
 
 @injectable()
 class DeleteRatingUseCase {

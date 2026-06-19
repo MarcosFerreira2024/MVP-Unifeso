@@ -1,9 +1,9 @@
 import { injectable } from "tsyringe";
-import { transporter } from "../../libs/nodemailer/config";
+import { transporter } from "../../libs/nodemailer/config.js";
 
 import fs from "fs/promises";
 import path from "path";
-import { IEmailService } from "../../../domain/interfaces/IEmailService";
+import { IEmailService } from "../../../domain/interfaces/IEmailService.js";
 
 @injectable()
 class EmailService implements IEmailService {

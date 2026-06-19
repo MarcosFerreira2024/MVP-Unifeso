@@ -1,6 +1,6 @@
-import { Providers, Roles } from "../../infrastructure/libs/prisma/generated";
-import { Email } from "../value objects/Email";
-import { Name } from "../value objects/Name";
+import { Providers, Roles } from "../../infrastructure/libs/prisma/generated/index.js";
+import { Email } from "../value objects/Email.js";
+import { Name } from "../value objects/Name.js";
 
 class User {
   private constructor(

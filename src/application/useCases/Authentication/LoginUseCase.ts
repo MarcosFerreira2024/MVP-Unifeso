@@ -1,12 +1,12 @@
 import { inject, injectable } from "tsyringe";
-import { VerificationCode } from "../../../domain/entities/VerificationCode";
-import { IUserRepository } from "../../../domain/interfaces/IUserRepository";
-import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository";
-import { IVerificationCodeService } from "../../../domain/interfaces/IVerificationCodeService";
-import { Password } from "../../../domain/value objects/Password";
-import { UseCaseResponse } from "../../../infrastructure/types/global";
-import { ITokenProvider } from "../../../domain/interfaces/ITokenProvider";
-import { IHashProvider } from "../../../domain/interfaces/IHashProvider";
+import { VerificationCode } from "../../../domain/entities/VerificationCode.js";
+import { IUserRepository } from "../../../domain/interfaces/IUserRepository.js";
+import { IVerificationCodeRepository } from "../../../domain/interfaces/IVerificationCodeRepository.js";
+import { IVerificationCodeService } from "../../../domain/interfaces/IVerificationCodeService.js";
+import { Password } from "../../../domain/value objects/Password.js";
+import { UseCaseResponse } from "../../../infrastructure/types/global.js";
+import { ITokenProvider } from "../../../domain/interfaces/ITokenProvider.js";
+import { IHashProvider } from "../../../domain/interfaces/IHashProvider.js";
 
 @injectable()
 class LoginUseCase {

@@ -1,5 +1,5 @@
-import { Title } from "../value objects/Title";
-import { Content } from "../value objects/Content";
+import { Title } from "../value objects/Title.js";
+import { Content } from "../value objects/Content.js";
 
 export class Event {
   private constructor(

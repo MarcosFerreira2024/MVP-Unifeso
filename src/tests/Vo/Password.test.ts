@@ -1,4 +1,4 @@
-import { Password } from "../../domain/value objects/Password";
+import { Password } from "../../domain/value objects/Password.js";
 
 describe("Password Vo tests", () => {
   const errorMessage =

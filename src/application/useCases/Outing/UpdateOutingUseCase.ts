@@ -2,10 +2,10 @@ import { inject, injectable } from "tsyringe";
 import {
   IOutingRepository,
   UpdateOutingInput,
-} from "../../../domain/interfaces/IOutingRepository";
-import { OutingFromDBWithRelations } from "../../../infrastructure/types/database";
-import { AppError } from "../../../helpers/errorHandler";
-import { validateCityAndCreateLocation } from "./helpers/locationHelper";
+} from "../../../domain/interfaces/IOutingRepository.js";
+import { OutingFromDBWithRelations } from "../../../infrastructure/types/database.js";
+import { AppError } from "../../../helpers/errorHandler.js";
+import { validateCityAndCreateLocation } from "./helpers/locationHelper.js";
 
 @injectable()
 class UpdateOutingUseCase {

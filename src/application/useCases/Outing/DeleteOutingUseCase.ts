@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IOutingRepository } from "../../../domain/interfaces/IOutingRepository";
+import { IOutingRepository } from "../../../domain/interfaces/IOutingRepository.js";
 
 @injectable()
 class DeleteOutingUseCase {
