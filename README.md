@@ -157,7 +157,6 @@
   </div>
 </div>
 
-
 <div id="prototipo">
   <h1>Protótipo</h1>
   <a href="https://www.figma.com/design/WKbKEBoPorf7jbQlPPFozL/Projetos?node-id=0-1&p=f&t=bbLaDisVC6go9FAN-0">Acessar no Figma</a>
@@ -190,7 +189,6 @@
     <li><strong>Infrastructure:</strong> implementações concretas (banco, filas, integrações externas) que implementam os contratos do domínio.</li>
     <li><strong>Presentation :</strong> camada que expõe os endpoints REST.</li>
   </ol>
-
 
 <div id="fora_escopo">
   <h1>Fora do Escopo</h1>
@@ -227,7 +225,6 @@
   </ul>
 </div>
 
-
 <div id="repositorios">
   <h1>Repositórios</h1>
 
@@ -240,178 +237,356 @@
 
 <div id="estrutura">
   <h1>Estrutura Atual do Projeto</h1>
-
-
 <pre>
-├── 📁 prisma
-│   ├── 📁 migrations
-│   │   ├── 📁 20251203025407_creating_tables_on_6_17_version
-│   │   │   └── 📄 migration.sql
-│   │   ├── 📁 20251203075718_resolving_unique_constraint_on_event_table
-│   │   │   └── 📄 migration.sql
-│   │   └── ⚙️ migration_lock.toml
-│   └── 📄 schema.prisma
-├── 📁 src
-│   ├── 📁 application
-│   │   └── 📁 useCases
-│   │       ├── 📁 Authentication
-│   │       │   ├── 📄 ConsumeVerificationCodeUseCase.ts
-│   │       │   ├── 📄 LoginUseCase.ts
-│   │       │   └── 📄 SignUpUseCase.ts
-│   │       ├── 📁 Authorization
-│   │       │   └── 📄 VerifyTokenUseCase.ts
-│   │       ├── 📁 Event
-│   │       │   ├── 📄 DeleteEventUseCase.ts
-│   │       │   ├── 📄 FindEventByIdUseCase.ts
-│   │       │   └── 📄 UpdateEventUseCase.ts
-│   │       ├── 📁 Outing
-│   │       │   ├── 📁 helpers
-│   │       │   │   └── 📄 locationHelper.ts
-│   │       │   ├── 📄 AddEventUseCase.ts
-│   │       │   ├── 📄 AddParkUseCase.ts
-│   │       │   ├── 📄 AddTrailUseCase.ts
-│   │       │   ├── 📄 CreateEventUseCase.ts
-│   │       │   ├── 📄 CreateParkUseCase.ts
-│   │       │   ├── 📄 CreateTrailUseCase.ts
-│   │       │   ├── 📄 DeleteOutingUseCase.ts
-│   │       │   ├── 📄 FindOutingBySlugUseCase.ts
-│   │       │   ├── 📄 ListOutingsUseCase.ts
-│   │       │   └── 📄 UpdateOutingUseCase.ts
-│   │       ├── 📁 Rating
-│   │       │   ├── 📄 CreateRatingUseCase.ts
-│   │       │   ├── 📄 DeleteRatingUseCase.ts
-│   │       │   ├── 📄 FindAllRatingsByOutingSlugUseCase.ts
-│   │       │   └── 📄 FindAllRatingsByUserIdUseCase.ts
-│   │       └── 📁 User
-│   │           ├── 📄 DeleteUserUseCase.ts
-│   │           ├── 📄 FindUserByIdUseCase.ts
-│   │           ├── 📄 ListUsersUseCase.ts
-│   │           └── 📄 UpdateUserUseCase.ts
-│   ├── 📁 domain
-│   │   ├── 📁 entities
-│   │   │   ├── 📄 Event.ts
-│   │   │   ├── 📄 Park.ts
-│   │   │   ├── 📄 Rating.ts
-│   │   │   ├── 📄 User.ts
-│   │   │   └── 📄 VerificationCode.ts
-│   │   ├── 📁 interfaces
-│   │   │   ├── 📄 IEmailService.ts
-│   │   │   ├── 📄 IEventRepository.ts
-│   │   │   ├── 📄 IHashProvider.ts
-│   │   │   ├── 📄 IOutingRepository.ts
-│   │   │   ├── 📄 IParkRepository.ts
-│   │   │   ├── 📄 IRatingRepository.ts
-│   │   │   ├── 📄 ITokenProvider.ts
-│   │   │   ├── 📄 ITrailRepository.ts
-│   │   │   ├── 📄 IUserRepository.ts
-│   │   │   ├── 📄 IVerificationCodeRepository.ts
-│   │   │   └── 📄 IVerificationCodeService.ts
-│   │   └── 📁 value objects
-│   │       ├── 📄 Biodiversity.ts
-│   │       ├── 📄 Capacity.ts
-│   │       ├── 📄 Content.ts
-│   │       ├── 📄 Difficulty.ts
-│   │       ├── 📄 Email.ts
-│   │       ├── 📄 Name.ts
-│   │       ├── 📄 Password.ts
-│   │       ├── 📄 RatingValue.ts
-│   │       └── 📄 Title.ts
-│   ├── 📁 helpers
-│   │   ├── 📄 errorHandler.ts
-│   │   ├── 📄 mapEventToEventFromDb.ts
-│   │   ├── 📄 mapParkToParkFromDb.ts
-│   │   ├── 📄 mapPrismaRole.ts
-│   │   ├── 📄 mapPrismaUserToUserFromDb.ts
-│   │   ├── 📄 mapTrailToTrailFromDb.ts
-│   │   ├── 📄 normalizeBadWords.ts
-│   │   └── 📄 validateValueOrThrow.ts
-│   ├── 📁 infrastructure
-│   │   ├── 📁 db
-│   │   │   ├── 📁 seeds
-│   │   │   │   ├── 📄 admin.ts
-│   │   │   │   ├── 📄 category.ts
-│   │   │   │   ├── 📄 city.ts
-│   │   │   │   ├── 📄 index.ts
-│   │   │   │   ├── 📄 seedEventOuting.ts
-│   │   │   │   ├── 📄 seedParkOuting.ts
-│   │   │   │   └── 📄 seedTrailOuting.ts
-│   │   │   └── 📄 dev.db
-│   │   ├── 📁 libs
-│   │   │   ├── 📁 nodemailer
-│   │   │   │   └── 📄 config.ts
-│   │   │   ├── 📁 prisma
-│   │   │   │   └── 📄 prisma.ts
-│   │   │   └── 📁 swagger
-│   │   │       ├── ⚙️ swagger-output.json
-│   │   │       └── 📄 swaggerAutoGen.ts
-│   │   ├── 📁 provider
-│   │   │   ├── 📄 HashProvider.ts
-│   │   │   └── 📄 TokenProvider.ts
-│   │   ├── 📁 repositories
-│   │   │   ├── 📄 EventRepository.ts
-│   │   │   ├── 📄 OutingRepository.ts
-│   │   │   ├── 📄 ParkRepository.ts
-│   │   │   ├── 📄 RatingRepository.ts
-│   │   │   ├── 📄 TrailRepository.ts
-│   │   │   ├── 📄 UserRepository.ts
-│   │   │   └── 📄 VerificationCodeRepository.ts
-│   │   ├── 📁 services
-│   │   │   ├── 📁 email
-│   │   │   │   ├── 📁 template
-│   │   │   │   │   └── 🌐 verificationCode.html
-│   │   │   │   └── 📄 EmailService.ts
-│   │   │   └── 📁 verificationCode
-│   │   │       └── 📄 VerificationCodeService.ts
-│   │   └── 📁 types
-│   │       ├── 📄 dataBase.ts
-│   │       └── 📄 global.ts
-│   ├── 📁 presentation
-│   │   ├── 📁 Controllers
-│   │   │   ├── 📄 AuthenticationController.ts
-│   │   │   ├── 📄 OutingController.ts
-│   │   │   ├── 📄 RatingController.ts
-│   │   │   ├── 📄 TokenController.ts
-│   │   │   ├── 📄 UserController.ts
-│   │   │   └── 📄 VerificationCodeController.ts
-│   │   ├── 📁 middlewares
-│   │   │   ├── 📄 ensureAuthenticated.ts
-│   │   │   ├── 📄 requireAdmin.ts
-│   │   │   └── 📄 validationMiddleware.ts
-│   │   ├── 📁 routes
-│   │   │   ├── 📄 auth.ts
-│   │   │   ├── 📄 outing.ts
-│   │   │   ├── 📄 rating.ts
-│   │   │   ├── 📄 routes.ts
-│   │   │   └── 📄 user.ts
-│   │   └── 📁 schemas
-│   │       ├── 📄 auth.schema.ts
-│   │       ├── 📄 outing.schema.ts
-│   │       ├── 📄 rating.schema.ts
-│   │       ├── 📄 token.schema.ts
-│   │       └── 📄 user.schema.ts
-│   ├── 📁 shared
-│   │   ├── 📁 container
-│   │   │   └── 📄 index.ts
-│   │   └── 📄 enums.ts
-│   ├── 📁 tests
-│   │   ├── 📁 Vo
-│   │   │   ├── 📄 Content.test.ts
-│   │   │   ├── 📄 Email.test.ts
-│   │   │   ├── 📄 Name.test.ts
-│   │   │   ├── 📄 Password.test.ts
-│   │   │   └── 📄 Title.test.ts
-│   │   ├── 📁 functions
-│   │   │   └── 📄 normalizeBadWords.test.ts
-│   │   └── 📁 services
-│   │       └── 📄 SendVerificationEmail.test.ts
-│   └── 📄 index.ts
-├── ⚙️ .gitignore
-├── 📝 README.md
-├── 📄 jest.config.ts
-├── 📄 jest.setup.ts
-├── ⚙️ package-lock.json
-├── ⚙️ package.json
-└── ⚙️ tsconfig.json
+Backend:
+
+📦src
+┣ 📂application
+┃ ┗ 📂useCases
+┃ ┃ ┣ 📂Authentication
+┃ ┃ ┃ ┣ 📜ConsumeVerificationCodeUseCase.ts
+┃ ┃ ┃ ┣ 📜LoginUseCase.ts
+┃ ┃ ┃ ┗ 📜SignUpUseCase.ts
+┃ ┃ ┣ 📂Authorization
+┃ ┃ ┃ ┗ 📜VerifyTokenUseCase.ts
+┃ ┃ ┣ 📂Event
+┃ ┃ ┃ ┣ 📜DeleteEventUseCase.ts
+┃ ┃ ┃ ┣ 📜FindEventByIdUseCase.ts
+┃ ┃ ┃ ┗ 📜UpdateEventUseCase.ts
+┃ ┃ ┣ 📂Outing
+┃ ┃ ┃ ┣ 📂helpers
+┃ ┃ ┃ ┃ ┗ 📜locationHelper.ts
+┃ ┃ ┃ ┣ 📜AddEventUseCase.ts
+┃ ┃ ┃ ┣ 📜AddParkUseCase.ts
+┃ ┃ ┃ ┣ 📜AddTrailUseCase.ts
+┃ ┃ ┃ ┣ 📜CreateEventUseCase.ts
+┃ ┃ ┃ ┣ 📜CreateParkUseCase.ts
+┃ ┃ ┃ ┣ 📜CreateTrailUseCase.ts
+┃ ┃ ┃ ┣ 📜DeleteOutingUseCase.ts
+┃ ┃ ┃ ┣ 📜FindOutingBySlugUseCase.ts
+┃ ┃ ┃ ┣ 📜ListOutingsUseCase.ts
+┃ ┃ ┃ ┗ 📜UpdateOutingUseCase.ts
+┃ ┃ ┣ 📂Rating
+┃ ┃ ┃ ┣ 📜CreateRatingUseCase.ts
+┃ ┃ ┃ ┣ 📜DeleteRatingUseCase.ts
+┃ ┃ ┃ ┣ 📜FindAllRatingsByOutingSlugUseCase.ts
+┃ ┃ ┃ ┣ 📜FindAllRatingsByUserIdUseCase.ts
+┃ ┃ ┃ ┗ 📜UpdateRatingUseCase.ts
+┃ ┃ ┗ 📂User
+┃ ┃ ┃ ┣ 📜DeleteUserUseCase.ts
+┃ ┃ ┃ ┣ 📜FindUserByIdUseCase.ts
+┃ ┃ ┃ ┣ 📜ListUsersUseCase.ts
+┃ ┃ ┃ ┗ 📜UpdateUserUseCase.ts
+┣ 📂docs
+┃ ┣ 📜auth.yaml
+┃ ┣ 📜index.ts
+┃ ┣ 📜openapi.yaml
+┃ ┣ 📜outing.yaml
+┃ ┣ 📜rating.yaml
+┃ ┣ 📜spec.ts
+┃ ┗ 📜user.yaml
+┣ 📂domain
+┃ ┣ 📂entities
+┃ ┃ ┣ 📜Event.ts
+┃ ┃ ┣ 📜Park.ts
+┃ ┃ ┣ 📜Rating.ts
+┃ ┃ ┣ 📜User.ts
+┃ ┃ ┗ 📜VerificationCode.ts
+┃ ┣ 📂interfaces
+┃ ┃ ┣ 📜IEmailService.ts
+┃ ┃ ┣ 📜IEventRepository.ts
+┃ ┃ ┣ 📜IHashProvider.ts
+┃ ┃ ┣ 📜IOutingRepository.ts
+┃ ┃ ┣ 📜IParkRepository.ts
+┃ ┃ ┣ 📜IRatingRepository.ts
+┃ ┃ ┣ 📜ITokenProvider.ts
+┃ ┃ ┣ 📜ITrailRepository.ts
+┃ ┃ ┣ 📜IUserRepository.ts
+┃ ┃ ┣ 📜IVerificationCodeRepository.ts
+┃ ┃ ┗ 📜IVerificationCodeService.ts
+┃ ┗ 📂value objects
+┃ ┃ ┣ 📜Biodiversity.ts
+┃ ┃ ┣ 📜Capacity.ts
+┃ ┃ ┣ 📜Content.ts
+┃ ┃ ┣ 📜Difficulty.ts
+┃ ┃ ┣ 📜Email.ts
+┃ ┃ ┣ 📜Name.ts
+┃ ┃ ┣ 📜Password.ts
+┃ ┃ ┣ 📜RatingValue.ts
+┃ ┃ ┗ 📜Title.ts
+┣ 📂helpers
+┃ ┣ 📜errorHandler.ts
+┃ ┣ 📜mapPrismaRole.ts
+┃ ┣ 📜mapPrismaUserToUserFromDb.ts
+┃ ┣ 📜normalizeBadWords.ts
+┃ ┗ 📜validateValueOrThrow.ts
+┣ 📂infrastructure
+┃ ┣ 📂db
+┃ ┃ ┗ 📂seeds
+┃ ┃ ┃ ┣ 📜admin.ts
+┃ ┃ ┃ ┣ 📜category.ts
+┃ ┃ ┃ ┣ 📜city.ts
+┃ ┃ ┃ ┣ 📜eventOutings.ts
+┃ ┃ ┃ ┣ 📜index.ts
+┃ ┃ ┃ ┣ 📜parkOutings.ts
+┃ ┃ ┃ ┣ 📜photos.ts
+┃ ┃ ┃ ┣ 📜trailOutings.ts
+┃ ┃ ┃ ┗ 📜user.ts
+┃ ┣ 📂libs
+┃ ┃ ┣ 📂nodemailer
+┃ ┃ ┃ ┗ 📜config.ts
+┃ ┃ ┗ 📂prisma
+┃ ┃ ┃ ┣ 📂generated
+┃ ┃ ┃ ┃ ┣ 📂internal
+┃ ┃ ┃ ┃ ┃ ┣ 📜class.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜prismaNamespace.ts
+┃ ┃ ┃ ┃ ┃ ┗ 📜prismaNamespaceBrowser.ts
+┃ ┃ ┃ ┃ ┣ 📂models
+┃ ┃ ┃ ┃ ┃ ┣ 📜Category.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜City.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜Event.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜Location.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜OpenHour.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜Outings.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜Park.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜Photo.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜Ratings.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜Trail.ts
+┃ ┃ ┃ ┃ ┃ ┣ 📜Users.ts
+┃ ┃ ┃ ┃ ┃ ┗ 📜VerificationCodes.ts
+┃ ┃ ┃ ┃ ┣ 📜browser.ts
+┃ ┃ ┃ ┃ ┣ 📜client.ts
+┃ ┃ ┃ ┃ ┣ 📜commonInputTypes.ts
+┃ ┃ ┃ ┃ ┣ 📜enums.ts
+┃ ┃ ┃ ┃ ┗ 📜models.ts
+┃ ┃ ┃ ┗ 📜prisma.ts
+┃ ┣ 📂provider
+┃ ┃ ┣ 📜HashProvider.ts
+┃ ┃ ┗ 📜TokenProvider.ts
+┃ ┣ 📂repositories
+┃ ┃ ┣ 📜EventRepository.ts
+┃ ┃ ┣ 📜OutingRepository.ts
+┃ ┃ ┣ 📜ParkRepository.ts
+┃ ┃ ┣ 📜RatingRepository.ts
+┃ ┃ ┣ 📜TrailRepository.ts
+┃ ┃ ┣ 📜UserRepository.ts
+┃ ┃ ┗ 📜VerificationCodeRepository.ts
+┃ ┣ 📂services
+┃ ┃ ┣ 📂email
+┃ ┃ ┃ ┣ 📂template
+┃ ┃ ┃ ┃ ┗ 📜verificationCode.html
+┃ ┃ ┃ ┗ 📜EmailService.ts
+┃ ┃ ┗ 📂verificationCode
+┃ ┃ ┃ ┗ 📜VerificationCodeService.ts
+┃ ┗ 📂types
+┃ ┃ ┣ 📜database.ts
+┃ ┃ ┗ 📜global.ts
+┣ 📂presentation
+┃ ┣ 📂controllers
+┃ ┃ ┣ 📜.gitkeep
+┃ ┃ ┣ 📜AuthenticationController.ts
+┃ ┃ ┣ 📜OutingController.ts
+┃ ┃ ┣ 📜RatingController.ts
+┃ ┃ ┣ 📜TokenController.ts
+┃ ┃ ┣ 📜UserController.ts
+┃ ┃ ┗ 📜VerificationCodeController.ts
+┃ ┣ 📂middlewares
+┃ ┃ ┣ 📜ensureAuthenticated.ts
+┃ ┃ ┣ 📜rateLimiter.ts
+┃ ┃ ┣ 📜requireAdmin.ts
+┃ ┃ ┗ 📜validationMiddleware.ts
+┃ ┣ 📂routes
+┃ ┃ ┣ 📜auth.ts
+┃ ┃ ┣ 📜outing.ts
+┃ ┃ ┣ 📜rating.ts
+┃ ┃ ┣ 📜routes.ts
+┃ ┃ ┗ 📜user.ts
+┃ ┗ 📂schemas
+┃ ┃ ┣ 📜auth.schema.ts
+┃ ┃ ┣ 📜outing.schema.ts
+┃ ┃ ┣ 📜rating.schema.ts
+┃ ┃ ┣ 📜token.schema.ts
+┃ ┃ ┗ 📜user.schema.ts
+┣ 📂shared
+┃ ┣ 📂container
+┃ ┃ ┗ 📜index.ts
+┃ ┗ 📜enums.ts
+┣ 📂tests
+┃ ┣ 📂functions
+┃ ┃ ┗ 📜normalizeBadWords.test.ts
+┃ ┣ 📂services
+┃ ┃ ┗ 📜SendVerificationEmail.test.ts
+┃ ┗ 📂Vo
+┃ ┃ ┣ 📜Content.test.ts
+┃ ┃ ┣ 📜Email.test.ts
+┃ ┃ ┣ 📜Name.test.ts
+┃ ┃ ┣ 📜Password.test.ts
+┃ ┃ ┗ 📜Title.test.ts
+┗ 📜index.ts
+
+Front
+
+📦src
+┣ 📂actions
+┃ ┣ 📜createOuting.ts
+┃ ┣ 📜deleteOuting.ts
+┃ ┣ 📜deleteRating.ts
+┃ ┣ 📜fetchOutings.ts
+┃ ┣ 📜login.ts
+┃ ┣ 📜register.ts
+┃ ┣ 📜sendRating.ts
+┃ ┣ 📜sendVerificationCode.ts
+┃ ┣ 📜updateOuting.ts
+┃ ┗ 📜updateRating.ts
+┣ 📂components
+┃ ┣ 📂admin
+┃ ┃ ┗ 📂outing
+┃ ┃ ┃ ┣ 📜DifficultySelector.tsx
+┃ ┃ ┃ ┣ 📜EventStepContent.tsx
+┃ ┃ ┃ ┣ 📜OutingCreationModal.tsx
+┃ ┃ ┃ ┣ 📜OutingEditModal.tsx
+┃ ┃ ┃ ┣ 📜ParkStepContent.tsx
+┃ ┃ ┃ ┣ 📜SelectionButtons.tsx
+┃ ┃ ┃ ┣ 📜Step1Content.tsx
+┃ ┃ ┃ ┣ 📜Step2Content.tsx
+┃ ┃ ┃ ┣ 📜Step3Content.tsx
+┃ ┃ ┃ ┣ 📜StepControllers.tsx
+┃ ┃ ┃ ┗ 📜TrailStepContent.tsx
+┃ ┣ 📂auth
+┃ ┃ ┣ 📜AuthForm.tsx
+┃ ┃ ┣ 📜CodeVerificationModal.tsx
+┃ ┃ ┗ 📜InputLabelList.tsx
+┃ ┣ 📂home
+┃ ┃ ┗ 📜Section.tsx
+┃ ┣ 📂outing
+┃ ┃ ┣ 📂parks
+┃ ┃ ┃ ┗ 📜ParkCards.tsx
+┃ ┃ ┣ 📜Category.tsx
+┃ ┃ ┣ 📜CategorySidebar.tsx
+┃ ┃ ┣ 📜MoreInfo.tsx
+┃ ┃ ┣ 📜MoreInfoList.tsx
+┃ ┃ ┣ 📜OutingCard.tsx
+┃ ┃ ┣ 📜OutingCardList.tsx
+┃ ┃ ┣ 📜OutingCardListSkeleton.tsx
+┃ ┃ ┣ 📜OutingCardSkeleton.tsx
+┃ ┃ ┣ 📜OutingDetailSkeleton.tsx
+┃ ┃ ┣ 📜TwoRowsCarousel.tsx
+┃ ┃ ┗ 📜TwoRowsCarouselSkeleton.tsx
+┃ ┣ 📂rating
+┃ ┃ ┣ 📜Counts.tsx
+┃ ┃ ┣ 📜RatingCard.tsx
+┃ ┃ ┣ 📜RatingForm.tsx
+┃ ┃ ┣ 📜RatingList.tsx
+┃ ┃ ┗ 📜UserCard.tsx
+┃ ┣ 📂trails
+┃ ┃ ┣ 📜TrailCard.tsx
+┃ ┃ ┣ 📜TrailCardInfo.tsx
+┃ ┃ ┣ 📜TrailCardList.tsx
+┃ ┃ ┣ 📜TrailCardListSkeleton.tsx
+┃ ┃ ┗ 📜TrailImage.tsx
+┃ ┣ 📜Button.tsx
+┃ ┣ 📜ConfirmDialog.tsx
+┃ ┣ 📜FullGaleryImages.tsx
+┃ ┣ 📜FullScreenImage.tsx
+┃ ┣ 📜Galery.tsx
+┃ ┣ 📜Header.tsx
+┃ ┣ 📜HeaderDefault.tsx
+┃ ┣ 📜HeaderLinks.tsx
+┃ ┣ 📜InformativeText.tsx
+┃ ┣ 📜Input.tsx
+┃ ┣ 📜Label.tsx
+┃ ┣ 📜Loading.tsx
+┃ ┣ 📜Logout.tsx
+┃ ┣ 📜Map.tsx
+┃ ┣ 📜MobileCarousel.tsx
+┃ ┣ 📜MobileHeaderMenu.tsx
+┃ ┣ 📜Modal.tsx
+┃ ┣ 📜OpenStatus.tsx
+┃ ┣ 📜Pagination.tsx
+┃ ┣ 📜RevealingImage.tsx
+┃ ┣ 📜Scrollable.tsx
+┃ ┣ 📜ScrollToHash.tsx
+┃ ┣ 📜ScrollTop.tsx
+┃ ┣ 📜SearchButton.tsx
+┃ ┣ 📜SectionTitle.tsx
+┃ ┣ 📜Select.tsx
+┃ ┣ 📜Selectors.tsx
+┃ ┣ 📜SelectorsList.tsx
+┃ ┣ 📜TextArea.tsx
+┃ ┣ 📜Tooltip.tsx
+┃ ┗ 📜VisibleGaleryImages.tsx
+┣ 📂context
+┃ ┣ 📜CodeContext.tsx
+┃ ┣ 📜LoadingContext.tsx
+┃ ┣ 📜loadingTypesAndContext.ts
+┃ ┣ 📜OutingsContext.tsx
+┃ ┗ 📜UserContext.tsx
+┣ 📂css
+┃ ┗ 📜index.css
+┣ 📂helpers
+┃ ┣ 📜api.ts
+┃ ┣ 📜avatar.ts
+┃ ┣ 📜buildOutingPayload.ts
+┃ ┣ 📜formatPrice.ts
+┃ ┣ 📜formatZodErrors.ts
+┃ ┣ 📜getFirstPhoto.ts
+┃ ┣ 📜handleErrors.ts
+┃ ┣ 📜parks.ts
+┃ ┣ 📜ratings.ts
+┃ ┣ 📜timestampConverter.ts
+┃ ┣ 📜utils.ts
+┃ ┗ 📜validationSchemas.ts
+┣ 📂hooks
+┃ ┣ 📜useAuthorization.ts
+┃ ┣ 📜useBodyScrollLock.ts
+┃ ┣ 📜useCarouselNavigation.ts
+┃ ┣ 📜useConfirmDelete.ts
+┃ ┣ 📜useDebouncedValidation.ts
+┃ ┣ 📜useEvent.ts
+┃ ┣ 📜useFormState.ts
+┃ ┣ 📜useGalery.ts
+┃ ┣ 📜useImagePreloader.ts
+┃ ┣ 📜useLoading.ts
+┃ ┣ 📜useLogin.ts
+┃ ┣ 📜useModal.ts
+┃ ┣ 📜useOpenStatus.ts
+┃ ┣ 📜useOuting.ts
+┃ ┣ 📜useOutingCreation.ts
+┃ ┣ 📜useOutingCrud.ts
+┃ ┣ 📜useOutingEdit.ts
+┃ ┣ 📜useOutings.ts
+┃ ┣ 📜useOutingsByCategory.ts
+┃ ┣ 📜usePagination.ts
+┃ ┣ 📜usePark.ts
+┃ ┣ 📜useRatingDelete.ts
+┃ ┣ 📜useRatingForm.ts
+┃ ┣ 📜useRatingFormDialog.ts
+┃ ┣ 📜useRegister.ts
+┃ ┣ 📜useScrollState.ts
+┃ ┣ 📜useSearch.ts
+┃ ┣ 📜useSearchOutings.ts
+┃ ┣ 📜useSelect.ts
+┃ ┣ 📜useSidebar.ts
+┃ ┣ 📜useTrail.ts
+┃ ┣ 📜useTrailCard.ts
+┃ ┗ 📜useTwoRowsCarousel.ts
+┣ 📂layouts
+┃ ┣ 📜AdminRoute.tsx
+┃ ┣ 📜AuthLayout.tsx
+┃ ┣ 📜MainLayout.tsx
+┃ ┗ 📜RedirectIfAuth.tsx
+┣ 📂pages
+┃ ┣ 📜Admin.tsx
+┃ ┣ 📜Home.tsx
+┃ ┣ 📜Login.tsx
+┃ ┣ 📜Outing.tsx
+┃ ┣ 📜Register.tsx
+┃ ┗ 📜Search.tsx
+┣ 📂types
+┃ ┣ 📜Outing.ts
+┃ ┗ 📜User.ts
+┣ 📜App.tsx
+┗ 📜main.tsx
 
   </pre>
 </div >
