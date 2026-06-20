@@ -21,7 +21,7 @@
     <li><a href="#repositorios">Repositórios</a></li>
     <li><a href="#estrutura">Estrutura das Pastas</a></li>
     <li><a href="dependencias">Dependências</a></li>
-    <li><a href="#resumo">Resumo </a></li>
+    <li><a href="#links">Links Uteis </a></li>
   </ul>
 </div>
 <div id="alunos">
@@ -621,6 +621,13 @@ Front
     <li>tsyringe</li>
     <li>zod</li>
   </ul>
+</div>
+
+<div id="links">
+  Slide MVP Backend 
+  https://docs.google.com/presentation/d/1WGPVECDpajg9_WuMm7JCDOthjbQNqAlL/edit?slide=id.p3#slide=id.p3
+
+  
 </div>
 
 
