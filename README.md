@@ -624,8 +624,6 @@ Front
 </div>
 
 <div id="links">
-  Slide MVP Backend 
-  https://docs.google.com/presentation/d/1WGPVECDpajg9_WuMm7JCDOthjbQNqAlL/edit?slide=id.p3#slide=id.p3
 
   
 </div>
